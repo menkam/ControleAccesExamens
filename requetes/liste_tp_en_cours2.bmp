@@ -1,0 +1,35 @@
+﻿SELECT 
+  cursus_accs.code, 
+  departements.code_departement, 
+  classes.code_classe, 
+  activites.id, 
+  creneaux_horaires.libelle_creneaux, 
+  matieres.libelle_matiere, 
+  users.name, 
+  users.prenom, 
+  enseignants.grade
+FROM 
+  public.departements, 
+  public.cursus_accs, 
+  public.classes, 
+  public.activite_conc_classes, 
+  public.activites, 
+  public.matieres, 
+  public.creneaux_horaires, 
+  public.enseignants, 
+  public.users, 
+  public.cours
+WHERE 
+  classes.id_cursus = cursus_accs.id AND
+  classes.id_departement = departements.id AND
+  activite_conc_classes.id_classe = classes.id AND
+  activite_conc_classes.id_activite = activites.id AND
+  users.id = enseignants.id_user AND
+  cours.id_activite = activites.id AND
+  cours.id_enseigant = enseignants.id AND
+  cours.id_matiere = matieres.id AND
+  cours.id_creneau = creneaux_horaires.id AND
+  cours.date_cours = '2018-05-08' AND 
+  creneaux_horaires.libelle_creneaux LIKE '%09h%'
+ORDER BY
+  creneaux_horaires.libelle_creneaux ASC;
