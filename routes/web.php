@@ -17,6 +17,10 @@ Route::singularResourceParameters();
  * routes pour l'application android
  */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/cowsay',  function($app){
 	$app['monolog']->addDebug('cowsay');
 	return "<pre>".\Cowsayphp\Cow::say("Cool beans")."</pre>";
@@ -33,12 +37,12 @@ Route::get('androidAddStudent', ['as'=>'androidAddStudent', 'uses'=>'AndroidApi\
 Route::get('androidStudentFinish', ['as'=>'androidStudentFinish', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantAyantTerminer']);
 Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantsExclus']);
 
-
+/*
 Route::group(['middleware' => ['guest']], function() {
     Route::get('/', function () {
         return view('welcome');
     });
-});
+});*/
 
 Auth::routes();
 
