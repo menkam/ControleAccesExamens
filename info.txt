@@ -1,0 +1,10 @@
+=== calm-retreat-93535 Config Vars
+APP_KEY:       
+DATABASE_URL:  postgres://ueyvyhgbtfkzhm:090530348496062a5b30a666d1ef2c01f97a7279deaee824d823b2b990f1a5ec@ec2-54-83-59-120.compute-1.amazonaws.com:5432/d1v1afflm9jel6
+DB_CONNECTION: pgsql
+DB_DATABASE:   d1v1afflm9jel6
+DB_HOPORT:     5432
+DB_HOST:       ec2-54-83-59-120.compute-1.amazonaws.com
+DB_PASSWORD:   090530348496062a5b30a666d1ef2c01f97a7279deaee824d823b2b990f1a5ec
+DB_PORT:       5432
+DB_USERNAME:   ueyvyhgbtfkzhm
