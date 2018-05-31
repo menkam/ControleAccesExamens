@@ -17,6 +17,11 @@ Route::singularResourceParameters();
  * routes pour l'application android
  */
 
+Route::get('/cowsay',  function($app){
+	$app['monolog']->addDebug('cowsay');
+	return "<pre>".\Cowsayphp\Cow::say("Cool beans")."</pre>";
+});
+
 Route::get('androidGetListEtudiant', ['as'=>'androidGetListEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListEtudiants']);
 Route::get('androidGetListAllEtudiant', ['as'=>'androidGetListAllEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListAllEtudiants']);
 Route::get('androidVerifierEmail', ['as'=>'androidVerifierEmail', 'uses'=>'AndroidApi\AuthController@verifierEmail']);
