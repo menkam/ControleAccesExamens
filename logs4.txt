@@ -1,0 +1,100 @@
+2018-06-01T00:21:12.132829+00:00 heroku[web.1]: Restarting
+2018-06-01T00:21:12.133207+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:21:13.179098+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:21:13.202564+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:21:13.326426+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:21:16.925427+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:21:19.561026+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:21:19.781837+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:21:19.788327+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:21:21.791096+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:21:22.006127+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:22:02.566195+00:00 heroku[web.1]: Restarting
+2018-06-01T00:22:02.566819+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:22:03.488754+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:22:03.507848+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:22:03.588393+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:22:06.902186+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:22:09.187201+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:22:09.368734+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:22:09.377707+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:22:11.379892+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:22:11.853608+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:22:34.181484+00:00 heroku[web.1]: Restarting
+2018-06-01T00:22:34.184642+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:22:34.775852+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:22:34.763208+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:22:34.832195+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:22:38.408006+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:22:40.795015+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:22:40.955188+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:22:40.962141+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:22:42.964072+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:22:43.214781+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:23:18.331315+00:00 heroku[web.1]: Restarting
+2018-06-01T00:23:18.332100+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:23:19.208611+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:23:19.191035+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:23:19.315006+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:23:23.185494+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:23:25.868978+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:23:26.069843+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:23:26.075951+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:23:28.080694+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:23:28.718302+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:23:52.259441+00:00 heroku[web.1]: Restarting
+2018-06-01T00:23:52.260574+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:23:52.974369+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:23:52.959746+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:23:53.051620+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:23:56.038645+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:23:57.899780+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:23:58.023438+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:23:58.028243+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:24:00.029694+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:24:00.712201+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:24:12.660848+00:00 heroku[web.1]: Restarting
+2018-06-01T00:24:12.661260+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T00:24:13.334681+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T00:24:13.344263+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T00:24:13.406172+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T00:24:18.049300+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T00:24:21.124329+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T00:24:21.409989+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T00:24:21.427118+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T00:24:23.432602+00:00 app[web.1]: Starting httpd...
+2018-06-01T00:24:24.368498+00:00 heroku[web.1]: State changed from starting to up
+2018-06-01T00:25:02.154637+00:00 heroku[run.9462]: State changed from starting to up
+2018-06-01T00:25:03.599081+00:00 heroku[run.9462]: Awaiting client
+2018-06-01T00:25:03.631725+00:00 heroku[run.9462]: Starting process with command `php artisan migrate:fresh -–seed`
+2018-06-01T00:25:08.909150+00:00 heroku[run.9462]: Process exited with status 1
+2018-06-01T00:25:08.926194+00:00 heroku[run.9462]: State changed from up to complete
+2018-06-01T00:25:45.870447+00:00 heroku[run.9443]: Awaiting client
+2018-06-01T00:25:45.894035+00:00 heroku[run.9443]: Starting process with command `php artisan migrate:fresh`
+2018-06-01T00:25:46.017925+00:00 heroku[run.9443]: State changed from starting to up
+2018-06-01T00:25:56.873497+00:00 heroku[run.9443]: Process exited with status 0
+2018-06-01T00:25:56.882171+00:00 heroku[run.9443]: State changed from up to complete
+2018-06-01T00:28:47.603026+00:00 heroku[run.8751]: Awaiting client
+2018-06-01T00:28:47.628173+00:00 heroku[run.8751]: Starting process with command `php artisan migrate --seed`
+2018-06-01T00:28:47.760466+00:00 heroku[run.8751]: State changed from starting to up
+2018-06-01T00:28:58.986510+00:00 heroku[run.8751]: Process exited with status 0
+2018-06-01T00:28:59.014956+00:00 heroku[run.8751]: State changed from up to complete
+2018-06-01T00:54:08.062865+00:00 heroku[run.5933]: Awaiting client
+2018-06-01T00:54:08.084398+00:00 heroku[run.5933]: Starting process with command `vendor/phpunit/phpunit/phpunit`
+2018-06-01T00:54:08.400148+00:00 heroku[run.5933]: State changed from starting to up
+2018-06-01T00:54:12.214053+00:00 heroku[run.5933]: Process exited with status 127
+2018-06-01T00:54:12.238486+00:00 heroku[run.5933]: State changed from up to complete
+2018-06-01T00:55:38.497172+00:00 heroku[router]: at=info method=GET path="/" host=controle-acces-iutfv.herokuapp.com request_id=23cb65a4-313d-4533-b49b-690672c74b86 fwd="129.0.80.247" dyno=web.1 connect=1ms service=2ms status=403 bytes=373 protocol=https
+2018-06-01T00:55:38.498685+00:00 app[web.1]: [Fri Jun 01 00:55:38.496490 2018] [autoindex:error] [pid 117:tid 140565662340864] [client 10.51.209.178:30871] AH01276: Cannot serve directory /app/: No matching DirectoryIndex (index.php,index.html,index.htm) found, and server-generated directory index forbidden by Options directive, referer: https://dashboard.heroku.com/
+2018-06-01T00:55:38.499012+00:00 app[web.1]: 10.51.209.178 - - [01/Jun/2018:00:55:38 +0000] "GET / HTTP/1.1" 403 209 "https://dashboard.heroku.com/" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+2018-06-01T01:04:09.775880+00:00 heroku[web.1]: Restarting
+2018-06-01T01:04:09.777757+00:00 heroku[web.1]: State changed from up to starting
+2018-06-01T01:04:11.152218+00:00 app[web.1]: Going down, terminating child processes...
+2018-06-01T01:04:11.125348+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2018-06-01T01:04:11.235286+00:00 heroku[web.1]: Process exited with status 143
+2018-06-01T01:04:14.198504+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2018-06-01T01:04:16.582474+00:00 app[web.1]: Optimizing defaults for 1X dyno...
+2018-06-01T01:04:16.860634+00:00 app[web.1]: 4 processes at 128MB memory limit.
+2018-06-01T01:04:16.868557+00:00 app[web.1]: Starting php-fpm...
+2018-06-01T01:04:18.873662+00:00 app[web.1]: Starting httpd...
+2018-06-01T01:04:19.404907+00:00 heroku[web.1]: State changed from starting to up
