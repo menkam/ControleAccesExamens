@@ -16,6 +16,10 @@ Route::singularResourceParameters();
 /*
  * routes pour l'application android
  */
+Route::get('/public/', function () {
+    return dd('welcome');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
