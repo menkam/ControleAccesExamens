@@ -65,21 +65,21 @@ Route::group(['middleware' => ['auth']], function(){
     /*
      * Route pour l'admin'
      */
-    Route::resource('admin', 'Users\AdminController');
+    //Route::resource('admin', 'Users\AdminController');
     Route::get('database',['as'=>'dataBase', 'uses'=>'Users\AdminController@pageMenu']);
     /*
      * Route pour l'enseignant'
      */
-    Route::resource('enseignant', 'Users\EnseignantController');
+    //Route::resource('enseignant', 'Users\EnseignantController');
     Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');
 
     /*
      * Route pour l'etudiant'
      */
-    Route::resource('etudiant', 'Users\EtudiantController');      
+    /*Route::resource('etudiant', 'Users\EtudiantController');
     Route::resource('etud_ins_mats', 'Etud_ins_matsController');
     Route::resource('etud_scolariser_class', 'Etud_scolariser_classController');
-    Route::resource('etud_realise_activs', 'Etud_realise_activsController');
+    Route::resource('etud_realise_activs', 'Etud_realise_activsController');*/
     /*
      * Route pour le visiteur
      */
@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth']], function(){
     /*
      * Route pour le surveillants
      */
-    Route::resource('surveillants', 'SurveillantsController');
+   // Route::resource('surveillants', 'SurveillantsController');
 
 
 
@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth']], function(){
      * route activiter
      */
 
-    Route::resource('activite', 'ActivitesController');
+    //Route::resource('activite', 'ActivitesController');
 
     Route::get('mes_activites', ['as'=>'mes_activites', 'uses'=>'ActivitesController@accueille']);
     Route::get('activites-encours', ['as'=>'activites-encours', 'uses'=>'ActivitesController@en_cours']);
