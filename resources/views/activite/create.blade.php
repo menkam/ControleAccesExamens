@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="myModalLabel">Information sur la nouvelle activité</h4>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" action="{{ route('activite.store') }}" method="POST">
+                <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="control-label" for="id_annee">Année Académique:</label>
@@ -17,28 +17,18 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="semestre">semestre:</label>
-                        <select name="id_semestre" class="form-control" data-error="Choisir le semestre." required >
-                            <option value="">....</option>
-                            <option value="1">LMD1</option>
-                            <option value="2">LMD1&2</option>
-                            <option value="3">LMD2</option>
-                        </select>
+                        <label class="control-label" for="semestre">Semestre:</label>
+                        <select id="id_semestre" name="id_semestre" class="form-control" data-error="Choisir le semestre." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="niveau">Niveau:</label>
-                        <select name="id_niveau" class="form-control" data-error="Choisir le Niveau d'étude." required >
-                            <option value="">....</option>
-                            <option value="1">I</option>
-                            <option value="3">II</option>
-                            <option value="6">III</option>
-                        </select>
+                        <select id="id_niveau" name="id_niveau" class="form-control" data-error="Choisir le Niveau d'étude." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="type_activite">Type:</label>
-                        <select name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required >
+                        <select id="type_activite" name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required >
                             <option value="">....</option>
                             <option value="cours">Cours</option>
                             <option value="examen">Examen</option>
@@ -47,16 +37,8 @@
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="date_debut_activite">Date de début:</label>
-                        <input type="date" name="date_debut_activite" class="form-control" min="2018-05-05" data-error="Choisir la date de début de l'activité." required />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="date_fin_activite">Date de fin:</label>
-                        <input type="date" name="date_fin_activite" class="form-control" min="2018-05-05" data-error="Choisir la date de début de l'activité." required />
-                        <div class="help-block with-errors"></div>
-                    </div>
+                    <div class="form-group" id="date_debut_activite"></div>
+                    <div class="form-group" id="date_fin_activite"></div>
                     <div class="form-group">
                         <button type="submit" class="btn save_activite btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
@@ -77,49 +59,32 @@
                 <h6 class="modal-title" id="myModalLabel">Ajouter une matière à cette activité</h6>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" action="{{ route('addMatiereExamen') }}" method="POST">
+                <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
+                    <div class="form-group" id="date_matiere_activite"></div>
                     <div class="form-group">
-                        <label class="control-label" for="date_examen">Date:</label>
-                        <input type="date" id="date_examen" name="date_examen" class="form-control" data-error="Choisr la une date." required >
+                        <label class="control-label" for="duree">Durée:</label>
+                        <select name="duree" id="duree1" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_creneau">Durée:</label>
-                        <select name="id_creneau" id="id_creneau" class="form-control" data-error="Choisir un créneau horaire." required >
-                            <option value="">....</option>
-                            <option value="1">8h-9h</option>
-                            <option value="2">9h-10h</option>
-                            <option value="3">10h-11h</option>
-                        </select>
+                        <label class="control-label" for="id_creneau">Creneau horaire:</label>
+                        <select name="id_creneau" id="id_creneau1" class="form-control" data-error="Choisir un créneau horaire." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="id_matiere">Matière:</label>
-                        <select name="id_matiere" id="id_matiere" class="form-control" data-error="Choisir la matière." required >
-                            <option value="">....</option>
-                            <option value="1">Recherche opp</option>
-                            <option value="2">algorithmique</option>
-                            <option value="3">Probabilite</option>
-                        </select>
+                        <select name="id_matiere" id="id_matiere" class="form-control" data-error="Choisir la matière." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="id_surveillant">Surveillant:</label>
-                        <select name="id_surveillant" id="id_surveillant" class="form-control" data-error="Choisir un surveillant pour cette matière." required >
-                            <option value="">....</option>
-                            <option value="1">surveillant 1</option>
-                            <option value="2">surveillant 2</option>
-                        </select>
+                        <select name="id_surveillant" id="id_surveillant" class="form-control" data-error="Choisir un surveillant pour cette matière." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="idSession">
                         <label class="control-label" for="id_session">Session:</label>
-                        <select name="id_session" id="id_session" class="form-control" data-error="Choisir la sessionde cette activité." required >
-                            <option value="">....</option>
-                            <option value="1">Normale</option>
-                            <option value="2">Rattrapage</option>
-                        </select>
+                        <select name="id_session" id="id_session" class="form-control" data-error="Choisir la sessionde cette activité." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -142,15 +107,11 @@
                 <h6 class="modal-title" id="myModalLabel">Ajouter une classe</h6>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" action="{{ route('addClasseActivite') }}" method="POST">
-                    <div class="form-group">
+                <form data-toggle="validator" action="" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group"  style="">
                         <label class="control-label" for="id_classe">Classe :</label>
-                        <select name="id_classe" id="id_classe" class="form-control" data-error="Choisir une classe." required >
-                            <option value="">....</option>
-                            <option value="1">Licence informatique et reseaux</option>
-                            <option value="2">Licence GC</option>
-                            <option value="3">Licence GTR</option>
-                        </select>
+                        <select name="id_classe" id="id_classe" class="form-control" data-error="Choisir une classe." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -173,16 +134,22 @@
                 <h6 class="modal-title" id="myModalLabel">Ajouter une salle</h6>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" action="{{ route('addSalleActivite') }}" method="POST">
+                <form data-toggle="validator" action="" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group" id="date1"></div>
+                    <div class="form-group">
+                        <label class="control-label" for="duree">Durée:</label>
+                        <select name="duree" id="duree2" class="form-control" data-error="Choisir une durée." required ></select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="id_creneau">Creneau horaire:</label>
+                        <select name="id_creneau" id="id_creneau2" class="form-control" data-error="Choisir un créneau horaire." required ></select>
+                        <div class="help-block with-errors"></div>
+                    </div>
                     <div class="form-group">
                         <label class="control-label" for="id_salle">Salle :</label>
-                        <select name="id_salle" id="id_salle" class="form-control" data-error="Choisir une sale." required >
-                            <option value="">....</option>
-                            <option value="1">Salle de dessing</option>
-                            <option value="2">Amphie A</option>
-                            <option value="3">Amphie B</option>
-                            <option value="4">A005</option>
-                        </select>
+                        <select name="id_salle" id="salleActivite" class="form-control" data-error="Choisir une sale." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -195,3 +162,65 @@
         </div>
     </div>
 </div>
+
+@section("script-modal")
+<script type="text/javascript">
+maxDateAnnee = "2018-08-05";
+//alert(dateCourante+" "+heureCourante);
+
+$(document).ready(function (){
+
+    getOptionClasse();
+    getOptionDuree("duree1");
+    getOptionDuree("duree2");
+    getOptionMatiere();
+    getOptionSession();
+
+    //getDate(min, max,position,nom,id,label)
+    getDate(dateCourante,maxDateAnnee,"date1","date","date","Date:");
+
+    $("#date").change(function(){
+        date = $("#date").val();
+        $("#duree2").change(function(){
+            duree = $("#duree2").val();
+            getOptionCreneau("id_creneau2",duree);
+            $("#id_creneau2").change(function(){
+                id_creneau = $("#id_creneau2").val();
+                getOptionSalleLibre(date, id_creneau);
+            });
+        });
+    });
+
+    //
+
+    $("#id_annee").change(function(){
+        getOptionSemestre();
+        getOptionNiveau();
+        getDateDebut();
+        $("#date_debut_activite").change(function(){
+            getDatefin();
+        });
+    });
+
+    $("#duree1").change(function(){
+        duree = $("#duree1").val();
+        getOptionCreneau("id_creneau1",duree);
+        getOptionSurveillant(duree);
+    });
+});
+
+function getDateDebut(){
+    $("#date_debut_activite").html('' +
+    '<label class="control-label" for="date_debut_activite">Date de début:</label>' +
+    '<input type="date" id="dateDebut"  name="date_debut_activite" class="form-control" min="'+dateCourante+'" max="'+maxDateAnnee+'" data-error="Choisir la date de début de lactivité" required >' +
+    '<div class="help-block with-errors"></div>');
+}
+function getDatefin(){
+    dateDebut = $("#dateDebut").val();
+    $("#date_fin_activite").html('' +
+    '<label class="control-label" for="date_fin_activite">Date de fin:</label>' +
+    '<input type="date" name="date_fin_activite" class="form-control" min="'+dateDebut+'" max="'+maxDateAnnee+'" data-error="Choisir la date de début de lactivité." required />' +
+    '<div class="help-block with-errors"></div>');
+}
+</script>
+@endsection

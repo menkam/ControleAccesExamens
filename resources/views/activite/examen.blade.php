@@ -56,6 +56,7 @@
                             <th>#</th>
                             <th>Code classe</th>
                             <th>Libelle classe</th>
+                            <th>Effectif</th>
                             <th width="200px">Action</th>
                         </tr>
                         </thead>

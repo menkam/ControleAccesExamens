@@ -199,6 +199,5 @@
     <script src="{{ asset('framework/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 
     <script src="{{ asset('js/listeEtudiantActivite.js') }}"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
 @endsection
 @endif

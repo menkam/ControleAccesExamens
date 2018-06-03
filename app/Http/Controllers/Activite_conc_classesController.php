@@ -37,7 +37,8 @@ class Activite_conc_classesController extends Controller{
                 SELECT
                   activite_conc_classes.id,
                   classes.code_classe,
-                  classes.libelle_classe
+                  classes.libelle_classe,
+                  effectif_classe
                 FROM
                   activites,
                   activite_conc_classes,

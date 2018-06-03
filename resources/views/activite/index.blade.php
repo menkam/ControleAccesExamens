@@ -188,6 +188,8 @@
     <script type="text/javascript">
         var url = "<?php echo route('activite.index');?>";
         var idActiviteCourante;
+        var DateDebutActiviteCourante;
+        var DateFinActiviteCourante;
         var idUser = 1;
         /*var compteurA = 0;
         var compteurM = 0;
@@ -195,4 +197,5 @@
         var compteurS = 0;*/
     </script>
     <script src="{{ asset('js/activite.js') }}"></script>
+    @yield('script-modal')
 @endsection

@@ -12,59 +12,119 @@ class Creneaux_horaireSeeder extends Seeder
     public function run()
     {
         $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '08h00-08h45';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '08h50-9h35';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '09h40-10h25';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '10h30-11h15';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '11h20-12h05';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '12h10-12h55';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '13h00-13h45';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '13h50-14h35';
+        $objet->save();
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '45';
+        $objet->libelle_creneaux = '14h40-15h25';
+        $objet->save();
+
+
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
         $objet->libelle_creneaux = '08h00-09h00';
         $objet->save();
 
-        $objet1 = new Creneaux_horaire();
-        $objet1->libelle_creneaux = '09h00-10h00';
-        $objet1->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '09h00-10h00';
+        $objet->save();
 
-        $objet2 = new Creneaux_horaire();
-        $objet2->libelle_creneaux = '10h00-11h00';
-        $objet2->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '10h00-11h00';
+        $objet->save();
 
-        $objet3 = new Creneaux_horaire();
-        $objet3->libelle_creneaux = '11h00-12h00';
-        $objet3->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '11h00-12h00';
+        $objet->save();
 
-        $objet4 = new Creneaux_horaire();
-        $objet4->libelle_creneaux = '12h00-13h00';
-        $objet4->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '12h00-13h00';
+        $objet->save();
 
-        $objet5 = new Creneaux_horaire();
-        $objet5->libelle_creneaux = '13h00-14h00';
-        $objet5->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '13h00-14h00';
+        $objet->save();
 
-        $objet6 = new Creneaux_horaire();
-        $objet6->libelle_creneaux = '14h00-15h00';
-        $objet6->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '14h00-15h00';
+        $objet->save();
 
-        $objet7 = new Creneaux_horaire();
-        $objet7->libelle_creneaux = '15h00-16h00';
-        $objet7->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '1';
+        $objet->libelle_creneaux = '15h00-16h00';
+        $objet->save();
 
-        $objet8 = new Creneaux_horaire();
-        $objet8->libelle_creneaux = '08h00-10h00';
-        $objet8->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '08h00-10h00';
+        $objet->save();
 
-        $objet9 = new Creneaux_horaire();
-        $objet9->libelle_creneaux = '10h00-12h00';
-        $objet9->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '10h00-12h00';
+        $objet->save();
 
-        $objet11 = new Creneaux_horaire();
-        $objet11->libelle_creneaux = '12h00-15h00';
-        $objet11->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '12h00-15h00';
+        $objet->save();
 
-        $objet22 = new Creneaux_horaire();
-        $objet22->libelle_creneaux = '09h00-11h00';
-        $objet22->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '09h00-11h00';
+        $objet->save();
 
-        $objet12 = new Creneaux_horaire();
-        $objet12->libelle_creneaux = '11h00-13h00';
-        $objet12->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '11h00-13h00';
+        $objet->save();
 
-        $objet23 = new Creneaux_horaire();
-        $objet23->libelle_creneaux = '13h00-15h00';
-        $objet23->save();
+        $objet = new Creneaux_horaire();
+        $objet->duree = '2';
+        $objet->libelle_creneaux = '13h00-15h00';
+        $objet->save();
     }
 }

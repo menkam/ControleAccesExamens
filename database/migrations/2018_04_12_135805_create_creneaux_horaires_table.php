@@ -15,6 +15,7 @@ class CreateCreneauxHorairesTable extends Migration
     {
         Schema::create('creneaux_horaires', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('duree');
             $table->string('libelle_creneaux');
             $table->timestamps();
         });

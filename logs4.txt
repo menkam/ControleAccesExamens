@@ -1,5 +1,3 @@
-2018-06-01T00:22:34.832195+00:00 heroku[web.1]: Process exited with status 143
-2018-06-01T00:22:38.408006+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
 2018-06-01T00:22:40.795015+00:00 app[web.1]: Optimizing defaults for 1X dyno...
 2018-06-01T00:22:40.955188+00:00 app[web.1]: 4 processes at 128MB memory limit.
 2018-06-01T00:22:40.962141+00:00 app[web.1]: Starting php-fpm...
@@ -98,3 +96,5 @@
 2018-06-01T01:27:07.320460+00:00 heroku[run.4062]: Client connection closed. Sending SIGHUP to all processes
 2018-06-01T01:27:07.879155+00:00 heroku[run.4062]: Process exited with status 129
 2018-06-01T01:27:07.902152+00:00 heroku[run.4062]: State changed from up to complete
+2018-06-01T01:43:10.135893+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=controle-acces-iutfv.herokuapp.com request_id=6ea4bb5d-ac96-460c-a2e8-479ebef313c5 fwd="129.0.80.247" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-01T01:43:23.866504+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/public/" host=controle-acces-iutfv.herokuapp.com request_id=7a24285a-7abf-492e-af88-74dc75df558e fwd="129.0.80.247" dyno= connect= service= status=503 bytes= protocol=https

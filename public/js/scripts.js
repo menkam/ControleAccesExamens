@@ -159,3 +159,85 @@ function getOptionMatiere() {
         }
     });
 }
+
+// Get option creno
+function getOptionCreneau(position,duree) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#"+position+"");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getCreneaux',
+        data:{
+            duree:duree
+        },
+        success: function(data){
+            for(var i= 0; i < data.length; i++) {
+                rows = rows + '<option value="'+data[i].id+'">'+data[i].libelle_creneaux+'</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
+// Get option surveillant
+function getOptionSurveillant(duree) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#id_surveillant");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getSurveillant',
+        data:{
+            duree:duree
+        },
+        success: function(data){
+            for(var i= 0; i < data.length; i++) {
+                rows = rows + '<option value="'+data[i].id+'">'+data[i].name+' '+data[i].prenom+'</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
+// Get option duree
+function getOptionDuree(position) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#"+position+"");
+    rows = rows + '<option value="45">45Min</option>';
+    rows = rows + '<option value="1">01H</option>';
+    rows = rows + '<option value="2">02H</option>';
+    position.empty();
+    position.append(rows).slideDown();
+}
+
+// Get option salle lbre
+function getOptionSalleLibre(date, heure) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#salleActivite");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getSalleLibre',
+        data:{
+            date:date,
+            idCreneau:heure
+        },
+        success: function(data){
+            for(var i= 0; i < data.length; i++) {
+                rows = rows + '<option value="'+data[i].id+'">'+data[i].code_salle+' ('+data[i].libelle_salle+') =>'+data[i].nbre_places+' places</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
+function getDate(min, max,position,nom,id,label){
+    $("#"+position+"").html('' +
+    '<label class="control-label" for="'+nom+'">'+label+'</label>'+
+    '<input id="'+id+'" type="date" name="'+nom+'" class="form-control" min="'+min+'" max="'+max+'" data-error="Choisr une date." required >'+
+    '<div class="help-block with-errors"></div>');
+}

@@ -96,7 +96,15 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('framework/build/js/custom.min.js') }}"></script>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         // Variable de reccupération de la date et l'heure courande du serveur
         var dateCourante = "<?php
             $date = getDate();
@@ -138,6 +146,7 @@
             }
         ?>';
         //alert(dateCourante+" "+heureCourante);
+
 
     </script>
 

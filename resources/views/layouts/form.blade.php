@@ -23,7 +23,7 @@
     <!-- easy-pie-chart -->
     <script src="{{ asset('framework/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('0ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('0ajax/libs/jquery/3.1.0/jquery.js') }}"></script>
+    <!--script type="text/javascript" src="{{ asset('0ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('0ajax/libs/jquery/3.1.0/jquery.js') }}"></script-->
     @yield('script-form')
 @endsection

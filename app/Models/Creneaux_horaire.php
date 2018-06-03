@@ -8,5 +8,9 @@ class Creneaux_horaire extends Model
 {
     protected $guarded = array();
 
-    protected $fillable = ['libelle_creneaux'];
+    protected $fillable = [
+        'id',
+        'duree',
+        'libelle_creneaux'
+    ];
 }
