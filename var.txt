@@ -1,6 +1,0 @@
-=== controle-acces-iutfv Config Vars
-APP_DEBUG:     true
-APP_KEY:
-APP_LOG_LEVEL: debug
-DATABASE_URL:
-postgres://ozqllobhmmszll:6afe057cc4ecdb2320c58d9f762dcd793f9dd06dd530202a7fc2468adeaf0fde@ec2-107-21-255-2.compute-1.amazonaws.com:5432/d1l4ohqtvoh82s
