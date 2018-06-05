@@ -39,7 +39,8 @@ Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'Andro
 
 Route::group(['middleware' => ['guest']], function() {
     Route::get('/', function () {
-        return view('welcome');
+        //return view('welcome');
+        return view('auth.login');
     });
 });
 
@@ -86,8 +87,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('surveillants', 'SurveillantsController');
     Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
 
-
-
     /*
      * route activiter
      */
@@ -96,6 +95,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('mes_activites', ['as'=>'mes_activites', 'uses'=>'ActivitesController@accueille']);
     Route::get('activites-encours', ['as'=>'activites-encours', 'uses'=>'ActivitesController@en_cours']);
     Route::get('activite-ListEtudiant',['as' => 'getFormListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
+
+    Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);
 
     //Route::resource('activite_conc_classe', 'Activite_conc_classesController');
     //Route::resource('salle_activite', 'Salle_activitesController');

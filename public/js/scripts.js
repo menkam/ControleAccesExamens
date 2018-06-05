@@ -4,17 +4,15 @@ $.ajaxSetup({
     }
 });
 
-
 // Get option Année Académique
-function getOptionAnnee() {
+function getOptionAnnee(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_annee");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
         url: 'getAnneeAcademique',
         success: function(data){
-
             for(var i= 0; i < data.length; i++) {
                 //alert(data[i].libelle_annee);
                 rows = rows + '<option value="'+data[i].id+'">'+data[i].libelle_annee+'</option>';
@@ -26,9 +24,9 @@ function getOptionAnnee() {
 }
 
 // Get option Niveau
-function getOptionNiveau() {
+function getOptionNiveau(position,idsemestre) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_niveau");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -46,9 +44,9 @@ function getOptionNiveau() {
 }
 
 // Get option Cursus
-function getOptionCursus() {
+function getOptionCursus(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_cursus");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -64,9 +62,9 @@ function getOptionCursus() {
 }
 
 // Get option Classe
-function getOptionClasse() {
+function getOption(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_classe");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -84,9 +82,9 @@ function getOptionClasse() {
 }
 
 // Get option Semestre
-function getOptionSemestre() {
+function getOptionSemestre(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_semestre");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -102,9 +100,9 @@ function getOptionSemestre() {
 }
 
 // Get option type_activite
-function getOptionType() {
+function getOptionType(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#typeActivite");
+    var position = $("#"+position+"");
     /*$.ajax({
      type: "POST",
      dataType: 'json',
@@ -125,9 +123,9 @@ function getOptionType() {
 }
 
 // Get option Session
-function getOptionSession() {
-    var rows = '<option value="">-----</option>';
-    var position = $("#id_session");
+function getOptionSession(position) {
+        var rows = '<option value="">-----</option>';
+        var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -143,9 +141,9 @@ function getOptionSession() {
 }
 
 // Get option Matière
-function getOptionMatiere() {
+function getOptionMatiere(position) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_matiere");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -182,9 +180,9 @@ function getOptionCreneau(position,duree) {
 }
 
 // Get option surveillant
-function getOptionSurveillant(duree) {
+function getOptionSurveillant(position,duree) {
     var rows = '<option value="">-----</option>';
-    var position = $("#id_surveillant");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -214,9 +212,9 @@ function getOptionDuree(position) {
 }
 
 // Get option salle lbre
-function getOptionSalleLibre(date, heure) {
+function getOptionSalleLibre(position,date, heure) {
     var rows = '<option value="">-----</option>';
-    var position = $("#salleActivite");
+    var position = $("#"+position+"");
     $.ajax({
         type: "POST",
         dataType: 'json',
@@ -235,9 +233,25 @@ function getOptionSalleLibre(date, heure) {
     });
 }
 
-function getDate(min, max,position,nom,id,label){
+function getDatePaticularDate(position,id,libelle,min,max){
     $("#"+position+"").html('' +
-    '<label class="control-label" for="'+nom+'">'+label+'</label>'+
-    '<input id="'+id+'" type="date" name="'+nom+'" class="form-control" min="'+min+'" max="'+max+'" data-error="Choisr une date." required >'+
+    '<label class="control-label" for="'+libelle+'">Date de début:</label>' +
+    '<input type="date" id="'+id+'"  name="'+id+'" class="form-control" min="'+min+'" max="'+max+'"  data-error="Choisir une dateé" required >' +
     '<div class="help-block with-errors"></div>');
+}
+
+/**
+ * Toast d'avertissement
+ * @param msg
+ */
+function tostAvertissement(msg){
+    toastr.warning(msg, 'Avertissement!!!', {timeOut: 5000});
+}
+
+/**
+ * Toast d'erreur
+ * @param msg
+ */
+function tostErreur(msg){
+    toastr.error(msg, 'Erreur !!!', {timeOut: 5000});
 }

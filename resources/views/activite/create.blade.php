@@ -9,16 +9,13 @@
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label class="control-label" for="id_annee">Année Académique:</label>
-                        <select name="id_annee" id="id_annee" class="form-control" data-error="Choisr l'année académique." required >
-                            <option value="">....</option>
-                            <option value="1">2017-2018</option>
-                        </select>
+                        <label class="control-label" for="anneeAcdivite">Année Académique:</label>
+                        <select name="anneeAcdivite" id="anneeAcdivite" class="form-control" data-error="Choisr l'année académique." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="semestre">Semestre:</label>
-                        <select id="id_semestre" name="id_semestre" class="form-control" data-error="Choisir le semestre." required ></select>
+                        <label class="control-label" for="idSemestreActivite">Semestre:</label>
+                        <select id="idSemestreActivite" name="idSemestreActivite" class="form-control" data-error="Choisir le semestre." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -27,7 +24,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="type_activite">Type:</label>
+                        <label class="control-label" for="type_activite">Type d'activite:</label>
                         <select id="type_activite" name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required >
                             <option value="">....</option>
                             <option value="cours">Cours</option>
@@ -37,8 +34,8 @@
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group" id="date_debut_activite"></div>
-                    <div class="form-group" id="date_fin_activite"></div>
+                    <div class="form-group" id="dateDebutActivites"></div>
+                    <div class="form-group" id="dateFinActivites"></div>
                     <div class="form-group">
                         <button type="submit" class="btn save_activite btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
@@ -61,15 +58,15 @@
             <div class="modal-body">
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
-                    <div class="form-group" id="date_matiere_activite"></div>
+                    <div class="form-group" id="dateMatiereActivites"></div>
                     <div class="form-group">
-                        <label class="control-label" for="duree">Durée:</label>
-                        <select name="duree" id="duree1" class="form-control" data-error="Choisir une durée." required ></select>
+                        <label class="control-label" for="dureeMatiere">Durée:</label>
+                        <select name="dureeMatiere" id="dureeMatiere" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_creneau">Creneau horaire:</label>
-                        <select name="id_creneau" id="id_creneau1" class="form-control" data-error="Choisir un créneau horaire." required ></select>
+                        <label class="control-label" for="id_creneauMatiere">Creneau horaire:</label>
+                        <select name="id_creneauMatiere" id="id_creneauMatiere" class="form-control" data-error="Choisir un créneau horaire." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -136,20 +133,20 @@
             <div class="modal-body">
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
-                    <div class="form-group" id="date1"></div>
+                    <div class="form-group" id="dateSaleDispos"></div>
                     <div class="form-group">
-                        <label class="control-label" for="duree">Durée:</label>
-                        <select name="duree" id="duree2" class="form-control" data-error="Choisir une durée." required ></select>
+                        <label class="control-label" for="dureesaledispo">Durée:</label>
+                        <select name="dureesaledispo" id="dureesaledispo" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_creneau">Creneau horaire:</label>
-                        <select name="id_creneau" id="id_creneau2" class="form-control" data-error="Choisir un créneau horaire." required ></select>
+                        <label class="control-label" for="id_creneauSalleDispo">Creneau horaire:</label>
+                        <select name="id_creneauSalleDispo" id="id_creneauSalleDispo" class="form-control" data-error="Choisir un créneau horaire." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_salle">Salle :</label>
-                        <select name="id_salle" id="salleActivite" class="form-control" data-error="Choisir une sale." required ></select>
+                        <label class="control-label" for="salleActivite">Salle :</label>
+                        <select name="salleActivite" id="salleActivite" class="form-control" data-error="Choisir une sale." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -165,62 +162,61 @@
 
 @section("script-modal")
 <script type="text/javascript">
+
 maxDateAnnee = "2018-08-05";
 //alert(dateCourante+" "+heureCourante);
 
 $(document).ready(function (){
 
-    getOptionClasse();
-    getOptionDuree("duree1");
-    getOptionDuree("duree2");
-    getOptionMatiere();
-    getOptionSession();
+    /**
+     * gestion du modal d'activite
+     */
+    getOptionAnnee("anneeAcdivite");
+    getOptionSemestre("idSemestreActivite");
+    $("#idSemestreActivite").change(function(){
+        idSemestreActivite = $("#idSemestreActivite").val();
+        getOptionNiveau("id_niveau",idSemestreActivite);
+    });
+    getDatePaticularDate("dateDebutActivites","dateDebutActivite","Date de debut :",dateCourante,maxDateAnnee);
+    $('#dateDebutActivite').change(function(){
+        dateDebutActivite = $('#dateDebutActivite').val();
+        getDatePaticularDate("dateFinActivites","dateFinActivite","Date de fin :",dateDebutActivite,maxDateAnnee);
+    });
 
-    //getDate(min, max,position,nom,id,label)
-    getDate(dateCourante,maxDateAnnee,"date1","date","date","Date:");
 
-    $("#date").change(function(){
-        date = $("#date").val();
-        $("#duree2").change(function(){
-            duree = $("#duree2").val();
-            getOptionCreneau("id_creneau2",duree);
-            $("#id_creneau2").change(function(){
-                id_creneau = $("#id_creneau2").val();
-                getOptionSalleLibre(date, id_creneau);
-            });
+    /**
+    * contrle du model de matiere
+    */
+    //getDatePaticularDate("dateMatiereActivites","dateMatiereActivite","Date :",dateCourante,maxDateAnnee);
+    getOptionDuree("dureeMatiere");
+    $("#dureeMatiere").change(function(){
+        dureeMatiere = $("#dureeMatiere").val();
+        getOptionCreneau("id_creneauMatiere",dureeMatiere);
+        getOptionSurveillant("id_surveillant",dureeMatiere);
+    });
+    getOptionMatiere("id_matiere");
+    getOptionSession("id_session");
+
+    /**
+     * controle du modale de salle
+    */
+    getOptionDuree("dureesaledispo");
+    $("#dureesaledispo").change(function(){
+        dureesaledispo = $("#dureesaledispo").val();
+        getOptionCreneau("id_creneauSalleDispo",dureesaledispo);
+        $("#id_creneauSalleDispo").change(function(){
+            id_creneauSalleDispo = $("#id_creneauSalleDispo").val();
+            dateSaleDispo = $("#dateSaleDispo").val();
+            if(dateSaleDispo){
+                getOptionSalleLibre("salleActivite",dateSaleDispo, id_creneauSalleDispo);
+            }else{
+                $("#id_creneauSalleDispo").val("");
+                tostAvertissement("la valeur de la date est invalite");
+            }
         });
     });
 
-    //
+ });
 
-    $("#id_annee").change(function(){
-        getOptionSemestre();
-        getOptionNiveau();
-        getDateDebut();
-        $("#date_debut_activite").change(function(){
-            getDatefin();
-        });
-    });
-
-    $("#duree1").change(function(){
-        duree = $("#duree1").val();
-        getOptionCreneau("id_creneau1",duree);
-        getOptionSurveillant(duree);
-    });
-});
-
-function getDateDebut(){
-    $("#date_debut_activite").html('' +
-    '<label class="control-label" for="date_debut_activite">Date de début:</label>' +
-    '<input type="date" id="dateDebut"  name="date_debut_activite" class="form-control" min="'+dateCourante+'" max="'+maxDateAnnee+'" data-error="Choisir la date de début de lactivité" required >' +
-    '<div class="help-block with-errors"></div>');
-}
-function getDatefin(){
-    dateDebut = $("#dateDebut").val();
-    $("#date_fin_activite").html('' +
-    '<label class="control-label" for="date_fin_activite">Date de fin:</label>' +
-    '<input type="date" name="date_fin_activite" class="form-control" min="'+dateDebut+'" max="'+maxDateAnnee+'" data-error="Choisir la date de début de lactivité." required />' +
-    '<div class="help-block with-errors"></div>');
-}
 </script>
 @endsection

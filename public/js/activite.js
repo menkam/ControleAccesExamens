@@ -110,7 +110,7 @@ function getPageDataMatiereActivity(id) {
             rows = rows + '<td>'+value.id_annee+'</td>';
             rows = rows + '<td>'+value.id_semestre+'</td>';
             rows = rows + '<td>'+value.id_niveau+'</td>';
-            rows = rows + '<td>'+value.type_activite+'</td>';
+            rows = rows + '<td id="typeActiviteCourante">'+value.type_activite+'</td>';
             rows = rows + '<td>'+value.date_debut_activite+'</td>';
             rows = rows + '<td>'+value.date_fin_activite+'</td>';
             if(value.date_fin_activite >= dateCourante ){
@@ -135,7 +135,9 @@ function getPageDataMatiereActivity(id) {
             getPageDataMatiereActivity(value.id);
             getPageDataClasseActivity(value.id);
             getPageDataSalleActivity(value.id);
-            getDateActivite(value.date_debut_activite,value.date_fin_activite);
+            getDatePaticularDate("dateMatiereActivites","dateMatiereActivite","Date :",value.date_debut_activite,value.date_fin_activite);
+            getDatePaticularDate("dateSaleDispos","dateSaleDispo","Date de la matiere:",value.date_debut_activite,value.date_fin_activite);
+            //getDateActivite(value.date_debut_activite,value.date_fin_activite);
         });
 
         $("#completer").text(completer+completer_init);
@@ -235,19 +237,19 @@ function getPageDataMatiereActivity(id) {
         e.preventDefault();
         //var form_action = $("#create-item").find("form").attr("action");
 
-        var id_annee = $("#create-item").find("select[name='id_annee']").val();
-        var id_semestre = $("#create-item").find("select[name='id_semestre']").val();
+        var id_annee = $("#create-item").find("select[name='anneeAcdivite']").val();
+        var id_semestre = $("#create-item").find("select[name='idSemestreActivite']").val();
         var id_niveau = $("#create-item").find("select[name='id_niveau']").val();
         var type_activite = $("#create-item").find("select[name='type_activite']").val();
-        var date_debut_activite = $("#create-item").find("input[name='date_debut_activite']").val();
-        var date_fin_activite = $("#create-item").find("input[name='date_fin_activite']").val();
+        var date_debut_activite = $("#create-item").find("input[name='dateDebutActivite']").val();
+        var date_fin_activite = $("#create-item").find("input[name='dateFinActivite']").val();
 
         //alert(id_annee+id_semestre+id_niveau+type_activite+date_debut_activite+date_fin_activite);
 
         $.ajax({
             dataType: 'json',
             type:'POST',
-            url:'activite.store',
+            url:'activiteStore',
             data:{id_annee:id_annee, id_semestre:id_semestre, id_niveau:id_niveau, type_activite:type_activite, date_debut_activite:date_debut_activite, date_fin_activite:date_fin_activite}
         }).done(function(data){
             getPageDataActivity();
@@ -478,13 +480,10 @@ function getPageDataMatiereActivity(id) {
     });
 
 
-    function getDateActivite(min, max){
+    function getDateActivite(positin,id,min, max){
         $("#date_matiere_activite").html('' +
         '<label class="control-label" for="date_matiere">Date:</label>'+
         '<input id="dateMatiere" type="date" name="date_matiere" class="form-control" min="'+min+'" max="'+max+'" data-error="Choisr la une date." required >'+
         '<div class="help-block with-errors"></div>');
     }
-
-
-
 });
