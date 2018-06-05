@@ -2,7 +2,7 @@
 @if(\Auth::user()->hasRole('etudiant'))
 @section('page_content')
     <div id="contener">
-        <h1>page d'accueille de l'étudiant</h1>
+        <h1>page d'accueil de l'étudiant</h1>
     </div>
 @endsection
 

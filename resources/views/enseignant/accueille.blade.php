@@ -2,7 +2,7 @@
 
 @section('page_content')
 <div id="contener">
-    <h1>page d'accueille de l'enseignant</h1>
+    <h1>page d'accueil de l'enseignant</h1>
 </div>
 @endsection
 
