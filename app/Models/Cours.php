@@ -11,7 +11,8 @@ class Cours extends Model
      protected $fillable = [
    	'id_activite', 
    	'id_enseigant', 
-   	'code_matiere',
-   	'id_creneau'
+   	'id_matiere',
+   	'id_creneau',
+    'date_cours'
    ];
 }

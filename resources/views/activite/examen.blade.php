@@ -22,9 +22,7 @@
                         <div class="col-lg-6 pull-left">
                             <br>Liste des matières</br>
                         </div>
-                        <div class="col-lg-6 pull-right">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addMatiere">Ajouter une matière</button>
-                        </div>
+                        <div class="col-lg-6 pull-right" id="btnAddMatiere"></div>
                     </div>
                     <table class="table table-bordered jambo_table table-striped tablecondensed">
                         <thead id="header_matiere_activite">

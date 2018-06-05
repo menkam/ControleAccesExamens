@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Examen;
-use App\Models\Activite;
 
 class ExamensController extends Controller{
 
@@ -19,6 +18,7 @@ class ExamensController extends Controller{
 /*
  * à supprimer
  */
+
     public function AjaxExamen(Request $request){
         $idEnseignant = 1;
         $idActivite = $request->idActivite;
@@ -95,7 +95,6 @@ class ExamensController extends Controller{
         $object = Examen::create($request->all());
         return response()->json($object);
     }
-    
 
     public function update(Request $request, $id)
     {

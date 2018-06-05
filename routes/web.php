@@ -13,17 +13,8 @@ Route::singularResourceParameters();
 |
 */
 
-/*
+/**
  * routes pour l'application android
- */
-Route::get('/public/', function () {
-    return dd('welcome');
-});
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
 */
 Route::get('androidGetListEtudiant', ['as'=>'androidGetListEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListEtudiants']);
 Route::get('androidGetListAllEtudiant', ['as'=>'androidGetListAllEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListAllEtudiants']);
@@ -66,16 +57,8 @@ Route::group(['middleware' => ['auth']], function(){
     /*
      * Route pour l'enseignant'
      */
-    //Route::resource('enseignant', 'Users\EnseignantController');
     Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');
 
-    /*
-     * Route pour l'etudiant'
-     */
-    /*Route::resource('etudiant', 'Users\EtudiantController');
-    Route::resource('etud_ins_mats', 'Etud_ins_matsController');
-    Route::resource('etud_scolariser_class', 'Etud_scolariser_classController');
-    Route::resource('etud_realise_activs', 'Etud_realise_activsController');*/
     /*
      * Route pour le visiteur
      */
@@ -85,7 +68,6 @@ Route::group(['middleware' => ['auth']], function(){
      * Route pour le surveillants
      */
     Route::resource('surveillants', 'SurveillantsController');
-    Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
 
     /*
      * route activiter
@@ -97,17 +79,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('activite-ListEtudiant',['as' => 'getFormListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
 
     Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);
-    Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
-    Route::get('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
 
     //Route::resource('activite_conc_classe', 'Activite_conc_classesController');
     //Route::resource('salle_activite', 'Salle_activitesController');
     Route::post('addMatiereExamen', ['as'=>'addMatiereExamen', 'uses'=>'ExamensController@store']);
     Route::post('addMatiereCours', ['as'=>'addMatiereCours', 'uses'=>'CourssController@store']);
-    Route::post('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
+    Route::get('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
     Route::post('addClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@store']);
     Route::post('addSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@store']);
-    Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
 
     Route::delete('delMatiereExamen', ['as'=>'delMatiereExamen', 'uses'=>'ExamensController@destroy']);
     Route::delete('delClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@destroy']);
@@ -124,6 +103,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getListCoursEnCour',['as' => 'getListCoursEnCour', 'uses' => 'ActivitesController@coursEnCours']);
     Route::post('getListCcEnCour',['as' => 'getListCcEnCour', 'uses' => 'ActivitesController@ccEnCours']);
     Route::post('getListEtudiantsEnSalle',['as' => 'getListEtudiantsEnSalle', 'uses' => 'ActivitesController@showListEtudiantEtudiantEnSalle']);
+    Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
+    Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
+    Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
+    Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
+    Route::get('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
 
 
 

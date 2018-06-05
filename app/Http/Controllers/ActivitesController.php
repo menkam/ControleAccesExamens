@@ -50,8 +50,8 @@ class ActivitesController extends Controller
                       examens.id_creneau = creneaux_horaires.id AND
                       sessions.id = examens.id_session AND
                       activites.id = examens.id_activite AND
-                      activites.id = '16' AND
-                      activites.type_activite = 'rattrapage'
+                      activites.id = '$idActivite' AND
+                      activites.type_activite = '$typeActivite'
                     ORDER BY
                       examens.date_examen ASC,
                       creneaux_horaires.libelle_creneaux ASC;
@@ -103,7 +103,7 @@ class ActivitesController extends Controller
                       users.sexe,
                       enseignants.grade,
                       enseignants.fonction,
-                      cours.date_cours as date
+                      cours.date_cours as date,
                       cours.id as id
                     FROM
                       public.users,

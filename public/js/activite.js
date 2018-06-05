@@ -102,9 +102,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
 
     // Add new Activity table row
     function manageRow(data) {
-        var completer_init = parseInt($("#completer").text());
-        var completer = 0;
-        //alert (completer);
+        compteurA = 0;
         var	rows = '';
         var nbr = 1;
         $.each( data, function( key, value ) {
@@ -133,21 +131,28 @@ function getPageDataMatiereActivity(id,typeActivite) {
             rows = rows + '</td>';
             rows = rows + '</tr>';
             nbr++;
-
+            compteurA += 2;
             idActiviteCourante=value.id;
             typeActiviteCourante=value.type_activite;
-            completer=25;
             getPageDataMatiereActivity(value.id,value.type_activite);
             getPageDataClasseActivity(value.id);
             getPageDataSalleActivity(value.id);
             getDatePaticularDate("dateMatiereActivites","dateMatiereActivite","Date :",value.date_debut_activite,value.date_fin_activite);
+            getDatePaticularDate("dateMatiereActivites2","dateMatiereActivite2","Date :",value.date_debut_activite,value.date_fin_activite);
             getDatePaticularDate("dateSaleDispos","dateSaleDispo","Date de la matiere:",value.date_debut_activite,value.date_fin_activite);
-            //getDateActivite(value.date_debut_activite,value.date_fin_activite);
+
+            position = $("#btnAddMatiere").empty();
+            if(typeActiviteCourante=="normale" || typeActiviteCourante=="rattrapage"){
+                btn = '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addMatiereExamen">Ajouter une matière</button>';
+                position.append(btn);
+            }
+            if(typeActiviteCourante=="cours" || typeActiviteCourante=="tp"){
+                btn = '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addMatiereCoursTp">Ajouter une matière</button>';
+                position.append(btn);
+            }
         });
-
-        $("#completer").text(completer+completer_init);
+        compteurA = 25;
         $("#lignes_activites").html(rows);
-
     }
 
     // Add new Matiere_activity table row
@@ -226,9 +231,6 @@ function getPageDataMatiereActivity(id,typeActivite) {
 
     // Add new classe_activity table row
     function manageRowClasseActivity(data) {
-        effectif_classe=0;
-        var completer_init = parseInt($("#completer").text());
-        var completer = 0;
         var position = $('#lignes_classe_activite');
         var rows = '';
         for(var i= 0; i < data.length; i++){
@@ -244,10 +246,9 @@ function getPageDataMatiereActivity(id,typeActivite) {
             rows = rows + '</td>';
             rows = rows + '</tr>';
             effectif_classe += data[i].effectif_classe;
-            completer=25;
+
         }
         rows = rows + '<tr><td colspan="2"><b>Total Etudiants</b></td><td colspan="3"><b>'+effectif_classe+' etudiants</b></td></tr>';
-        $("#completer").text(completer+completer_init);
         position.empty();
         position.append(rows).slideDown();
     }
@@ -330,34 +331,94 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var url;
 
         //alert(id_activite+""+typeActivite);
-        var date_examen = $("#dateMatiereActivite").val();
-        var id_creneau = $("#id_creneauMatiere").val();
-        var id_matiere = $("#id_matiere").val();
-        var id_surveillant = $("#id_surveillant").val();
-        var id_session = $("#id_session").val();
+        var dateMatiere ;
+        var date_examen ;
+        var id_creneau ;
+        var id_matiere;
+        var id_surveillant;
+        var id_enseignant;
 
 
-        if(typeActivite=="normale" || typeActivite=="rattrapage"){}
-            addExamen("addMatiereExamen");
-        if(typeActivite=="cours")
-            url = "addMatiereCours";
-        if(typeActivite=="tp")
-            url = "addMatiereTp";
+        if(typeActivite=="normale" || typeActivite=="rattrapage"){
+            dateMatiere = $("#dateMatiereActivite").val();
+            id_creneau = $("#id_creneauMatiere").val();
+            id_matiere = $("#id_matiere").val();
+            id_surveillant = $("#id_surveillant").val();
 
-        //alert("url "+url+" id "+id_activite+" date_examen "+date_examen+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_surveillant "+id_surveillant+" id_session "+id_session+" type activite"+typeActivite);
+            if(typeActivite=="normale")
+                addExamen("1");
+            else
+                addExamen("2");
+        }
 
-        function addExamen(url){
+        if(typeActivite=="cours" || typeActivite=="tp"){
+            dateMatiere = $("#dateMatiereActivite2").val();
+            id_creneau = $("#id_creneauMatiere2").val();
+            id_matiere = $("#id_matiere2").val();
+            id_enseignant = $("#id_enseignant").val();
+
+            if(typeActivite=="cours"){
+                //alert("id "+id_activite+" dateMatiere "+dateMatiere+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_enseignant "+id_enseignant);
+                $.ajax({
+                    dataType:'json',
+                    type:'POST',
+                    url: 'addMatiereCours',
+                    data:{
+                        id_activite:id_activite,
+                        id_enseigant:id_enseignant,
+                        id_matiere:id_matiere,
+                        id_creneau:id_creneau,
+                        date_cours:dateMatiere
+                    }
+                }).done(function(data){
+                    getPageDataMatiereActivity(id_activite,typeActivite);
+                    $(".modal").modal('hide');
+                    //compteurM = 25;
+                    toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+                }).error(function(){
+                    //$(".modal").modal('hide');
+                    tostErreur("Cette matière n'a pas été créée");
+                });
+            }
+            else{
+                //alert("id "+id_activite+" dateMatiere "+dateMatiere+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_enseignant "+id_enseignant);
+                $.ajax({
+                    dataType:'json',
+                    type:'POST',
+                    url: 'addMatiereTp',
+                    data:{
+                        id_activite:id_activite,
+                        id_enseigant:id_enseignant,
+                        id_matiere:id_matiere,
+                        id_creneau:id_creneau,
+                        date_tp:dateMatiere
+                    }
+                }).done(function(data){
+                    getPageDataMatiereActivity(id_activite,typeActivite);
+                    $(".modal").modal('hide');
+                    //compteurM = 25;
+                    toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+                }).error(function(){
+                    //$(".modal").modal('hide');
+                    tostErreur("Cette matière n'a pas été créée");
+                });
+            }
+
+        }
+
+        function addExamen(id_session){
+            //alert("url "+url+" id "+id_activite+" dateMatiere "+dateMatiere+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_surveillant "+id_surveillant+" id_session "+id_session+" type activite"+typeActivite);
             $.ajax({
                 dataType: 'json',
                 type:'POST',
-                url: url,
+                url: 'addMatiereExamen',
                 data:{
                     id_ens_chef_dpt:idUser,
                     id_activite:id_activite,
                     id_creneau:id_creneau,
                     id_matiere:id_matiere,
                     id_surveillant:id_surveillant,
-                    date_examen:date_examen,
+                    date_examen:dateMatiere,
                     id_session:id_session
                 }
             }).done(function(data){
@@ -371,34 +432,8 @@ function getPageDataMatiereActivity(id,typeActivite) {
             });
         }
 
-        function addTp(url){
-            $.ajax({
-                dataType: 'json',
-                type:'POST',
-                url: url,
-                data:{
-                    id_ens_chef_dpt:idUser,
-                    id_activite:id_activite,
-                    id_creneau:id_creneau,
-                    id_matiere:id_matiere,
-                    id_surveillant:id_surveillant,
-                    date_examen:date_examen,
-                    id_session:id_session
-                }
-            }).done(function(data){
-                getPageDataMatiereActivity(id_activite,typeActivite);
-                $(".modal").modal('hide');
-                compteurM = 25;
-                toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
-            }).error(function(){
-                //$(".modal").modal('hide');
-                tostErreur("Cette matière n'a pas été créée");
-            });
-        }
 
     });
-
-
 
 
     // Create new ClasseActivity

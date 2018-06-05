@@ -200,6 +200,27 @@ function getOptionSurveillant(position,duree) {
     });
 }
 
+// Get option enseignant
+function getOptionEnseignant(position,duree) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#"+position+"");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getEnseignant',
+        data:{
+            duree:duree
+        },
+        success: function(data){
+            for(var i= 0; i < data.length; i++) {
+                rows = rows + '<option value="'+data[i].id+'">'+data[i].name+' '+data[i].prenom+' ('+data[i].grade+')</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
 // Get option duree
 function getOptionDuree(position) {
     var rows = '<option value="">-----</option>';
