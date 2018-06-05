@@ -16,7 +16,9 @@ class ExamensController extends Controller{
         //$objects = Examen::latest()->paginate(1);
         return response()->json($objects);
     }
-
+/*
+ * à supprimer
+ */
     public function AjaxExamen(Request $request){
         $idEnseignant = 1;
         $idActivite = $request->idActivite;

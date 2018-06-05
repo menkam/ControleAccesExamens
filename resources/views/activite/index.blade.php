@@ -109,6 +109,8 @@
         </div>
     </div>
     @include('activite.examen')
+    @include('activite.cours')
+    @include('activite.tp')
     </div>
     @endsection
             <!--div class="page-title">
@@ -188,13 +190,14 @@
     <script type="text/javascript">
         var url = "<?php echo route('activite.index');?>";
         var idActiviteCourante;
+        var typeActiviteCourante;
         var DateDebutActiviteCourante;
         var DateFinActiviteCourante;
         var idUser = 1;
-        /*var compteurA = 0;
-        var compteurM = 0;
-        var compteurC = 0;
-        var compteurS = 0;*/
+        var compteurA;
+        var compteurM;
+        var compteurC;
+        var compteurS;
     </script>
     <script src="{{ asset('js/activite.js') }}"></script>
     @yield('script-modal')

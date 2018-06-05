@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <table class="table table-bordered jambo_table table-striped tablecondensed">
-                        <thead>
+                        <thead id="header_matiere_activite">
                             <tr>
                                 <th>#</th>
                                 <th>Dates</th>

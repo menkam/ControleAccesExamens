@@ -25,15 +25,10 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="type_activite">Type d'activite:</label>
-                        <select id="type_activite" name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required >
-                            <option value="">....</option>
-                            <option value="cours">Cours</option>
-                            <option value="examen">Examen</option>
-                            <option value="tp">Tp</option>
-                            <option value="autre">Autre</option>
-                        </select>
+                        <select id="type_activite" name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
+                    <div class="form-group" id="typeExamens"></div>
                     <div class="form-group" id="dateDebutActivites"></div>
                     <div class="form-group" id="dateFinActivites"></div>
                     <div class="form-group">
@@ -182,6 +177,22 @@ $(document).ready(function (){
         dateDebutActivite = $('#dateDebutActivite').val();
         getDatePaticularDate("dateFinActivites","dateFinActivite","Date de fin :",dateDebutActivite,maxDateAnnee);
     });
+    getOptionType("type_activite");
+    $("#type_activite").change(function(){
+        type_activite=$("#type_activite").val();
+        if(type_activite=="examen"){
+            $("#typeExamens").html('' +
+            '<label class="control-label" for="typeExamen">Type d\'examens:</label>' +
+            '<select id="typeExamen"  name="typeExamen" class="form-control"  data-error="Choisir le typpe de cet examen" required >' +
+            '<option value="">-----</option>'+
+            '<option value="normale">Normale</option>'+
+            '<option value="rattrapage">Rattrapage</option>'+
+            '<div class="help-block with-errors"></div>');
+        }else{
+            $("#typeExamens").html('');
+        }
+    });
+
 
 
     /**

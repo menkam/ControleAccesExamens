@@ -55,14 +55,18 @@ $(document).ready(function(){
 
 
 // Get Page DataMatiereActivity
-function getPageDataMatiereActivity(id) {
+function getPageDataMatiereActivity(id,typeActivite) {
+    //alert(id+" "+typeActivite);
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: 'AjaxExamen',
-        data: {idActivite:id},
+        url: 'getMatiereActivite',
+        data: {
+            idActivite:id,
+            typeActivite:typeActivite
+        },
         success: function(data){
-            manageRowMatiereActivity(data);
+            manageRowMatiereActivity(data,typeActivite);
             //alert('matiere trouver');
         }
     });
@@ -131,8 +135,9 @@ function getPageDataMatiereActivity(id) {
             nbr++;
 
             idActiviteCourante=value.id;
+            typeActiviteCourante=value.type_activite;
             completer=25;
-            getPageDataMatiereActivity(value.id);
+            getPageDataMatiereActivity(value.id,value.type_activite);
             getPageDataClasseActivity(value.id);
             getPageDataSalleActivity(value.id);
             getDatePaticularDate("dateMatiereActivites","dateMatiereActivite","Date :",value.date_debut_activite,value.date_fin_activite);
@@ -146,31 +151,77 @@ function getPageDataMatiereActivity(id) {
     }
 
     // Add new Matiere_activity table row
-    function manageRowMatiereActivity(data) {
-        var completer_init = parseInt($("#completer").text());
-        var completer = 0;
+    function manageRowMatiereActivity(data,typeActivite) {
+        compteurM = 0;
         var position = $('#lignes_matiere_activite');
-        var rows = '';
-        for(var i= 0; i < data.length; i++){
-            rows = rows + '<tr>';
-            rows = rows + '<td>'+(i+1)+'</td>';
-            rows = rows + '<td>'+data[i].date_examen+'</td>';
-            rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
-            rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
-            rows = rows + '<td>'+data[i].name+' '+data[i].prenom+'</td>';
+        var position2 = $('#header_matiere_activite').empty();
 
-            rows = rows + '<td data-id="'+data[i].id+'">';
+        if(typeActivite=="normale" || typeActivite=="rattrapage"){
+            thead = '<tr><th>#</th>';
+            thead += '<th>Dates</th>';
+            thead += '<th>Heures</th>';
+            thead += '<th>Matières</th>';
+            thead += '<th>Surveillant</th>';
+            thead += '<th width="200px">Action</th></tr>';
 
-            rows = rows + '<button data-toggle="modal" title="Modifier" data-target="#editMA" class="btn btn-default edit-item fa fa-edit"></button> ';
-            rows = rows + '<button title="Supprimer" class="btn btn-danger removeMatiereActivity fa fa-trash"></button>';
-            rows = rows + '</td>';
-            rows = rows + '</tr>';
-            completer=25;
+            position2.append(thead);
+
+            var rows = '';
+            for(var i= 0; i < data.length; i++){
+                rows = rows + '<tr>';
+                rows = rows + '<td>'+(i+1)+'</td>';
+                rows = rows + '<td>'+data[i].date_examen+'</td>';
+                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+                rows = rows + '<td>'+data[i].name+' '+data[i].prenom+'</td>';
+
+                rows = rows + '<td data-id="'+data[i].id+'">';
+
+                rows = rows + '<button data-toggle="modal" title="Modifier" data-target="#editMA" class="btn btn-default edit-item fa fa-edit"></button> ';
+                rows = rows + '<button title="Supprimer" class="btn btn-danger removeMatiereActivity fa fa-trash"></button>';
+                rows = rows + '</td>';
+                rows = rows + '</tr>';
+
+                compteurM += 10;
+            }
+            compteurM = 25;
+            position.empty();
+            position.append(rows).slideDown();
         }
-        $("#completer").text(completer+completer_init);
+        if(typeActivite=="cours" || typeActivite=="tp"){ //cas des cours et TP
+            thead = '<tr><th>#</th>';
+            thead += '<th>Dates</th>';
+            thead += '<th>Heures</th>';
+            thead += '<th>Matières</th>';
+            thead += '<th>Enseignant</th>';
+            thead += '<th width="200px">Action</th></tr>';
 
-        position.empty();
-        position.append(rows).slideDown();
+            position2.append(thead);
+
+            var rows = '';
+            for(var i= 0; i < data.length; i++){
+                rows = rows + '<tr>';
+                rows = rows + '<td>'+(i+1)+'</td>';
+                rows = rows + '<td>'+data[i].date+'</td>';
+                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+                rows = rows + '<td>'+data[i].name+' '+data[i].prenom+'</td>';
+
+                rows = rows + '<td data-id="'+data[i].id+'">';
+
+                rows = rows + '<button data-toggle="modal" title="Modifier" data-target="#editMA" class="btn btn-default edit-item fa fa-edit"></button> ';
+                rows = rows + '<button title="Supprimer" class="btn btn-danger removeMatiereActivity fa fa-trash"></button>';
+                rows = rows + '</td>';
+                rows = rows + '</tr>';
+
+                compteurM += 10;
+            }
+            compteurM = 25;
+            position.empty();
+            position.append(rows).slideDown();
+        }
+
+
     }
 
     // Add new classe_activity table row
@@ -244,6 +295,12 @@ function getPageDataMatiereActivity(id) {
         var date_debut_activite = $("#create-item").find("input[name='dateDebutActivite']").val();
         var date_fin_activite = $("#create-item").find("input[name='dateFinActivite']").val();
 
+        if(type_activite == "examen"){
+            type_activite = $("#typeExamen").val();
+        }else{
+            type_activite = $("#create-item").find("select[name='type_activite']").val();
+        }
+        //alert(type_activite);
         //alert(id_annee+id_semestre+id_niveau+type_activite+date_debut_activite+date_fin_activite);
 
         $.ajax({
@@ -257,52 +314,91 @@ function getPageDataMatiereActivity(id) {
             toastr.success('Activity Created Successfully.', 'Success Alert', {timeOut: 5000});
         }).error(function(){
             //$(".modal").modal('hide');
-            toastr.error('Activity not Created.', 'Error Alert', {timeOut: 5000});
+            tostErreur("l'activiter n'a pas été créée");
         });
     });
 
     // Create new MatiereActivity
     $(".save_matiere_activite").click(function(e){
         e.preventDefault();
-        var form_action = $("#addMatiere").find("form").attr("action");
+        //var form_action = $("#addMatiere").find("form").attr("action");
 
         var completer_init = parseInt($("#completer").text());
         var completer = 0;
         var id_activite = parseInt(idActiviteCourante);
+        var typeActivite = typeActiviteCourante;
+        var url;
 
-       // alert(id_activite);
-
-        var date_examen = $("#dateMatiere").val();
-        var id_creneau = $("#id_creneau1").val();
+        //alert(id_activite+""+typeActivite);
+        var date_examen = $("#dateMatiereActivite").val();
+        var id_creneau = $("#id_creneauMatiere").val();
         var id_matiere = $("#id_matiere").val();
         var id_surveillant = $("#id_surveillant").val();
         var id_session = $("#id_session").val();
 
-        //alert("id "+id_activite+" date_examen "+date_examen+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_surveillant "+id_surveillant+" id_session "+id_session);
 
-        $.ajax({
-            dataType: 'json',
-            type:'POST',
-            url: 'addMatiereExamen',
-            data:{
-                id_ens_chef_dpt:idUser,
-                id_activite:id_activite,
-                id_creneau:id_creneau,
-                id_matiere:id_matiere,
-                id_surveillant:id_surveillant,
-                date_examen:date_examen,
-                id_session:id_session
-            }
-        }).done(function(data){
-            getPageDataMatiereActivity(id_activite);
-            //manageRow(data.datacurrent_page);
-            $(".modal").modal('hide');
-            //completer=25;
-            //$("#completer").text(completer+completer_init);
-            toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
-        });
+        if(typeActivite=="normale" || typeActivite=="rattrapage"){}
+            addExamen("addMatiereExamen");
+        if(typeActivite=="cours")
+            url = "addMatiereCours";
+        if(typeActivite=="tp")
+            url = "addMatiereTp";
+
+        //alert("url "+url+" id "+id_activite+" date_examen "+date_examen+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_surveillant "+id_surveillant+" id_session "+id_session+" type activite"+typeActivite);
+
+        function addExamen(url){
+            $.ajax({
+                dataType: 'json',
+                type:'POST',
+                url: url,
+                data:{
+                    id_ens_chef_dpt:idUser,
+                    id_activite:id_activite,
+                    id_creneau:id_creneau,
+                    id_matiere:id_matiere,
+                    id_surveillant:id_surveillant,
+                    date_examen:date_examen,
+                    id_session:id_session
+                }
+            }).done(function(data){
+                getPageDataMatiereActivity(id_activite,typeActivite);
+                $(".modal").modal('hide');
+                compteurM = 25;
+                toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+            }).error(function(){
+                //$(".modal").modal('hide');
+                tostErreur("Cette matière n'a pas été créée");
+            });
+        }
+
+        function addTp(url){
+            $.ajax({
+                dataType: 'json',
+                type:'POST',
+                url: url,
+                data:{
+                    id_ens_chef_dpt:idUser,
+                    id_activite:id_activite,
+                    id_creneau:id_creneau,
+                    id_matiere:id_matiere,
+                    id_surveillant:id_surveillant,
+                    date_examen:date_examen,
+                    id_session:id_session
+                }
+            }).done(function(data){
+                getPageDataMatiereActivity(id_activite,typeActivite);
+                $(".modal").modal('hide');
+                compteurM = 25;
+                toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+            }).error(function(){
+                //$(".modal").modal('hide');
+                tostErreur("Cette matière n'a pas été créée");
+            });
+        }
 
     });
+
+
 
 
     // Create new ClasseActivity
@@ -371,9 +467,10 @@ function getPageDataMatiereActivity(id) {
 
     // Remove Matière activite
     $("body").on("click",".removeMatiereActivity",function(){
-        var id_activite = parseInt(idActiviteCourante);
+        //var id_activite = parseInt(idActiviteCourante);
         var id = $(this).parent("td").data('id');
         var c_obj = $(this).parents("tr");
+
         //alert("l'ide = "+id);
         $.ajax({
             dataType: 'json',

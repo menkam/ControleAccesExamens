@@ -32,7 +32,7 @@ class SurveillantsController extends Controller{
     public function show(Request $request)
     {
         return DB::select("
-            select users.id as id, name, prenom from users, surveillants where users.id=id_user;
+            select surveillants.id as id, name, prenom from users, surveillants where users.id=id_user;
         ");
     }
 

@@ -9,7 +9,126 @@ use App\Http\Requests\ActiviteRequest;
 
 class ActivitesController extends Controller
 {
+    public function index()
+    {
+        return Activite::latest()->paginate(1);
 
+    }
+
+    public function getmatiereActivite(Request $request){
+        //if($request->ajax())
+        if(isset($request->typeActivite)){
+            $idEnseignant = 1;
+            $idActivite = $request->idActivite;
+            $typeActivite = $request->typeActivite;
+
+            if($typeActivite == "rattrapage" || $typeActivite == "normale")
+                return DB::select("
+                    SELECT
+                      examens.id as id,
+                      examens.date_examen,
+                      matieres.code_matiere,
+                      matieres.libelle_matiere,
+                      creneaux_horaires.duree,
+                      creneaux_horaires.libelle_creneaux,
+                      users.name,
+                      users.prenom,
+                      users.sexe,
+                      sessions.libelle_session
+                    FROM
+                      public.users,
+                      public.surveillants,
+                      public.examens,
+                      public.matieres,
+                      public.creneaux_horaires,
+                      public.sessions,
+                      public.activites
+                    WHERE
+                      surveillants.id_user = users.id AND
+                      examens.id_surveillant = surveillants.id AND
+                      examens.id_matiere = matieres.id AND
+                      examens.id_creneau = creneaux_horaires.id AND
+                      sessions.id = examens.id_session AND
+                      activites.id = examens.id_activite AND
+                      activites.id = '16' AND
+                      activites.type_activite = 'rattrapage'
+                    ORDER BY
+                      examens.date_examen ASC,
+                      creneaux_horaires.libelle_creneaux ASC;
+                ");
+
+            if($typeActivite == "tp")
+                return DB::select("
+                    SELECT
+                      matieres.code_matiere,
+                      matieres.libelle_matiere,
+                      creneaux_horaires.duree,
+                      creneaux_horaires.libelle_creneaux,
+                      users.name,
+                      users.prenom,
+                      users.sexe,
+                      enseignants.grade,
+                      tps.date_tp as date,
+                      tps.id as id,
+                      enseignants.fonction
+                    FROM
+                      public.users,
+                      public.matieres,
+                      public.creneaux_horaires,
+                      public.activites,
+                      public.tps,
+                      public.enseignants
+                    WHERE
+                      tps.id_activite = activites.id AND
+                      tps.id_matiere = matieres.id AND
+                      tps.id_enseigant = enseignants.id AND
+                      tps.id_creneau = creneaux_horaires.id AND
+                      enseignants.id_user = users.id AND
+                      activites.id = '$idActivite' AND
+                      activites.type_activite = '$typeActivite'
+                    ORDER BY
+                      tps.date_tp ASC,
+                      creneaux_horaires.libelle_creneaux ASC;
+                ");
+
+            if($typeActivite == "cours")
+                return DB::select("
+                    SELECT
+                      matieres.code_matiere,
+                      matieres.libelle_matiere,
+                      creneaux_horaires.duree,
+                      creneaux_horaires.libelle_creneaux,
+                      users.name,
+                      users.prenom,
+                      users.sexe,
+                      enseignants.grade,
+                      enseignants.fonction,
+                      cours.date_cours as date
+                      cours.id as id
+                    FROM
+                      public.users,
+                      public.matieres,
+                      public.creneaux_horaires,
+                      public.activites,
+                      public.enseignants,
+                      public.cours
+                    WHERE
+                      enseignants.id_user = users.id AND
+                      cours.id_activite = activites.id AND
+                      cours.id_enseigant = enseignants.id AND
+                      cours.id_creneau = creneaux_horaires.id AND
+                      cours.id_matiere = matieres.id AND
+                      activites.id = '$idActivite' AND
+                      activites.type_activite = '$typeActivite'
+                    ORDER BY
+                      cours.date_cours ASC,
+                      creneaux_horaires.libelle_creneaux ASC;
+                 ");
+
+            /*if($typeActivite == "cc")
+                return DB::select("");*/
+        }
+    }
 
     public function showListEtudiant(Request $request)
     {
@@ -295,11 +414,6 @@ class ActivitesController extends Controller
     }
 
 
-    public function index()
-    {
-        return Activite::latest()->paginate(1);
-
-    }
 
 
     public function store(Request $request)

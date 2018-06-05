@@ -115,9 +115,9 @@ function getOptionType(position) {
      }
      }
      });*/
-    rows = rows + '<option value="1">Cours</option>';
-    rows = rows + '<option value="2">Normale</option>';
-    rows = rows + '<option value="3">TP</option>';
+    rows = rows + '<option value="cours">Cours</option>';
+    rows = rows + '<option value="examen">Examens</option>';
+    rows = rows + '<option value="tp">TP</option>';
     position.empty();
     position.append(rows).slideDown();
 }
@@ -233,9 +233,10 @@ function getOptionSalleLibre(position,date, heure) {
     });
 }
 
+// Get option Date
 function getDatePaticularDate(position,id,libelle,min,max){
     $("#"+position+"").html('' +
-    '<label class="control-label" for="'+libelle+'">Date de début:</label>' +
+    '<label class="control-label" for="'+id+'">'+libelle+'</label>' +
     '<input type="date" id="'+id+'"  name="'+id+'" class="form-control" min="'+min+'" max="'+max+'"  data-error="Choisir une dateé" required >' +
     '<div class="help-block with-errors"></div>');
 }
