@@ -75,7 +75,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn save_matiere_activite1 btn-success">Submit</button>
+                        <button type="submit" class="btn save_matiere_activite btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
                         <button class="btn btn-default close crud-close-edit" data-dismiss="modal" aria-label="Close">Annuler</button>
                     </div>

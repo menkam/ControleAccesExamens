@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth']], function(){
     //Route::resource('salle_activite', 'Salle_activitesController');
     Route::post('addMatiereExamen', ['as'=>'addMatiereExamen', 'uses'=>'ExamensController@store']);
     Route::post('addMatiereCours', ['as'=>'addMatiereCours', 'uses'=>'CourssController@store']);
-    Route::get('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
+    Route::post('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
     Route::post('addClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@store']);
     Route::post('addSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@store']);
 
@@ -107,7 +107,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
     Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
     Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
-    Route::get('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
 
 
 
