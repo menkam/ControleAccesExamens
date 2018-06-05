@@ -10,6 +10,8 @@
     <title>@yield('titre')</title>
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="icon" type="image/png" href="{{ asset('Login_v3/images/icons/favicon.ico') }}"/>
     
     <!-- Bootstrap -->
     <link href="{{ asset('framework/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
