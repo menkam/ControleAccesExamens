@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\MyClass\ActiviteEnCours;
 use DB;
 use App\Models\Activite;
 use Illuminate\Http\Request;
@@ -183,9 +184,14 @@ class ActivitesController extends Controller
 
     public function showListEtudiantEtudiantEnSalle(Request $request){
         $idActivite = $request->idActivite;
+        $liste = new ActiviteEnCours($idActivite);
+        $liste->start();
+
 
         if($request->ajax()) {
-            return DB::select('
+
+
+        /*    return DB::select('
                 SELECT
                   etudiants.matricule_etudiant,
                   users.name,
@@ -216,7 +222,7 @@ class ActivitesController extends Controller
                   activites.id = '.$idActivite.'
                 ORDER BY
                   etud_realise_activs.statut ASC
-            ');
+            ');*/
         }
     }
 
@@ -370,7 +376,7 @@ class ActivitesController extends Controller
         }
     }
 
-    public function ccEnCours(Request $request){
+    /*public function ccEnCours(Request $request){
 
       $heure = $request->heure;
       $date = $request->date;
@@ -412,7 +418,7 @@ class ActivitesController extends Controller
                 creneaux_horaires.libelle_creneaux ASC
           ");
       }
-    }
+    }*/
 
 
 
