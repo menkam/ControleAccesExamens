@@ -15,51 +15,25 @@ var idTpEnCours;
 var idCoursEnCours;
 var idCcEnCours;
 
+
+
+
 intitPage();
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
 $(document).ready(function(){
 
     $("#btn-examen").click(function(){
         typeActiviteChoisi = 'Examen';
-        var date = dateCourante;
-        var heure = heureCourante;
-        var position = $('#ligneExamenEnCours');
-        var rows = '';
+
         //alert(date+heure);
-        $.ajax({
-            dataType: 'json',
-            type:'POST',
-            url: 'getListExamenEnCour',
-            data:{
-                date:date,
-                heure:heure
-            }
-        }).done(function(data){
-            for(var i= 0; i < data.length; i++){
-                rows = rows + '<tr>';
-                rows = rows + '<td>'+(i+1)+'</td>';
-                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
-                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
-                rows = rows + '<td>'+data[i].code_classe+'</td>';
-                rows = rows + '<td>'+data[i].libelle_session+'</td>';
-                rows = rows + '<td>'+data[i].code+'</td>';
-                rows = rows + '<td>'+data[i].code_departement+'</td>';
-                rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
+        //getListExamen();
+        //setInterval(getListExamen,80000);
 
-                rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-                rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
-                rows = rows + '</td>';
-                rows = rows + '</tr>';
-            }
-            position.empty();
-            position.append(rows).slideDown();
-        });
-
-        afficherElement("examen");
         //setInterval(afficherElement,2000);
     });
 
@@ -181,7 +155,9 @@ $(document).ready(function(){
 });
 
 
-
+/**
+ * initialiser la page en fonction du buton sur lequel on vient de cliquer
+ */
 function intitPage(){
     initElements("examen");
     initElements("tp");
@@ -189,6 +165,10 @@ function intitPage(){
     initElements("cours");
 }
 
+/**
+ * function qui implement l'initialisation des element
+ * @param e
+ */
 function initElements(e){
     $("#btn-"+e).removeClass("active");
     $("#btn-"+e).removeClass("btn-info");
@@ -197,6 +177,10 @@ function initElements(e){
 
 }
 
+/**
+ * afficharge des element dans la page courante
+ * @param e
+ */
 function afficherElement(e){
     var classe =  $("#btn-"+e).attr("class");
     if(classe == "btn btn-round btn-primary btn-lg form-control") {
@@ -207,12 +191,13 @@ function afficherElement(e){
         //$("#btn-"+e).removeClass("btn-primary");
         $("#btn-" + e).addClass("btn-info");
         $("#btn-" + e).addClass("active");
-        $("#content-" + e + "-enCours").slideDown().slow();
+        $("#content-" + e + "-enCours").slideDown();
         $("#btn-" + e).find("span").addClass("glyphicon-folder-open");
 
     }
 }
- function MouseOver(){
+
+function MouseOver(){
      $("#btn-examen").mouseover(function(){
          $("#badge-nbr-examen").show("slow").hide("slow");
      });
@@ -227,6 +212,12 @@ function afficherElement(e){
      });
  }
 
+/**
+ * fonction qui s'occupe de remplire la classe modale contenant
+ * la liste des etudiants an salle de composition
+ * @param idActivite
+ * @constructor
+ */
 function AfficherListeEtudiantEnSelle(idActivite){
     var date = dateCourante;
     var heure = heureCourante;
@@ -276,3 +267,69 @@ function AfficherListeEtudiantEnSelle(idActivite){
     });
     //alert(idActivite);
 }
+
+function getListExamen(){
+    var date = dateCourante;
+    var heure = heureCourante;
+    var position = $('#ligneExamenEnCours');
+    var rows = '';
+    $.ajax({
+        dataType: 'json',
+        type:'POST',
+        url: 'getListExamenEnCour',
+        data:{
+            date:date,
+            heure:heure
+        }
+    }).done(function(data){
+        for(var i= 0; i < data.length; i++){
+            rows = rows + '<tr>';
+            rows = rows + '<td>'+(i+1)+'</td>';
+            rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+            rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+            rows = rows + '<td>'+data[i].code_classe+'</td>';
+            rows = rows + '<td>'+data[i].libelle_session+'</td>';
+            rows = rows + '<td>'+data[i].code+'</td>';
+            rows = rows + '<td>'+data[i].code_departement+'</td>';
+            rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
+
+            rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '</td>';
+            rows = rows + '</tr>';
+        }
+        position.empty();
+        position.append(rows).slideDown();
+    });
+    afficherElement("examen");
+}
+
+
+
+function gestionActiviteEnCours(event) {
+    /**
+     * On récupère le message envoyé par la page principale
+     * @type {event.data|*}
+     */
+    var messageSent = event.data;
+
+    /**
+     * On teste la commande envoyée
+     */
+    switch (messageSent.activite) {
+        case 'init':
+            break;
+        case 'examen':
+            this.postMessage("liste des examen");
+            break;
+        case 'cours':
+            this.postMessage("liste de cours");
+            break;
+        case 'tp':
+            this.postMessage("liste de tp");
+            break;
+    }
+}
+
+// On définit la fonction à appeler lorsque la page principale nous sollicite
+this.addEventListener('message', gestionActiviteEnCours, false);

@@ -123,7 +123,7 @@
                 echo $date["year"]."-".$date["mon"]."-".$date["mday"];
             }
         ?>";
-        /* var heureCourante = '<?php
+         var heureCourante2 = '<?php
             $heure = getDate();
             if(($heure["hours"]+1) < 10 && $heure["minutes"] < 10){
                 echo "0".($heure["hours"]+1)."h0".$heure["minutes"];
@@ -138,7 +138,7 @@
                 echo ($heure["hours"]+1)."h".$heure["minutes"];
             }
             //echo $heure["hours"]."h".$heure["minutes"].":".$heure["seconds"];
-        ?>';*/
+        ?>';
         var heureCourante = '<?php
             $heure = getDate();
             if(($heure["hours"]+1) < 10){

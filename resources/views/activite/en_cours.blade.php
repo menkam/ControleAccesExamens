@@ -1,9 +1,21 @@
-@extends('layouts.form')
+@extends('layouts.global')
 @section('titre','Activité en cours')
 @section('stylesheets')
 
 @endsection
+@section('page_content6')
+    <title>Hello Web Workers</title>
 
+    <input id=inputForWorker />
+    <button id=btnCreate>Creer un Worker</button>
+    <button id=btnSubmit>Envoyer au worker</button>
+    <button id=killWorker>Stopper le worker</button>
+    <div id="output"></div>
+
+    <script src="js/HelloWebWorkers.js" type="text/javascript"></script>
+
+
+@endsection
 @section('page_content')
 <div class="">
     <div class="page-title">
@@ -58,7 +70,7 @@
                                     <th title="Numéro de la ligne">#</th>
                                     <th title="Heure de passage de l'activité">Heures</th>
                                     <th title="Matière composée">Matières</th>
-                                    <th title="Classe qui compose">Classes</th>                                    
+                                    <th title="Classe qui compose">Classes</th>
                                     <th title="Session de l'examen">Session</th>
                                     <th title="Cursus académique">Cursus</th>
                                     <th title="Département concerné">Departements</th>
@@ -233,6 +245,6 @@
 @section('scripts')
 <script type="text/javascript" src="js/activite_en_cour.js"></script>
 <script type="text/javascript">
-    
+
 </script>
 @endsection

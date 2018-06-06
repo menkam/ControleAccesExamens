@@ -272,7 +272,8 @@ class ActivitesController extends Controller
                   examens.id_session = sessions.id AND
                   semestres.id = activites.id_semestre AND
                   creneaux_horaires.id = examens.id_creneau AND
-                  examens.date_examen = '$date'
+                  examens.date_examen = '$date' AND
+                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
                 ORDER BY
                   creneaux_horaires.libelle_creneaux ASC
             ");
@@ -316,7 +317,8 @@ class ActivitesController extends Controller
                   tps.id_matiere = matieres.id AND
                   enseignants.id = tps.id_enseigant AND
                   users.id = enseignants.id_user AND
-                  tps.date_tp = '$date'
+                  tps.date_tp = '$date' AND
+                creneaux_horaires.libelle_creneaux LIKE '%$heure%'
                 ORDER BY
                   creneaux_horaires.libelle_creneaux ASC
             ");
@@ -360,7 +362,8 @@ class ActivitesController extends Controller
                   cours.id_enseigant = enseignants.id AND
                   cours.id_matiere = matieres.id AND
                   cours.id_creneau = creneaux_horaires.id AND
-                  cours.date_cours = '$date''
+                  cours.date_cours = '$date' AND
+                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
               ORDER BY
                   creneaux_horaires.libelle_creneaux ASC
           ");
@@ -372,7 +375,7 @@ class ActivitesController extends Controller
       $heure = $request->heure;
       $date = $request->date;
       if($request->ajax()) {
-          return DB::select('
+          return DB::select("
               SELECT
                 activites.id,
                 cursus_accs.code,
@@ -403,11 +406,11 @@ class ActivitesController extends Controller
                 examens.id_session = sessions.id AND
                 semestres.id = activites.id_semestre AND
                 creneaux_horaires.id = examens.id_creneau AND
-                examens.date_examen = \''.$date.'\' AND
-                creneaux_horaires.libelle_creneaux LIKE \'%'.$heure.'%\'
+                examens.date_examen = '$date' AND
+                creneaux_horaires.libelle_creneaux LIKE '%$heure%'
               ORDER BY
                 creneaux_horaires.libelle_creneaux ASC
-          ');
+          ");
       }
     }
 
@@ -440,4 +443,5 @@ class ActivitesController extends Controller
         Activite::find($id)->delete();
         return response()->json(['done']);
     }
+
 }
