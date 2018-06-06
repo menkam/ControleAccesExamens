@@ -1,19 +1,6 @@
-@extends('layouts.global')
+@extends('layouts.form')
 @section('titre','Activité en cours')
 @section('stylesheets')
-
-@endsection
-@section('page_content6')
-    <title>Hello Web Workers</title>
-
-    <input id=inputForWorker />
-    <button id=btnCreate>Creer un Worker</button>
-    <button id=btnSubmit>Envoyer au worker</button>
-    <button id=killWorker>Stopper le worker</button>
-    <div id="output"></div>
-
-    <script src="js/HelloWebWorkers.js" type="text/javascript"></script>
-
 
 @endsection
 @section('page_content')
@@ -42,12 +29,6 @@
                                 TP
                             </button>
                         </div>
-                        <!--div class="col-lg-3 col-sm-3 col-xs-12 form-group">
-                            <center><span id="badge-nbr-cc" class="badge bg-green" style="display: none"><?= $nbr_cc; ?></span></center>
-                            <button id="btn-cc" name="cc" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les Contrôles Continus en cours"><span class="glyphicon glyphicon-folder-close"></span>
-                                CC
-                            </button>
-                        </div-->
                         <div class="col-lg-4 col-sm-4 col-xs-4 form-group">
                             <center><span id="badge-nbr-cours" class="badge bg-green" style="display: none"><?= $nbr_cours; ?></span></center>
                             <button id="btn-cours" name="cours" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les Cours en cours">
@@ -66,17 +47,17 @@
                     <div class="x_content">
                         <table class="table table-hover ">
                             <thead>
-                                <tr>
-                                    <th title="Numéro de la ligne">#</th>
-                                    <th title="Heure de passage de l'activité">Heures</th>
-                                    <th title="Matière composée">Matières</th>
-                                    <th title="Classe qui compose">Classes</th>
-                                    <th title="Session de l'examen">Session</th>
-                                    <th title="Cursus académique">Cursus</th>
-                                    <th title="Département concerné">Departements</th>
-                                    <th title="Semetre de l'activité">Semestre</th>
-                                    <th title="Voire la liste des etudiants en salle">Actions</th>
-                                </tr>
+                            <tr>
+                                <th title="Numéro de la ligne">#</th>
+                                <th title="Heure de passage de l'activité">Heures</th>
+                                <th title="Matière composée">Matières</th>
+                                <th title="Classe qui compose">Classes</th>
+                                <th title="Session de l'examen">Session</th>
+                                <th title="Cursus académique">Cursus</th>
+                                <th title="Département concerné">Departements</th>
+                                <th title="Semetre de l'activité">Semestre</th>
+                                <th title="Voire la liste des etudiants en salle">Actions</th>
+                            </tr>
                             </thead>
                             <tbody id="ligneExamenEnCours"></tbody>
                         </table>
@@ -103,30 +84,6 @@
                             </tr>
                             </thead>
                             <tbody id="ligneTpEnCours"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="content-cc-enCours" class="table-responsive" style="display: none">
-                    <div class="x_title">
-                        Contrôle Continu en cours...
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th title="Numéro de la ligne">#</th>
-                                <th title="Heure de passage de l'activité">Heures</th>
-                                <th title="Matière composée">Matières</th>
-                                <th title="Classe qui compose">Classes</th>
-                                <th title="Enseignant chargé du Contrôle Continu">Enseignant</th>
-                                <th title="Cursus académique">Cursus</th>
-                                <th title="Département concerné">Departements</th>
-                                <th title="Voire la liste des etudiants en salle">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody id="ligneCcEnCours"></tbody>
                         </table>
                     </div>
                 </div>
@@ -160,56 +117,56 @@
     </div>
 </div>
 
-<!--div id="divListeEtudiantEnSalle" class="" style="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Liste des étudiants en salle</h3>
+    <!--div id="divListeEtudiantEnSalle" class="" style="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Liste des étudiants en salle</h3>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <p id="infoSalle"></p>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <p id="infoSalle"></p>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
 
-                <div class="x_content">
+                    <div class="x_content">
 
-                    <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-                                <th class="column-title"># </th>
-                                <th class="column-title">Matricule </th>
-                                <th class="column-title">Nom Prénom </th>
-                                <th class="column-title">Email </th>
-                                <th class="column-title">Date Nais. </th>
-                                <th class="column-title">Régime </th>
-                                <th class="column-title">Etat </th>
-                            </tr>
-                            </thead>
-                            <tbody id="lignesListeEtudiantEnSalle"></tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                    <th class="column-title"># </th>
+                                    <th class="column-title">Matricule </th>
+                                    <th class="column-title">Nom Prénom </th>
+                                    <th class="column-title">Email </th>
+                                    <th class="column-title">Date Nais. </th>
+                                    <th class="column-title">Régime </th>
+                                    <th class="column-title">Etat </th>
+                                </tr>
+                                </thead>
+                                <tbody id="lignesListeEtudiantEnSalle"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div-->
+    </div-->
 
 
 <div class="modal fade  table-responsive" id="show-list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -243,8 +200,8 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/activite_en_cour.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript" src="js/activite_en_cour.js"></script>
+    <script type="text/javascript">
 
-</script>
+    </script>
 @endsection

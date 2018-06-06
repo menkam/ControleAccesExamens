@@ -30,9 +30,8 @@
             </div>
 
             <div class="x_content">
+                <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-item">Ajouter une Activité</button></div>
                 <div class="row">
-                    <div class="col-lg-12 pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-item">Ajouter une Activité</button></div>
-
                     <div class="table-responsive col-md-12">
                         <table class="table table-striped jambo_table bulk_action table-bordered">
                             <thead>
