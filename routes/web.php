@@ -103,6 +103,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getListCoursEnCour',['as' => 'getListCoursEnCour', 'uses' => 'ActivitesController@coursEnCours']);
     Route::post('getListCcEnCour',['as' => 'getListCcEnCour', 'uses' => 'ActivitesController@ccEnCours']);
     Route::post('getListEtudiantsEnSalle',['as' => 'getListEtudiantsEnSalle', 'uses' => 'ActivitesController@showListEtudiantEtudiantEnSalle']);
+    Route::get('getListEtudiantsEnSalle',['as' => 'getListEtudiantsEnSalle', 'uses' => 'ActivitesController@showListEtudiantEtudiantEnSalle']);
     Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
     Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
     Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
