@@ -15,7 +15,7 @@
 
         dateCourante = dateCourante;
         heureCourante = heureCourante2;
-        $("#heure").html("<h1>nous somme "+dateCourante+" et il est "+heureCourante+"</h1>");
+        $("#heure").html("<h1>nous sommes "+dateCourante+" et il est "+heureCourante+"</h1>");
     </script>
 
 @endsection
