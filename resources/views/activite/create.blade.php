@@ -128,54 +128,6 @@
     </div>
 </div>
 
-<!-- formulaire d'ajout des matières aux tps -->
-<!--div class="modal fade" id="addMatiereTp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h6 class="modal-title" id="myModalLabel">Ajouter une matière à cette activité</h6>
-            </div>
-            <div class="modal-body">
-                <form data-toggle="validator" action="" method="POST">
-                    {{ csrf_field() }}
-                    <div class="form-group" id="dateMatiereActivites"></div>
-                    <div class="form-group">
-                        <label class="control-label" for="dureeMatiere">Durée:</label>
-                        <select name="dureeMatiere" id="dureeMatiere" class="form-control" data-error="Choisir une durée." required ></select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id_creneauMatiere">Creneau horaire:</label>
-                        <select name="id_creneauMatiere" id="id_creneauMatiere" class="form-control" data-error="Choisir un créneau horaire." required ></select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id_matiere">Matière:</label>
-                        <select name="id_matiere" id="id_matiere" class="form-control" data-error="Choisir la matière." required ></select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id_surveillant">Surveillant:</label>
-                        <select name="id_surveillant" id="id_surveillant" class="form-control" data-error="Choisir un surveillant pour cette matière." required ></select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group" id="idSession">
-                        <label class="control-label" for="id_session">Session:</label>
-                        <select name="id_session" id="id_session" class="form-control" data-error="Choisir la sessionde cette activité." required ></select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn save_matiere_activite btn-success">Submit</button>
-                        <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
-                        <button class="btn btn-default close crud-close-edit" data-dismiss="modal" aria-label="Close">Annuler</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div-->
-
 <!-- formulaire d'ajout d'une classe à une activité -->
 <div class="modal fade" id="addClasse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -188,8 +140,8 @@
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group"  style="">
-                        <label class="control-label" for="id_classe">Classe :</label>
-                        <select name="id_classe" id="id_classe" class="form-control" data-error="Choisir une classe." required ></select>
+                        <label class="control-label" for="idClasseActivite">Classe :</label>
+                        <select name="idClasseActivite" id="idClasseActivite" class="form-control" data-error="Choisir une classe." required ></select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -320,6 +272,11 @@ $(document).ready(function (){
             }
         });
     });
+
+    /**
+     * controle modale d'ajout d'une classe
+     */
+    getOptionClasse("idClasseActivite");
 
  });
 

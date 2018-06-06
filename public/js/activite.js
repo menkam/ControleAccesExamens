@@ -125,7 +125,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
                 rows = rows + '<td><b><strong style="color: #AA0000">Terminée</strong></b></td>';
             }
             rows = rows + '<td data-id="'+value.id+'">';
-            rows = rows + '<button data-toggle="modal" title="Afficher" data-target="#show-item" class="btn btn-info show-item fa fa-eye"></button> ';
+            //rows = rows + '<button data-toggle="modal" title="Afficher" data-target="#show-item" class="btn btn-info show-item fa fa-eye"></button> ';
             rows = rows + '<button data-toggle="modal" title="Modifier" data-target="#edit-item"class="btn btn-primary fa fa-edit"></button> ';
             rows = rows + '<button title="Supprimer" class="btn btn-danger removeActivity fa fa-trash"></button>';
             rows = rows + '</td>';
@@ -231,6 +231,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
 
     // Add new classe_activity table row
     function manageRowClasseActivity(data) {
+        var effectif_classe = 0;
         var position = $('#lignes_classe_activite');
         var rows = '';
         for(var i= 0; i < data.length; i++){
@@ -256,7 +257,6 @@ function getPageDataMatiereActivity(id,typeActivite) {
     // Add new salle_activity table row
     function manageRowSalleActivity(data) {
         var completer_init = parseInt($("#completer").text());
-        var completer = 0;
         var position = $('#lignes_salle_activite');
         var rows = '';
         for(var i= 0; i < data.length; i++){
@@ -271,20 +271,20 @@ function getPageDataMatiereActivity(id,typeActivite) {
             rows = rows + '<button title="Supprimer" class="btn btn-danger removeSalleActivity fa fa-trash"></button>';
             rows = rows + '</td>';
             rows = rows + '</tr>';
-            completer=25;
         }
-        $("#completer").text(completer+completer_init);
         position.empty();
         position.append(rows).slideDown();
     }
 
 
 
-    /*
+    /**
      * Insertion des donnée
      */
 
-    // Create new Activity
+    /**
+     * Create new Activity
+     */
     $(".save_activite").click(function(e){
         e.preventDefault();
         //var form_action = $("#create-item").find("form").attr("action");
@@ -319,7 +319,9 @@ function getPageDataMatiereActivity(id,typeActivite) {
         });
     });
 
-    // Create new MatiereActivity
+    /**
+     * Create new MatiereActivity
+     */
     $(".save_matiere_activite").click(function(e){
         e.preventDefault();
         //var form_action = $("#addMatiere").find("form").attr("action");
@@ -436,12 +438,14 @@ function getPageDataMatiereActivity(id,typeActivite) {
     });
 
 
-    // Create new ClasseActivity
+    /**
+     * Create new ClasseActivity
+     */
     $(".saveClasseActivite").click(function(e){
         e.preventDefault();
-        var form_action = $("#addSalle").find("form").attr("action");
+        //var form_action = $("#addSalle").find("form").attr("action");
         var id_activite = parseInt(idActiviteCourante);
-        var id_classe = $("#id_classe").val();
+        var id_classe = $("#idClasseActivite").val();
         $.ajax({
             dataType: 'json',
             type:'POST',
@@ -454,15 +458,17 @@ function getPageDataMatiereActivity(id,typeActivite) {
             getPageDataClasseActivity(id_activite);
             $(".modal").modal('hide');
             toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+        }).error(function(){
+            tostErreur("Cette Classe n'a pas été ajouter");
         });
     });
 
     // Create new SalleActivity
     $(".saveSalleActivite").click(function(e){
         e.preventDefault();
-        var form_action = $("#addSalle").find("form").attr("action");
+        //var form_action = $("#addSalle").find("form").attr("action");
         var id_activite = parseInt(idActiviteCourante);
-        var id_salle = $("#id_salle").val();
+        var id_salle = $("#salleActivite").val();
         $.ajax({
             dataType: 'json',
             type:'POST',
@@ -475,6 +481,9 @@ function getPageDataMatiereActivity(id,typeActivite) {
             getPageDataSalleActivity(id_activite);
             $(".modal").modal('hide');
             toastr.success('Matiere Add Successfully.', 'Success Alert', {timeOut: 5000});
+        }).error(function(){
+            //$(".modal").modal('hide');
+            tostErreur("Cette classe n'a pas été ajouter");
         });
     });
 
@@ -558,7 +567,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
         }).done(function(data){
             c_obj.remove();
             toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
-            getPageSalleActivity(id_activite);
+            getPageDataSalleActivity(id_activite);
         });
     });
 

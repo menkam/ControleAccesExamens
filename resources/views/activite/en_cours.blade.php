@@ -17,26 +17,26 @@
             <div class="x_panel">
                 <div class="x_panel">
                     <div class="row table-responsive">
-                        <div class="col-lg-4 col-sm-3 col-xs-12 form-group">
+                        <div class="col-lg-4 col-sm-4 col-xs-4 form-group">
                             <center><span id="badge-nbr-examen" class="badge bg-green" style="display: none"><?= $nbr_examen; ?></span></center>
                             <button id="btn-examen" name="examen" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les Examens en cours"><span class="glyphicon glyphicon-folder-close"></span>
                                 EXAMENS
                             </button>
                         </div>
-                        <div class="col-lg-3 col-sm-2 col-xs-12 form-group">
+                        <div class="col-lg-4 col-sm-4 col-xs-4 form-group">
                             <center><span id="badge-nbr-tp" class="badge bg-green" style="display: none"><?= $nbr_tp; ?></span></center>
                             <button id="btn-tp" name="tp" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les TP en cours">
                                 <span class="glyphicon glyphicon-folder-close"></span>
                                 TP
                             </button>
                         </div>
-                        <div class="col-lg-3 col-sm-3 col-xs-12 form-group">
+                        <!--div class="col-lg-3 col-sm-3 col-xs-12 form-group">
                             <center><span id="badge-nbr-cc" class="badge bg-green" style="display: none"><?= $nbr_cc; ?></span></center>
                             <button id="btn-cc" name="cc" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les Contrôles Continus en cours"><span class="glyphicon glyphicon-folder-close"></span>
                                 CC
                             </button>
-                        </div>
-                        <div class="col-lg-3 col-sm-3 col-xs-12 form-group">
+                        </div-->
+                        <div class="col-lg-4 col-sm-4 col-xs-4 form-group">
                             <center><span id="badge-nbr-cours" class="badge bg-green" style="display: none"><?= $nbr_cours; ?></span></center>
                             <button id="btn-cours" name="cours" class="btn btn-round btn-primary btn-lg form-control" title="Afficher les Cours en cours">
                                 <span class="glyphicon glyphicon-folder-close"></span>

@@ -4,7 +4,10 @@ $.ajaxSetup({
     }
 });
 
-// Get option Année Académique
+/**
+ * Get option Année Académique
+ * @param position
+ */
 function getOptionAnnee(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -23,7 +26,11 @@ function getOptionAnnee(position) {
     });
 }
 
-// Get option Niveau
+/**
+ * Get option Niveau
+ * @param position
+ * @param idsemestre
+ */
 function getOptionNiveau(position,idsemestre) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -43,7 +50,10 @@ function getOptionNiveau(position,idsemestre) {
     });
 }
 
-// Get option Cursus
+/**
+ * Get option Cursus
+ * @param position
+ */
 function getOptionCursus(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -61,8 +71,11 @@ function getOptionCursus(position) {
     });
 }
 
-// Get option Classe
-function getOption(position) {
+/**
+ * Get option Classe
+ * @param position
+ */
+function getOptionClasse(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
     $.ajax({
@@ -81,7 +94,10 @@ function getOption(position) {
     });
 }
 
-// Get option Semestre
+/**
+ * Get option Semestre
+ * @param position
+ */
 function getOptionSemestre(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -99,7 +115,10 @@ function getOptionSemestre(position) {
     });
 }
 
-// Get option type_activite
+/**
+ * Get option type_activite
+ * @param position
+ */
 function getOptionType(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -122,7 +141,10 @@ function getOptionType(position) {
     position.append(rows).slideDown();
 }
 
-// Get option Session
+/**
+ * Get option Session
+ * @param position
+ */
 function getOptionSession(position) {
         var rows = '<option value="">-----</option>';
         var position = $("#"+position+"");
@@ -140,7 +162,10 @@ function getOptionSession(position) {
     });
 }
 
-// Get option Matière
+/**
+ * Get option Matière
+ * @param position
+ */
 function getOptionMatiere(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -158,7 +183,11 @@ function getOptionMatiere(position) {
     });
 }
 
-// Get option creno
+/**
+ * Get option creno
+ * @param position
+ * @param duree
+ */
 function getOptionCreneau(position,duree) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -179,7 +208,11 @@ function getOptionCreneau(position,duree) {
     });
 }
 
-// Get option surveillant
+/**
+ * Get option surveillant
+ * @param position
+ * @param duree
+ */
 function getOptionSurveillant(position,duree) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -200,7 +233,11 @@ function getOptionSurveillant(position,duree) {
     });
 }
 
-// Get option enseignant
+/**
+ * Get option enseignant
+ * @param position
+ * @param duree
+ */
 function getOptionEnseignant(position,duree) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -221,7 +258,10 @@ function getOptionEnseignant(position,duree) {
     });
 }
 
-// Get option duree
+/**
+ * Get option duree
+ * @param position
+ */
 function getOptionDuree(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -232,7 +272,12 @@ function getOptionDuree(position) {
     position.append(rows).slideDown();
 }
 
-// Get option salle lbre
+/**
+ * Get option salle lbre
+ * @param position
+ * @param date
+ * @param heure
+ */
 function getOptionSalleLibre(position,date, heure) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -254,7 +299,14 @@ function getOptionSalleLibre(position,date, heure) {
     });
 }
 
-// Get option Date
+/**
+ * Get option Date
+ * @param position
+ * @param id
+ * @param libelle
+ * @param min
+ * @param max
+ */
 function getDatePaticularDate(position,id,libelle,min,max){
     $("#"+position+"").html('' +
     '<label class="control-label" for="'+id+'">'+libelle+'</label>' +

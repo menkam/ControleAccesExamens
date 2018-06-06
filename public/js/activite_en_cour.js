@@ -2,8 +2,8 @@
 //alert(dateCourante);
 //alert(heureCourante);
 
-dateCourante = "2018-05-08";
-heureCourante = "08h";
+dateCourante = dateCourante;
+heureCourante = heureCourante;
 
 /*
  * variable globale pour les Etudiants en salle de compos
@@ -29,7 +29,7 @@ $(document).ready(function(){
         var heure = heureCourante;
         var position = $('#ligneExamenEnCours');
         var rows = '';
-
+        //alert(date+heure);
         $.ajax({
             dataType: 'json',
             type:'POST',
@@ -179,6 +179,8 @@ $(document).ready(function(){
 
     //MouseOver();
 });
+
+
 
 function intitPage(){
     initElements("examen");
