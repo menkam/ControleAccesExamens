@@ -25,129 +25,32 @@ $.ajaxSetup({
     }
 });
 
+
 $(document).ready(function(){
+
+    setInterval(getListExamen,1000);
+    setInterval(getListCours,1000);
+    setInterval(getListTp,1000);
+
+
+
+
+
+    /*$("#btn-cc").click(function(){
+        typeActiviteChoisi = 'Cc';
+        afficherElement("cc");
+    });*/
 
     $("#btn-examen").click(function(){
         typeActiviteChoisi = 'Examen';
-
-        //alert(date+heure);
-        //getListExamen();
-        //setInterval(getListExamen,80000);
-
-        //setInterval(afficherElement,2000);
+        afficherElement("examen");
     });
-
-
     $("#btn-tp").click(function(){
         typeActiviteChoisi = 'Tp';
-        var date = dateCourante;
-        var heure = heureCourante;
-        var position = $('#ligneTpEnCours');
-        var rows = '';
-
-        $.ajax({
-            dataType: 'json',
-            type:'POST',
-            url: 'getListTpEnCour',
-            data:{
-                date:date,
-                heure:heure
-            }
-        }).done(function(data){
-            for(var i= 0; i < data.length; i++){
-                rows = rows + '<tr>';
-                rows = rows + '<td>'+(i+1)+'</td>';
-                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
-                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
-                rows = rows + '<td>'+data[i].grade+' '+data[i].name+' '+data[i].prenom+'</td>';
-                rows = rows + '<td>'+data[i].code_classe+'</td>';
-                rows = rows + '<td>'+data[i].code+'</td>';
-                rows = rows + '<td>'+data[i].code_departement+'</td>';
-
-                rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-                rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
-                rows = rows + '</td>';
-                rows = rows + '</tr>';
-            }
-            position.empty();
-            position.append(rows).slideDown();
-        });
         afficherElement("tp");
     });
-
-
-    $("#btn-cc").click(function(){
-        typeActiviteChoisi = 'Cc';
-        var date = dateCourante;
-        var heure = heureCourante;
-        var position = $('#ligneCcEnCours');
-        var rows = '';
-
-        $.ajax({
-            dataType: 'json',
-            type:'POST',
-            url: 'getListCcEnCour',
-            data:{
-                date:date,
-                heure:heure
-            }
-        }).done(function(data){
-            for(var i= 0; i < data.length; i++){
-                rows = rows + '<tr>';
-                rows = rows + '<td>'+(i+1)+'</td>';
-                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
-                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
-                rows = rows + '<td>'+data[i].code_classe+'</td>';
-                rows = rows + '<td>'+data[i].code+'</td>';
-                rows = rows + '<td>'+data[i].code_departement+'</td>';
-                rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
-
-                rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-                rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
-                rows = rows + '</td>';
-                rows = rows + '</tr>';
-            }
-            position.empty();
-            position.append(rows).slideDown();
-        });
-        afficherElement("cc");
-    });
-
-
     $("#btn-cours").click(function(){
         typeActiviteChoisi = 'Cours';
-        var date = dateCourante;
-        var heure = heureCourante;
-        var position = $('#ligneCoursEnCours');
-        var rows = '';
-
-        $.ajax({
-            dataType: 'json',
-            type:'POST',
-            url: 'getListCoursEnCour',
-            data:{
-                date:date,
-                heure:heure
-            }
-        }).done(function(data){
-            for(var i= 0; i < data.length; i++){
-                rows = rows + '<tr>';
-                rows = rows + '<td>'+(i+1)+'</td>';
-                rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
-                rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
-                rows = rows + '<td>'+data[i].code_classe+'</td>';
-                rows = rows + '<td>'+data[i].grade+' '+data[i].name+' '+data[i].prenom+'</td>';
-                rows = rows + '<td>'+data[i].code+'</td>';
-                rows = rows + '<td>'+data[i].code_departement+'</td>';
-
-                rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-                rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
-                rows = rows + '</td>';
-                rows = rows + '</tr>';
-            }
-            position.empty();
-            position.append(rows).slideDown();
-        });
         afficherElement("cours");
     });
 
@@ -155,33 +58,24 @@ $(document).ready(function(){
 });
 
 
-/**
- * initialiser la page en fonction du buton sur lequel on vient de cliquer
- */
-function intitPage(){
+function intitPage()
+{
     initElements("examen");
     initElements("tp");
     initElements("cc");
     initElements("cours");
 }
 
-/**
- * function qui implement l'initialisation des element
- * @param e
- */
-function initElements(e){
+function initElements(e)
+{
     $("#btn-"+e).removeClass("active");
     $("#btn-"+e).removeClass("btn-info");
     $("#content-"+e+"-enCours").hide().slideUp();
     $("#btn-"+e).find("span").removeClass("glyphicon-folder-open");
 
 }
-
-/**
- * afficharge des element dans la page courante
- * @param e
- */
-function afficherElement(e){
+function afficherElement(e)
+{
     var classe =  $("#btn-"+e).attr("class");
     if(classe == "btn btn-round btn-primary btn-lg form-control") {
 
@@ -196,8 +90,8 @@ function afficherElement(e){
 
     }
 }
-
-function MouseOver(){
+function MouseOver()
+ {
      $("#btn-examen").mouseover(function(){
          $("#badge-nbr-examen").show("slow").hide("slow");
      });
@@ -212,12 +106,6 @@ function MouseOver(){
      });
  }
 
-/**
- * fonction qui s'occupe de remplire la classe modale contenant
- * la liste des etudiants an salle de composition
- * @param idActivite
- * @constructor
- */
 function AfficherListeEtudiantEnSelle(idActivite){
     var date = dateCourante;
     var heure = heureCourante;
@@ -268,7 +156,11 @@ function AfficherListeEtudiantEnSelle(idActivite){
     //alert(idActivite);
 }
 
-function getListExamen(){
+/**
+ * interroger la bd pour recuperer les information sur d'invatuelle Examens en cours
+ */
+function getListExamen()
+{
     var date = dateCourante;
     var heure = heureCourante;
     var position = $('#ligneExamenEnCours');
@@ -301,35 +193,120 @@ function getListExamen(){
         position.empty();
         position.append(rows).slideDown();
     });
-    afficherElement("examen");
 }
 
+/**
+ * interroger la bd pour recuperer les information sur d'invatuelle Cours en cours (très trôle...)
+ */
+function getListCours()
+{
+    var date = dateCourante;
+    var heure = heureCourante;
+    var position = $('#ligneCoursEnCours');
+    var rows = '';
 
+    $.ajax({
+        dataType: 'json',
+        type:'POST',
+        url: 'getListCoursEnCour',
+        data:{
+            date:date,
+            heure:heure
+        }
+    }).done(function(data){
+        for(var i= 0; i < data.length; i++){
+            rows = rows + '<tr>';
+            rows = rows + '<td>'+(i+1)+'</td>';
+            rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+            rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+            rows = rows + '<td>'+data[i].code_classe+'</td>';
+            rows = rows + '<td>'+data[i].grade+' '+data[i].name+' '+data[i].prenom+'</td>';
+            rows = rows + '<td>'+data[i].code+'</td>';
+            rows = rows + '<td>'+data[i].code_departement+'</td>';
 
-function gestionActiviteEnCours(event) {
-    /**
-     * On récupère le message envoyé par la page principale
-     * @type {event.data|*}
-     */
-    var messageSent = event.data;
+            rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '</td>';
+            rows = rows + '</tr>';
+        }
+        position.empty();
+        position.append(rows).slideDown();
+    });
+}
+/**
+ * interroger la bd pour recuperer les information sur d'invatuelle Tp en cours
+ */
+function getListTp()
+{
+    var date = dateCourante;
+    var heure = heureCourante;
+    var position = $('#ligneTpEnCours');
+    var rows = '';
 
-    /**
-     * On teste la commande envoyée
-     */
-    switch (messageSent.activite) {
-        case 'init':
-            break;
-        case 'examen':
-            this.postMessage("liste des examen");
-            break;
-        case 'cours':
-            this.postMessage("liste de cours");
-            break;
-        case 'tp':
-            this.postMessage("liste de tp");
-            break;
-    }
+    $.ajax({
+        dataType: 'json',
+        type:'POST',
+        url: 'getListTpEnCour',
+        data:{
+            date:date,
+            heure:heure
+        }
+    }).done(function(data){
+        for(var i= 0; i < data.length; i++){
+            rows = rows + '<tr>';
+            rows = rows + '<td>'+(i+1)+'</td>';
+            rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+            rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+            rows = rows + '<td>'+data[i].grade+' '+data[i].name+' '+data[i].prenom+'</td>';
+            rows = rows + '<td>'+data[i].code_classe+'</td>';
+            rows = rows + '<td>'+data[i].code+'</td>';
+            rows = rows + '<td>'+data[i].code_departement+'</td>';
+
+            rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '</td>';
+            rows = rows + '</tr>';
+        }
+        position.empty();
+        position.append(rows).slideDown();
+    });
 }
 
-// On définit la fonction à appeler lorsque la page principale nous sollicite
-this.addEventListener('message', gestionActiviteEnCours, false);
+/**
+ * interroger la bd pour recuperer les information sur d'invatuelle CC en cours
+ */
+function getListCC()
+{
+    var date = dateCourante;
+    var heure = heureCourante;
+    var position = $('#ligneCcEnCours');
+    var rows = '';
+
+    $.ajax({
+        dataType: 'json',
+        type:'POST',
+        url: 'getListCcEnCour',
+        data:{
+            date:date,
+            heure:heure
+        }
+    }).done(function(data){
+        for(var i= 0; i < data.length; i++){
+            rows = rows + '<tr>';
+            rows = rows + '<td>'+(i+1)+'</td>';
+            rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
+            rows = rows + '<td>'+data[i].libelle_matiere+'</td>';
+            rows = rows + '<td>'+data[i].code_classe+'</td>';
+            rows = rows + '<td>'+data[i].code+'</td>';
+            rows = rows + '<td>'+data[i].code_departement+'</td>';
+            rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
+
+            rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '</td>';
+            rows = rows + '</tr>';
+        }
+        position.empty();
+        position.append(rows).slideDown();
+    });
+}

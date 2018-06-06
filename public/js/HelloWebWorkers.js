@@ -7,9 +7,9 @@
  * @param parameter
  * @constructor
  */
-function WorkerMessage(activite, parameter) {
-    this.cmd = cmd;
-    this.parameter = parameter;
+function WorkerMessage(activite, msg) {
+    this.activite = activite;
+    this.msg = msg;
 }
 
 /**
@@ -21,19 +21,51 @@ var _output = document.getElementById("output");
 
 /* Vérifie si les Web Workers sont supportés */
 if (window.Worker) {
-    // On récupère les instances de nos 3 éléments HTML restant
-    var _btnSubmit = document.getElementById("btnSubmit");
-    var _btnCreate = document.getElementById("btnCreate");
-    var _inputForWorker = document.getElementById("inputForWorker");
-    var _killWorker = document.getElementById("killWorker");
-    var i = 0;
 
-    // on fait un simple déclartion de l'objet Worker
+    /**
+     * On récupère les instances de nos 6 éléments HTML restant
+     * @type {HTMLElement}
+     * @private
+     */
+    var _btnExamen = document.getElementById("btn-examen");
+    var _btnCours = document.getElementById("btn-cours");
+    var _btnTp = document.getElementById("btn-tp");
+
+    var _lignrExamen = document.getElementById("ligneExamenEnCours");
+    var _ligneCours = document.getElementById("ligneCoursEnCours");
+    var _ligneTp = document.getElementById("ligneTpEnCoursp");
+
+    // on fait une simple déclartion de l'objet Worker
     var monWorker;
+
+    /**
+     * On instantie le Worker
+     * @type {Worker}
+     */
+    var examenWorker = new Worker('js/helloworkers.js');
+    var coursWorker = new Worker('js/helloworkers.js');
+    var tpWorker = new Worker('js/helloworkers.js');
+    var i = 0;
 
     /**
      * on branche l'venement click sur le bouton create afin de commancer une note worker
      */
+    _btnCours.addEventListener("click", function (event) {
+        /**
+         * On se prépare à traiter le message de retour qui sera
+         * renvoyé par le worker
+         */
+        coursWorker.addEventListener("message", function (event) {
+            _btnCours.textContent = event.data;
+        }, false);
+        /**
+         * On démarre le worker en lui envoyant la commande 'init'
+         */
+        coursWorker.postMessage(new WorkerMessage('init', null));
+        setInterval(envoyetAuto,2000);
+    }, false);
+
+
     _btnCreate.addEventListener("click", function (event) {
 
         /**
@@ -68,14 +100,14 @@ if (window.Worker) {
 
 
 
-        function envoyetAuto(){
 
-            monWorker.postMessage(new WorkerMessage('hello', 'je compote de '+(i++)+' à l infinie'));
-        }
 
     }, false);
 
+    function envoyetAuto(){
 
+        examenWorker.postMessage(new WorkerMessage('examen', 'je compte : '+(i++)+' jusquà l infinie'));
+    }
 
     /*
      // On branche l'évènement click sur le bouton Kill

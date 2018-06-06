@@ -232,7 +232,7 @@ class ActivitesController extends Controller
             "nbr_cours"=> 0,
             "nbr_cc"=> 0
         );
-        return view('activite.en_cours', $info);
+        return view('activite.enCours', $info);
     }
 
     public function examenEnCours(Request $request){
