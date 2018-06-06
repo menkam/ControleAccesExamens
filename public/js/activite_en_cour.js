@@ -15,6 +15,9 @@ var idTpEnCours;
 var idCoursEnCours;
 var idCcEnCours;
 
+var intervalExamen = setInterval(getListExamen,1000);
+var intervalCours = setInterval(getListCours,1000);
+var intervalTp = setInterval(getListTp,1000);
 
 
 
@@ -27,14 +30,6 @@ $.ajaxSetup({
 
 
 $(document).ready(function(){
-
-    setInterval(getListExamen,1000);
-    setInterval(getListCours,1000);
-    setInterval(getListTp,1000);
-
-
-
-
 
     /*$("#btn-cc").click(function(){
         typeActiviteChoisi = 'Cc';
@@ -72,14 +67,26 @@ function initElements(e)
     $("#btn-"+e).removeClass("btn-info");
     $("#content-"+e+"-enCours").hide().slideUp();
     $("#btn-"+e).find("span").removeClass("glyphicon-folder-open");
+    clearInterval(intervalExamen);
+    clearInterval(intervalCours);
+    clearInterval(intervalTp);
 
 }
 function afficherElement(e)
 {
+
+
     var classe =  $("#btn-"+e).attr("class");
     if(classe == "btn btn-round btn-primary btn-lg form-control") {
-
+        temps = 100;
         intitPage();
+
+        if(e=="examen")
+            intervalExamen = setInterval(getListExamen,temps);
+        if(e=="cours")
+            intervalCours = setInterval(getListCours,temps);
+        if(e=="tp")
+            intervalTp = setInterval(getListTp,temps);
 
         $("#btn-" + e).find("span").addClass("glyphicon-folder-open");
         //$("#btn-"+e).removeClass("btn-primary");
@@ -124,34 +131,37 @@ function AfficherListeEtudiantEnSelle(idActivite){
             idActivite:idActivite
         }
     }).done(function (data) {
-        for (var i = 0; i < data.length; i++) {
-            rows = rows + '<tr>';
-            rows = rows + '<td>' + (i + 1) + '</td>';
-            rows = rows + '<td>' + data[i].matricule_etudiant + '</td>';
-            rows = rows + '<td>' + data[i].name + ' ' + data[i].prenom + '</td>';
-            rows = rows + '<td>' + data[i].email + '</td>';
-            rows = rows + '<td>' + data[i].date_nais + '</td>';
-            rows = rows + '<td>' + data[i].regime + '</td>';
+        if(data.length > 0){
+            for (var i = 0; i < data.length; i++) {
+                rows = rows + '<tr>';
+                rows = rows + '<td>' + (i + 1) + '</td>';
+                rows = rows + '<td>' + data[i].matricule_etudiant + '</td>';
+                rows = rows + '<td>' + data[i].name + ' ' + data[i].prenom + '</td>';
+                rows = rows + '<td>' + data[i].email + '</td>';
+                rows = rows + '<td>' + data[i].date_nais + '</td>';
+                rows = rows + '<td>' + data[i].regime + '</td>';
 
-            //rows = rows + '<td>' + data[i].statut + '</td>';
-            if(data[i].statut == 0){
-                rows = rows + '<td><b><strong style="color: #f89406">EN SALLE</strong></b></td>';
+                //rows = rows + '<td>' + data[i].statut + '</td>';
+                if(data[i].statut == 0){
+                    rows = rows + '<td><b><strong style="color: #f89406">EN SALLE</strong></b></td>';
+                }
+                if(data[i].statut == 1){
+                    rows = rows + '<td><b><strong style="color: #32cd32">TERMINER</strong></b></td>';
+                }
+                if(data[i].statut == 2){
+                    rows = rows + '<td><b><strong style="color: #AA0000">EXCLUS</strong></b></td>';
+                }
+                rows = rows + '</tr>';
             }
-            if(data[i].statut == 1){
-                rows = rows + '<td><b><strong style="color: #32cd32">TERMINER</strong></b></td>';
-            }
-            if(data[i].statut == 2){
-                rows = rows + '<td><b><strong style="color: #AA0000">EXCLUS</strong></b></td>';
-            }
-            rows = rows + '</tr>';
-        }
-        codeSalle = data[0].code_salle;
-        libelleSalle = data[0].libelle_salle;
-        position.empty();
-        infoSalle.empty();
-        infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>')
-        position.append(rows).slideDown();
-        $('#divListeEtudiantEnSalle').show('slow');
+            codeSalle = data[0].code_salle;
+            libelleSalle = data[0].libelle_salle;
+            position.empty();
+            infoSalle.empty();
+            infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>')
+            position.append(rows).slideDown();
+            $('#divListeEtudiantEnSalle').show('slow');
+        }else
+            $('#divListeEtudiantEnSalle').show('<tr><td colspan="7">Pas d\'"tudiants pour l\'instant...</td></tr>');
     });
     //alert(idActivite);
 }

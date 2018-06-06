@@ -185,7 +185,7 @@ class ActivitesController extends Controller
     public function showListEtudiantEtudiantEnSalle(Request $request){
         $idActivite = $request->idActivite;
         $liste = new ActiviteEnCours($idActivite);
-        $liste->start();
+        return $liste->run();
 
 
         if($request->ajax()) {

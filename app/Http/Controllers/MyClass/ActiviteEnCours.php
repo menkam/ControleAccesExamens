@@ -8,10 +8,9 @@
 
 namespace App\Http\Controllers\MyClass;
 
-
 use Illuminate\Support\Facades\DB;
 
-class ActiviteEnCours extends Thread {
+class ActiviteEnCours {
 
     private $idActivite;
 
@@ -20,11 +19,6 @@ class ActiviteEnCours extends Thread {
     }
 
     public function run()
-    {
-        $this->showListEtudiantEtudiantEnSalle();
-    }
-
-    private function showListEtudiantEtudiantEnSalle()
     {
         return DB::select("
             SELECT
@@ -59,5 +53,4 @@ class ActiviteEnCours extends Thread {
               etud_realise_activs.statut ASC
         ");
     }
-
 }
