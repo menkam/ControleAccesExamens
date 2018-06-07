@@ -238,7 +238,7 @@ class ActivitesController extends Controller
             "nbr_cours"=> 0,
             "nbr_cc"=> 0
         );
-        return view('activite.enCours', $info);
+        return view('activite.enCoursss', $info);
     }
 
     public function examenEnCours(Request $request){

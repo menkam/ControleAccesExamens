@@ -15,9 +15,18 @@ var idTpEnCours;
 var idCoursEnCours;
 var idCcEnCours;
 
-var intervalExamen = setInterval(getListExamen,1000);
+var intervalExamen;
+var intervalCours;
+var intervalTp;
+var intervalListeEtudiant;
+
+var temps = 2000;
+
+var idActiviteForListEtudians=0;
+
+/*var intervalExamen = setInterval(getListExamen,1000);
 var intervalCours = setInterval(getListCours,1000);
-var intervalTp = setInterval(getListTp,1000);
+var intervalTp = setInterval(getListTp,1000);*/
 
 
 
@@ -70,6 +79,7 @@ function initElements(e)
     clearInterval(intervalExamen);
     clearInterval(intervalCours);
     clearInterval(intervalTp);
+    clearInterval(intervalListeEtudiant);
 
 }
 function afficherElement(e)
@@ -78,7 +88,7 @@ function afficherElement(e)
 
     var classe =  $("#btn-"+e).attr("class");
     if(classe == "btn btn-round btn-primary btn-lg form-control") {
-        temps = 100;
+
         intitPage();
 
         if(e=="examen")
@@ -113,7 +123,14 @@ function MouseOver()
      });
  }
 
-function AfficherListeEtudiantEnSelle(idActivite){
+function setIdActivite(id){
+    clearInterval(intervalListeEtudiant);
+    idActiviteForListEtudians = id;
+    intervalListeEtudiant = setInterval("AfficherListeEtudiantEnSelle()",temps);
+    //$('#divListeEtudiantEnSalle').show('slow');
+}
+
+function AfficherListeEtudiantEnSelle(){
     var date = dateCourante;
     var heure = heureCourante;
     var position = $('#lignesListeEtudiantEnSalle').empty();
@@ -128,7 +145,7 @@ function AfficherListeEtudiantEnSelle(idActivite){
         data: {
             date:date,
             heure:heure,
-            idActivite:idActivite
+            idActivite:idActiviteForListEtudians
         }
     }).done(function (data) {
         if(data.length > 0){
@@ -155,13 +172,11 @@ function AfficherListeEtudiantEnSelle(idActivite){
             }
             codeSalle = data[0].code_salle;
             libelleSalle = data[0].libelle_salle;
-            position.empty();
-            infoSalle.empty();
             infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>')
             position.append(rows).slideDown();
-            $('#divListeEtudiantEnSalle').show('slow');
+
         }else
-            $('#divListeEtudiantEnSalle').show('<tr><td colspan="7">Pas d\'"tudiants pour l\'instant...</td></tr>');
+            position.append('<tr><td colspan="7">Pas d\'"tudiants pour l\'instant...</td></tr>').slideDown();
     });
     //alert(idActivite);
 }
@@ -196,7 +211,8 @@ function getListExamen()
             rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            //rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a href="{{ route(\'getFormListEtudiantd\') }}" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -235,7 +251,7 @@ function getListCours()
             rows = rows + '<td>'+data[i].code_departement+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a target="new" href="{{ url(\'listeEtudiantEnSalle\') }}" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -273,7 +289,7 @@ function getListTp()
             rows = rows + '<td>'+data[i].code_departement+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -312,7 +328,7 @@ function getListCC()
             rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="AfficherListeEtudiantEnSelle('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
