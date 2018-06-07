@@ -39,8 +39,8 @@
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Connexion
+					<span class="login100-form-title p-b-10 p-t-10">
+						Formulaire de Connexion
 					</span>
 
 					<div class="wrap-input100 validate-input {{ $errors->has('email') ? ' has-error' : '' }}" data-validate = "Enter username">
@@ -72,11 +72,11 @@
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Login
+							Connexion
 						</button>
 					</div>
 
-					<div class="text-center p-t-90">
+					<div class="text-center p-t-10">
 						<a class="txt1" href="{{ route('password.request') }}">
 							Forgot Password?
 						</a>
