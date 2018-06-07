@@ -40,15 +40,15 @@
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
-                    @include('partials.info_profil')
+                    include('partials.info_profil')
                     <!-- /menu profile quick info -->
                     <br />
                     <!-- sidebar menu -->
-                    @include('partials.menu')
+                    include('partials.menu')
                     <!-- /sidebar menu -->
 
                     <!-- /menu footer buttons -->
-                    @include('partials.menu_footer')
+                    include('partials.menu_footer')
                     <!-- /menu footer buttons -->
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="top_nav">
                 <div class="nav_menu">
                     <nav>
-                        @include('partials.top_navigation')
+                        include('partials.top_navigation')
                     </nav>
                 </div>
             </div>
@@ -166,11 +166,12 @@
             <div class="row">
                 <div class="col col-md-10 col-md-offset-1">
                     <div class="alert alert-warning" style="text-align: center; margin-top: 20%">
-                        <h2>ACERFI SIGES</h2><br/>
+                        <h2>Contrôle d'acces</h2><br/>
                         <i class="fa fa-warning" style="font-size: 6em"></i><br/>
                         <h3>Votre Compte a ete Desactiver!!!!</h3><br/>
                         <h4>Veiller contacter l admin ===> <a href="www.github/menkam.com">men_franc</a></h4><br/>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fa fa-btn fa-sign-out"></i> Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
@@ -184,4 +185,3 @@
 </html>
 
 
-                                       

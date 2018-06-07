@@ -16,6 +16,21 @@ class ActivitesController extends Controller
 
     }
 
+    public function accueille()
+    {
+        return view('activite.index');
+    }
+
+    public function en_cours(){
+        $info = array(
+            "nbr_examen"=> 0,
+            "nbr_tp"=> 0,
+            "nbr_cours"=> 0,
+            "nbr_cc"=> 0
+        );
+        return view('activite.enCours', $info);
+    }
+
     public function getmatiereActivite(Request $request){
         //if($request->ajax())
         if(isset($request->typeActivite)){
@@ -183,15 +198,12 @@ class ActivitesController extends Controller
     }
 
     public function showListEtudiantEtudiantEnSalle(Request $request){
-        $idActivite = $request->idActivite;
-        $liste = new ActiviteEnCours($idActivite);
-        return $liste->run();
+        $idActivite = $request->idActivite;      
 
 
         if($request->ajax()) {
 
-
-        /*    return DB::select('
+            return DB::select('
                 SELECT
                   etudiants.matricule_etudiant,
                   users.name,
@@ -222,23 +234,8 @@ class ActivitesController extends Controller
                   activites.id = '.$idActivite.'
                 ORDER BY
                   etud_realise_activs.statut ASC
-            ');*/
+            ');
         }
-    }
-
-    public function accueille()
-    {
-        return view('activite.index');
-    }
-
-    public function en_cours(){
-        $info = array(
-            "nbr_examen"=> 0,
-            "nbr_tp"=> 0,
-            "nbr_cours"=> 0,
-            "nbr_cc"=> 0
-        );
-        return view('activite.enCoursss', $info);
     }
 
     public function examenEnCours(Request $request){

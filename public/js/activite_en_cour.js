@@ -2,8 +2,7 @@
 //alert(dateCourante);
 //alert(heureCourante);
 
-dateCourante = dateCourante;
-heureCourante = heureCourante;
+
 
 /*
  * variable globale pour les Etudiants en salle de compos
@@ -127,14 +126,14 @@ function setIdActivite(id){
     clearInterval(intervalListeEtudiant);
     idActiviteForListEtudians = id;
     intervalListeEtudiant = setInterval("AfficherListeEtudiantEnSelle()",temps);
-    //$('#divListeEtudiantEnSalle').show('slow');
+    $('#lignesListeEtudiantEnSalle').empty();
 }
 
 function AfficherListeEtudiantEnSelle(){
     var date = dateCourante;
     var heure = heureCourante;
-    var position = $('#lignesListeEtudiantEnSalle').empty();
-    var infoSalle = $('#infoSalle').empty();
+    var position = $('#lignesListeEtudiantEnSalle');
+    var infoSalle = $('#infoSalle');
     var codeSalle = '';
     var libelleSalle = '';
     var rows = '';
@@ -172,11 +171,15 @@ function AfficherListeEtudiantEnSelle(){
             }
             codeSalle = data[0].code_salle;
             libelleSalle = data[0].libelle_salle;
-            infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>')
+            position.empty();
+            infoSalle.empty();
+            infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>');            
             position.append(rows).slideDown();
 
-        }else
-            position.append('<tr><td colspan="7">Pas d\'"tudiants pour l\'instant...</td></tr>').slideDown();
+        }else{
+            position.empty();
+            position.append('<tr><td colspan="7"><center>Pas d\'étudiants pour l\'instant...en salle</center></td></tr>').slideDown();
+        }
     });
     //alert(idActivite);
 }
@@ -199,7 +202,7 @@ function getListExamen()
             heure:heure
         }
     }).done(function(data){
-        for(var i= 0; i < data.length; i++){
+        for(var i= 0; i < data.length; i++){            
             rows = rows + '<tr>';
             rows = rows + '<td>'+(i+1)+'</td>';
             rows = rows + '<td>'+data[i].libelle_creneaux+'</td>';
@@ -211,8 +214,8 @@ function getListExamen()
             rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            //rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
-            rows = rows + '<a href="{{ route(\'getFormListEtudiantd\') }}" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            //rows = rows + '<a target="new" href="'+url+'"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -251,7 +254,7 @@ function getListCours()
             rows = rows + '<td>'+data[i].code_departement+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a target="new" href="{{ url(\'listeEtudiantEnSalle\') }}" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -298,9 +301,63 @@ function getListTp()
     });
 }
 
+/*
+function AfficherListeEtudiantEnSelle(){
+    var date = dateCourante;
+    var heure = heureCourante;
+    var position = $('#lignesListeEtudiantEnSalle').empty();
+    var infoSalle = $('#infoSalle').empty();
+    var codeSalle = '';
+    var libelleSalle = '';
+    var rows = '';
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: 'getListEtudiantsEnSalle',
+        data: {
+            date:date,
+            heure:heure,
+        }
+    }).done(function (data) {
+        if(data.length > 0){
+            for (var i = 0; i < data.length; i++) {
+                rows = rows + '<tr>';
+                rows = rows + '<td>' + (i + 1) + '</td>';
+                rows = rows + '<td>' + data[i].matricule_etudiant + '</td>';
+                rows = rows + '<td>' + data[i].name + ' ' + data[i].prenom + '</td>';
+                rows = rows + '<td>' + data[i].email + '</td>';
+                rows = rows + '<td>' + data[i].date_nais + '</td>';
+                rows = rows + '<td>' + data[i].regime + '</td>';
+
+                //rows = rows + '<td>' + data[i].statut + '</td>';
+                if(data[i].statut == 0){
+                    rows = rows + '<td><b><strong style="color: #f89406">EN SALLE</strong></b></td>';
+                }
+                if(data[i].statut == 1){
+                    rows = rows + '<td><b><strong style="color: #32cd32">TERMINER</strong></b></td>';
+                }
+                if(data[i].statut == 2){
+                    rows = rows + '<td><b><strong style="color: #AA0000">EXCLUS</strong></b></td>';
+                }
+                rows = rows + '</tr>';
+            }
+            codeSalle = data[0].code_salle;
+            libelleSalle = data[0].libelle_salle;
+            infoSalle.append('<h2>'+libelleSalle+' (<b>'+codeSalle +'</b>)</h2>')
+            position.append(rows).slideDown();
+
+        }else
+            position.append('<tr><td colspan="7">Pas d\'"tudiants pour l\'instant...</td></tr>').slideDown();
+           // alert("tiuver liste");
+    });
+    //alert(idActivite);
+}
+
+AfficherListeEtudiantEnSelle();
+*/
 /**
  * interroger la bd pour recuperer les information sur d'invatuelle CC en cours
- */
+ *
 function getListCC()
 {
     var date = dateCourante;
@@ -335,4 +392,4 @@ function getListCC()
         position.empty();
         position.append(rows).slideDown();
     });
-}
+}*/

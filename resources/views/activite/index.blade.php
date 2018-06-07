@@ -107,9 +107,7 @@
             @include('activite.edit')
         </div>
     </div>
-    @include('activite.examen')
-    @include('activite.cours')
-    @include('activite.tp')
+    @include('activite.detail')
     </div>
     @endsection
             <!--div class="page-title">

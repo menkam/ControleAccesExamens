@@ -40,9 +40,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('hello', ['as'=>'hello', 'uses'=>'HelloWorldController@bonjour']);
-
-
     Route::get('/home', 'HomeController@index');
     Route::get('/inbox',['as'=>'inbox','uses'=>'InboxController@index']);
     Route::get('/contacts',['as'=>'contacts','uses'=>'ContactsController@index']);
@@ -76,9 +73,6 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('mes_activites', ['as'=>'mes_activites', 'uses'=>'ActivitesController@accueille']);
     Route::get('activites-encours', ['as'=>'activites-encours', 'uses'=>'ActivitesController@en_cours']);
-    Route::get('activites-encours/listeEtudiantEnSalle', function(){
-        return view('activite.liste');
-    })->name('listeEtudiantEnSalle');
     Route::get('activite-ListEtudiant',['as' => 'getFormListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
 
     Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);

@@ -2,7 +2,30 @@
 @section('titre','Activité en cours')
 @section('stylesheets')
 <script type="text/css">
+ #fond {
+            position:absolute;
+            z-index:9000;
+            background-color:#000;
+            display:none;
+            border-radius: 10px;
+        }
 
+        .popup {
+            position:fixed;
+            width:440px;
+            height:200px;
+            display:none;
+            z-index:9999;
+            padding:20px;
+            border-radius: 10px;
+            background-color: white;
+            border: 1px solid grey;
+        }
+
+        #modal {
+            width:300px;
+            height:200px;
+        }
 </script>
 @endsection
 @section('page_content')
@@ -159,6 +182,5 @@
     <script type="text/javascript"></script>
     <script type="text/javascript" src="js/activite_en_cour.js"></script>
     <script type="text/javascript">
-
     </script>
 @endsection
