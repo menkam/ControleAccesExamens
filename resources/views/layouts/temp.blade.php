@@ -29,7 +29,7 @@
      
   </head>
   
-@if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
+@if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant') || \Auth::user()->hasRole('visiteur'))
   <body class="nav-md">
     <div class="container body">
         <div class="main_container">
@@ -40,15 +40,15 @@
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
-                    include('partials.info_profil')
+                    @include('partials.info_profil')
                     <!-- /menu profile quick info -->
                     <br />
-                    <!-- sidebar menu -->
+                    <!-- sidebar menu --
                     include('partials.menu')
                     <!-- /sidebar menu -->
 
                     <!-- /menu footer buttons -->
-                    include('partials.menu_footer')
+                    @include('partials.menu_footer')
                     <!-- /menu footer buttons -->
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="top_nav">
                 <div class="nav_menu">
                     <nav>
-                        include('partials.top_navigation')
+                        @include('partials.top_navigation')
                     </nav>
                 </div>
             </div>

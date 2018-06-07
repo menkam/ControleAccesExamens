@@ -29,7 +29,7 @@
 </head>
 <body>
 
-	<div class="limiter">
+	<div class="limiter divLogin" style="">
 		<div class="container-login100" style="background-image: url('Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
@@ -76,16 +76,18 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-10">
-						<a class="txt1" href="{{ route('password.request') }}">
-							Forgot Password?
+					<div class="text-center p-t-20" id="aRegister">
+						<!--a class="txt1" href="{{ route('password.request') }}">
+							Mot de Pass Oublier?
+						</a><br-->
+						<a class="txt1" href="{{ route('register') }}">
+							Creer un Compte?
 						</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
 
 	<div id="dropDownSelect1"></div>
 
@@ -105,6 +107,15 @@
 	<script src="{{ asset('Login_v3/vendor/countdowntime/countdowntime.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset('Login_v3/js/main.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$("#aRegister").click(function(){
+				$(".divRegister").show("slow");
+				$(".divLogin").hide("slow");
+			});
+		});
+	</script>
 
 </body>
 </html>
