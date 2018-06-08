@@ -108,9 +108,9 @@
             }
         });
         // Variable de reccupération de la date et l'heure courande du serveur
-        var dateCourante = "2018-06-07";
+        //var dateCourante = "2018-06-07";
 
-        var dateCourante0 = "<?php
+        var dateCourante = "<?php
             $date = getDate();
             if((int)$date["mon"] < 10 && (int)$date["mday"] < 10){
                 echo $date["year"]."-0".$date["mon"]."-0".$date["mday"];
