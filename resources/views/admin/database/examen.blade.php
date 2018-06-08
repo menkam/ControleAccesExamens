@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="id_matiere">id_matiere:</label>
-                        <select name="id_id_matiere" class="form-control" data-error="Choisir le id_matiere d'étude." required >
+                        <select name="id_matiere" class="form-control" data-error="Choisir le id_matiere d'étude." required >
                             <option value="">....</option>
                         </select>
                         <div class="help-block with-errors"></div>

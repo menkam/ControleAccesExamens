@@ -8,9 +8,9 @@
             <div class="modal-body">
                 <form data-toggle="validator" action="" method="POST">
                     <div class="form-group">
-                        <label class="control-label" for="libelle_annee">libelle_annee:</label>
-                        <input type="int" id="libelle_annee" name="libelle_annee" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
-                        <div class="help-block with-errors"></div>
+                           <label class="control-label" for="libelle_annee">libelle <span class="required">*</span> </label>
+                           <input type="text" id="libelle_annee" name="libelle_annee" required="required" class="form-control"/>
+                          <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success anneeAca_submit">Submit</button>

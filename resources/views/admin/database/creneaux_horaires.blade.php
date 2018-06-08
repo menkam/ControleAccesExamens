@@ -7,11 +7,16 @@
             </div>
             <div class="modal-body">
                  <form data-toggle="validator" action="" method="POST">
-                    <div class="form-group">
-                        <label class="control-label" for="libelle_creneaux">libelle_creneaux:</label>
-                        <input type="text" id="libelle_creneaux" name="libelle_creneaux" class="form-control" data-error="Entrer le libelle_creneaux du cursus." required />
-                        <div class="help-block with-errors"></div>
-                    </div>
+                     <div class="form-group">
+                         <label class="control-label" for="duree">duree:</label>
+                         <select  id="dureeCreneau" name="duree" class="form-control" data-error="Entrer la duree du creneau." required ></select>
+                         <div class="help-block with-errors"></div>
+                     </div>
+                     <div class="form-group">
+                         <label class="control-label" for="libelle_creneaux">libelle_creneaux:</label>
+                         <input type="text" id="libelle_creneaux" name="libelle_creneaux" class="form-control" data-error="Entrer le libelle du creneau." required />
+                         <div class="help-block with-errors"></div>
+                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success creneau_submit">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>

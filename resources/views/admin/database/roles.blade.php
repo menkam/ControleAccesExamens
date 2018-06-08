@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modifier les informations de base de l'activité</h4>
+                <h4 class="modal-title" id="myModalLabel">Modifier les informations de base sur les roles</h4>
             </div>
             <div class="modal-body">
 <form data-toggle="validator" action="" method="POST">
@@ -14,12 +14,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name">name:</label>
-                        <input type="int" id="name" name="name" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
+                        <input type="text" id="name" name="name" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn crud-submit btn-success">Submit</button>
+                        <button type="submit" class="btn role_submit btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
                         <button class="btn btn-default close crud-close-edit" data-dismiss="modal" aria-label="Close">Annuler</button>
                     </div>

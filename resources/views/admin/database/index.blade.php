@@ -145,8 +145,10 @@
 <!--script pour la page courante-->
 @section('script-form')
     <script src="{{ asset("js/databases.js") }}" type="text/javascript"></script>
-
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            getOptionDuree("dureeCreneau");
+        });
+    </script>
+    
 @endsection
-
-

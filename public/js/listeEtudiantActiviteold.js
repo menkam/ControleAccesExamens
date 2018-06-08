@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
     $("#Afficher").hide();
-    getOptionAnnee("id_annee");
+    getOptionAnnee();
     $("#id_annee").change(function(){
         $("#id_cursus").empty();
         $("#id_niveau").empty();
@@ -9,23 +9,23 @@ $(document).ready(function(){
         $("#id_semestre").empty();
         $("#typeActivite").empty();
         $("#id_session").empty();
-        getOptionCursus("id_cursus");
+        getOptionCursus();
         $("#id_cursus").change(function(){
-            getOptionNiveau("id_niveau");
+            getOptionNiveau();
             $("#id_niveau").change(function(){
-                getOptionClasse("id_classe");
+                getOptionClasse();
                 $("#id_classe").change(function(){
-                    getOptionSemestre("id_semestre");
+                    getOptionSemestre();
                     $("#id_semestre").change(function(){
-                        getOptionType("typeActivite");
+                        getOptionType();
                         $("#typeActivite").change(function(){
                             if($("#typeActivite").val()==2){
-                                getOptionSession("id_session");
+                                getOptionSession();
                                 $("#id_session").change(function(){
                                     getOptionMatiere();
                                 });
                             }else{
-                                getOptionMatiere("id_matiere");
+                                getOptionMatiere();
                                 $("#id_session").empty();
                             }
                             $("#id_matiere").change(function(){

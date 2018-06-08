@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modifier les informations de base de l'activité</h4>
+                <h4 class="modal-title" id="myModalLabel">Modifier les informations de base sur le salles de classes</h4>
             </div>
             <div class="modal-body">
 <form data-toggle="validator" action=" {('SallesController')} " method="POST">
@@ -14,21 +14,22 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="libelle_salle">libelle_salle:</label>
-                        <input type="int" id="libelle_salle" name="libelle_salle" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
+                        <input type="text" id="libelle_salle" name="libelle_salle" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="nbre_places">nbre_places:</label>
-                        <input type="int" id="nbre_places" name="nbre_places" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
+                        <input type="number" id="nbre_places" name="nbre_places" class="form-control" data-error="Entrer l'dentifiant du cursus." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn crud-submit btn-success">Submit</button>
+                        <button type="submit" class="btn salle_submit btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>
                         <button class="btn btn-default close crud-close-edit" data-dismiss="modal" aria-label="Close">Annuler</button>
                     </div>
-                </form>                              </div>
+                </form>
+             </div>
         </div>
     </div>
 </div>
