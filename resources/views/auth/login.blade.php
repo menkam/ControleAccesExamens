@@ -29,14 +29,15 @@
 </head>
 <body>
 
-	<div class="limiter divLogin float-r" style="">
+	<div class="limiter divLogin" style="">
 		<div class="container-login100" style="background-image: url('Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
 					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
+						<!--i class="zmdi zmdi-landscape"></i-->
+						<img src="Login_v3/images/logo.PNG">
 					</span>
 
 					<span class="login100-form-title p-b-10 p-t-10">
@@ -107,15 +108,7 @@
 	<script src="{{ asset('Login_v3/vendor/countdowntime/countdowntime.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset('Login_v3/js/main.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-
-			$("#aRegister").click(function(){
-				$(".divRegister").show("slow");
-				$(".divLogin").hide("slow");
-			});
-		});
-	</script>
+	<script src="{{ asset('js/login.js') }}"></script>
 
 </body>
 </html>

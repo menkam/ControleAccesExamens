@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ Auth::user()->id }}
-                    {{ Auth::user()->getRole() }}
+                    Salut {{ Auth::user()->name }} {{ Auth::user()->prenom }}, votre compte n'est pas encore activé...
                 </div>
             </div>
         </div>

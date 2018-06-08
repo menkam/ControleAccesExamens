@@ -24,14 +24,17 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(\Auth::user()->hasRole('admin')){
-            return view('admin.home');
+            //return view('admin.home');
+            return view('admin.database.index');
         }
 
         else if(\Auth::user()->hasRole('enseignant')){
-            return view('enseignant.accueille'); 
+            //return view('enseignant.accueille'); 
+            return view('activite.index'); 
         }
 
         else if(\Auth::user()->hasRole('etudiant')){
+            //return view('etudiant.home'); 
             return view('etudiant.home'); 
         }
 
