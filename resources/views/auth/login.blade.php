@@ -29,7 +29,7 @@
 </head>
 <body>
 
-	<div class="limiter divLogin" style="">
+	<div class="limiter divLogin float-r" style="">
 		<div class="container-login100" style="background-image: url('Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">

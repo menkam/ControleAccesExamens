@@ -164,7 +164,7 @@ iframe {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   justify-content: right;
   align-items: right;
@@ -191,6 +191,7 @@ iframe {
 
 .wrap-login100 {
   width: 400px;
+  float: right;
   border-radius: 50px;
   overflow: hidden;
   padding: 20px 30px 30px 20px;
