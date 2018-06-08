@@ -35,10 +35,10 @@
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
-					<span class="login100-form-logo">
+					<p class="login100-form-logo">
 						<!--i class="zmdi zmdi-landscape"></i-->
-						<img src="{{ asset('Login_v3/images/logo.PNG') }}">
-					</span>
+						<img src="images/logo.png">
+					</p>
 
 					<span class="login100-form-title p-b-10 p-t-10">
 						Formulaire de Connexion

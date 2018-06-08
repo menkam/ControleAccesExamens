@@ -37,7 +37,7 @@
 
 					<span class="login100-form-logo">
 						<!--i class="zmdi zmdi-landscape"></i-->
-						<img src="{{ asset('Login_v3/images/logo.PNG') }}">
+						<img src="images/logo.png">
 					</span>
 
 					<span class="login100-form-title p-b-10 p-t-10">
