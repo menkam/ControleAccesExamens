@@ -108,9 +108,9 @@
             }
         });
         // Variable de reccupération de la date et l'heure courande du serveur
-        //var dateCourante = "2018-06-07";
+        var dateCourante = "2018-06-07";
 
-        var dateCourante = "<?php
+        var dateCourante0 = "<?php
             $date = getDate();
             if((int)$date["mon"] < 10 && (int)$date["mday"] < 10){
                 echo $date["year"]."-0".$date["mon"]."-0".$date["mday"];
@@ -127,16 +127,16 @@
         ?>";
          var heureCourante2 = '<?php
             $heure = getDate();
-            if(($heure["hours"]+1) < 10 && $heure["minutes"] < 10){
+            if(((int)$heure["hours"]+1) < 10 && (int)$heure["minutes"] < 10){
                 echo "0".($heure["hours"]+1)."h0".$heure["minutes"];
             }
-            if(($heure["hours"]+1) < 10 && $heure["minutes"] > 10){
+            if(((int)$heure["hours"]+1) < 10 && (int)$heure["minutes"] > 10){
                 echo "0".($heure["hours"]+1)."h".$heure["minutes"];
             }
-            if(($heure["hours"]+1) > 10 && $heure["minutes"] < 10){
+            if(((int)$heure["hours"]+1) >= 10 && (int)$heure["minutes"] < 10){
                 echo ($heure["hours"]+1)."h0".$heure["minutes"];
             }
-            if(($heure["hours"]+1) > 10 && $heure["minutes"] > 10){
+            if(((int)$heure["hours"]+1) >= 10 && (int)$heure["minutes"] > 10){
                 echo ($heure["hours"]+1)."h".$heure["minutes"];
             }
             //echo $heure["hours"]."h".$heure["minutes"].":".$heure["seconds"];
