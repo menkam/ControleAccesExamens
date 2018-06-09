@@ -74,6 +74,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('mes_activites', ['as'=>'mes_activites', 'uses'=>'ActivitesController@accueille']);
     Route::get('activites-encours', ['as'=>'activites-encours', 'uses'=>'ActivitesController@en_cours']);
     Route::get('activite-ListEtudiant',['as' => 'getFormListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
+    Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
+    Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
+    Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
 
     Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);
 
@@ -84,6 +87,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
     Route::post('addClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@store']);
     Route::post('addSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@store']);
+    Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
+    Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
 
     Route::delete('delMatiereExamen', ['as'=>'delMatiereExamen', 'uses'=>'ExamensController@destroy']);
     Route::delete('delClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@destroy']);

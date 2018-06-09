@@ -12,7 +12,7 @@ class SurveillantsController extends Controller{
 
     public function index()
     {
-        //
+        return view('admin.addSurveillant');
     }
 
 
