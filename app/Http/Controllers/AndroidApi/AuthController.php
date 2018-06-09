@@ -33,6 +33,7 @@ class AuthController extends Controller
             $sexe = Auth::user()->sexe;
             $photo = Auth::user()->photo;
             $id = Auth::user()->id;
+            $idActivity = 10;
 
             if(\Auth::user()->hasRole('admin')){
                 $role = "admin";
@@ -58,7 +59,7 @@ class AuthController extends Controller
             $status = 0;
         }
         //dd(compact('status','id','nom','prenom','sexe','role','photo'));
-        return response()->json(compact('status','id','nom','prenom','sexe','role','photo'));
+        return response()->json(compact('status','id','nom','prenom','sexe','role','idActivity','photo'));
         //return response()->json($status,$id,$nom,$prenom,$exe,$role,$photo);
         /*$user = DB::select('
             SELECT

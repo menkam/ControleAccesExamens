@@ -22,8 +22,7 @@ class EnseignantsController extends Controller{
 
     public function index()
     {
-        $objects = Enseignant::latest()->paginate(1);
-        return response()->json($objects);
+        return view('admin.addEnseignant');
     }
 
 
