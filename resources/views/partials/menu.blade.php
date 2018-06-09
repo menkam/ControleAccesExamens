@@ -13,11 +13,11 @@
                 <li><!--  - menu de gestion des information de elementaire dans la base de données -->
                     <a href="{{ route('dataBase') }}"><i class="fa fa-database"></i> Data Bases</a></li>
                 <!--- menu de creation des utilisateurs -->
-                <li><a><i class="fa fa-tasks"></i> Utilisateur <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-users"></i> Utilisateur <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#enseignants"><i class="dropdown-item fa fa-user"></i>Enseignants</a></li>
-                        <li><a href="#surveillants"><i class="dropdown-item fa fa-user"></i>Surveillants</a></li>
-                        <li><a href="#etudiants"><i class="dropdown-item fa fa-user"></i>Etudiants</a></li>
+                        <li><a href="{{ route('formAddEnseignant') }}"><i class="dropdown-item fa fa-user"></i>Enseignants</a></li>
+                        <li><a href="{{ route('formAddEtudiant') }}"><i class="dropdown-item fa fa-user"></i>Etudiants</a></li>
+                        <li><a href="{{ route('formAddSurveillant') }}"><i class="dropdown-item fa fa-user"></i>Surveillants</a></li>
                     </ul>
                 </li>
                 @endif
