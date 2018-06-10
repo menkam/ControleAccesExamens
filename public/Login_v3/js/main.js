@@ -2,10 +2,6 @@
 (function ($) {
     "use strict";
 
-    $(".divRegister").show("slow");
-    
-    $(".divLogin").show("slow");
-
 
     /*==================================================================
     [ Focus input ]*/
