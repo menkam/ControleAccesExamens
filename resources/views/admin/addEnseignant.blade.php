@@ -161,6 +161,14 @@
 @section('scripts')
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        $('#matricule_enseignant').keyup(function(){
+            var lengt = $(this).val();
+            if(lengt.length > 2){
+                alert("taille max 2");
+            }
+        });
+    });
     /*
     $(document).ready(function(){
         $.ajaxSetup({

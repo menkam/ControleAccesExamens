@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 
 class GetListEtudiantController extends Controller
 {
-    public $date = '2018-05-08'; //Fonction::getDate();
-    public $heure = "08h";//Fonction::getTime("h");
+    public $date = Fonction::getDate();
+    public $heure = Fonction::getTime("h");
 
     public function getListEtudiants(Request $request)
     {
