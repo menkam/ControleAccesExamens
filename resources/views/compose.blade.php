@@ -108,7 +108,7 @@
             <textarea id="message"  name="message" class="form-control" data-error="message." required></textarea>            
 
             <div class="compose-footer">
-                <button id="send" class="btn btn-sm btn-success" type="button">Send</button>
+                <button type="submit" id="send" class="btn btn-success">Send</button>
             </div>
         </form>    
         

@@ -10,7 +10,7 @@
 
     <div class="page-title">
         <div class="title_left">
-            <h3>Inbox Design <small>Some examples to get you started</small></h3>
+            <h3>Inbox <small></small></h3>
         </div>
 
         <div class="title_right">
@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
-                <div class="x_title">
+                <!--div class="x_title">
                     <h2>Inbox Design<small>User Mail</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -48,41 +48,21 @@
                         </li>
                     </ul>
                     <div class="clearfix"></div>
-                </div>
+                </div-->
                 <div class="x_content">
                     <div class="row">
                         <div class="col-sm-3 mail_list_column">
                             <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
+                            <hr>
 
-                            <a href="#">
-                                <div class="mail_list">
-                                    <div class="left">
-                                        <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
-                                    </div>
-                                    <div class="right">
-                                        <h3>Dennis Mugo <small>3.00 PM</small></h3>
-                                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                                    </div>
-                                </div>
-                            </a>
+                            <div id="listMail">Pas de message pour le moment</div>
                         </div>
                         <!-- /MAIL LIST -->
 
                         <!-- CONTENT MAIL -->
                         <div class="col-sm-9 mail_view">
-                            <div class="inbox-body">
-                                <div class="mail_heading row">
-                                    <div class="col-md-8">
-                                        <div class="btn-group">
-                                            <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
-                                            <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
-                                            <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>
-                                            <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <p class="date"> 8:02 PM 12 FEB 2014</p>
-                                    </div>
+                            <div id="libellemsg" class="inbox-body">
+                                <div class="mail_heading row">                                    
                                     <div class="col-md-12">
                                         <h4>objectif du message</h4>
                                     </div>
@@ -101,30 +81,7 @@
                                     <br>
                                     <p>Contenu du message...</p>
                                 </div>
-                                <div class="attachment">
-                                    <p>
-                                        <span><i class="fa fa-paperclip"></i> 3 attachments — </span>
-                                        <a href="#">Download all attachments</a> |
-                                        <a href="#">View all images</a>
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="atch-thumb">
-                                                <img src="images/inbox.png" alt="img" />
-                                            </a>
-
-                                            <div class="file-name">
-                                                image-name.jpg
-                                            </div>
-                                            <span>12KB</span>
-
-                                            <div class="links">
-                                                <a href="#">View</a> -
-                                                <a href="#">Download</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
                                     <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
@@ -143,5 +100,8 @@
 @endsection
 
 @section('script-form')
+    <script type="text/javascript">
+        var iduser = "<?php echo Auth::user()->id; ?>";
+    </script>
     <script src="{{ asset('js/compose.js') }}"></script>
 @endsection

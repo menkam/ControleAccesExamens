@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Inbox extends Model
+class Mail extends Model
 {
     protected $guarded = array();
     

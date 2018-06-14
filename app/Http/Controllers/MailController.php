@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use App\Models\Inbox;
+use App\Models\Mail;
+use Illuminate\Http\Request;
 
-class InboxController extends Controller
+class MailController extends Controller
 {
     public function index()
     {
@@ -16,20 +16,31 @@ class InboxController extends Controller
     
     public function create()
     {
-        //
+        return 1;
     }
 
     
     public function store(Request $request)
     {
-        $object = Inbox::create($request->all());
+        $object = Mail::create($request->all());
         return response()->json($object);
+
     }
 
     
-    public function show($id)
+    public function show(Request $request)
     {
-        return DB::select("select * from inboxs where id_user_to = $id");
+        return DB::select("
+            SELECT 
+                * 
+            FROM 
+                public.mails
+            WHERE 
+                mails.id_user_from = '$request->id' OR 
+                mails.id_user_to = '$request->id'
+            ORDER BY
+                mails.updated_at DESC;
+        ");
     }
 
     
@@ -51,6 +62,10 @@ class InboxController extends Controller
     public function verifierMail(Request $request)
     {
         return DB::select("select id from users where email ='$request->email'");
+    }
+
+    public function getInfoUser(Request $request){
+        return DB::select("select * from users where id ='$request->id'");
     }
 
     

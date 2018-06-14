@@ -51,12 +51,13 @@ Route::group(['middleware' => ['auth']], function(){
     /**
     * Route pour les mails
     */
-    Route::get('/inbox',['as'=>'inbox','uses'=>'InboxController@index']);
-    Route::get('getInbox',['as'=>'getInbox','uses'=>'InboxController@show']);
-    Route::post('verifierMail',['as'=>'verifierMail','uses'=>'InboxController@verifierMail']);
-    Route::post('sendMail',['as'=>'sendMail','uses'=>'InboxController@store']);
-    Route::post('lectureMail',['as'=>'lectureMail','uses'=>'InboxController@lectureMail']);
-    Route::delete('delMail',['as'=>'delMail','uses'=>'InboxController@destroy']);
+    Route::get('/inbox',['as'=>'inbox','uses'=>'MailController@index']);
+    Route::post('getInbox',['as'=>'getInbox','uses'=>'MailController@show']);
+    Route::post('verifierMail',['as'=>'verifierMail','uses'=>'MailController@verifierMail']);
+    Route::post('getInfoUser',['as'=>'getInfoUser','uses'=>'MailController@getInfoUser']);
+    Route::post('sendMail',['as'=>'sendMail','uses'=>'MailController@store']);
+    Route::post('lectureMail',['as'=>'lectureMail','uses'=>'MailController@lectureMail']);
+    Route::delete('delMail',['as'=>'delMail','uses'=>'MailController@destroy']);
     /*
      * Route pour l'admin'
      */

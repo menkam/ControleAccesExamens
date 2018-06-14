@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInboxsTable extends Migration
+class CreateMailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateInboxsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inboxs', function (Blueprint $table) {
+        Schema::create('mails', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user_from');
             $table->integer('id_user_to');
             $table->string('objet');
             $table->string('libelle');
-            $table->integer('lue');            
+            $table->integer('lue');      
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateInboxsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inboxs');
+        Schema::dropIfExists('mails');
     }
 }
