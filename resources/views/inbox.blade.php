@@ -55,7 +55,7 @@
                             <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
                             <hr>
 
-                            <div id="listMail">Pas de message pour le moment</div>
+                            <div id="listMail"></div>
                         </div>
                         <!-- /MAIL LIST -->
 
@@ -67,22 +67,12 @@
                                 </div>
                                 <div class="sender-info">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <strong>Jon Doe</strong>
-                                            <span>(jon.doe@gmail.com)</span> to
-                                            <strong>me</strong>
-                                            <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
-                                        </div>
+                                        <div id="infoSender" class="col-md-12"></div>
                                     </div>
                                 </div>
                                 <div class="view-mail" id="mainMsg"></div>
                                 
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
-                                    <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
-                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>
-                                    <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
-                                </div>
+                                <div id="goupeBtn" class="btn-group" style="padding-top: 20px;"></div>
                             </div>
                         </div>
                         <!-- /CONTENT MAIL -->

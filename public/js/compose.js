@@ -160,8 +160,35 @@ function getLibelle($id){
             if(data.length > 0){
                 $('#objectifmsg').html("<h3>"+data[0].objet+"</h3>");
                 $('#mainMsg').html("<br><p>"+data[0].libelle+"</p>");
+                var rows ='<strong>Jon Doe</strong>';
+                rows +='<span>(jon.doe@gmail.com)</span> to';
+                rows +='<strong>me</strong>';
+                rows +='<a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>';
+                $('#infoSender').html(rows);
+                var rows2 ='<button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>';
+                rows2 +='<button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>';
+                rows2 +='<button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>';
+                rows2 +='<button onclick="delMsg('+data[0].id+')" class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>';
+                $('#goupeBtn').html(rows2);
             }
         }
 
     });
+}
+
+function delMsg(id){
+    if(confirm('Voulez-vous vraiment supprimer ce message ?')){
+        $.ajax({
+            dataType: 'json',
+            type:'delete',
+            url: 'delMail' + '/' + id
+        }).done(function(data){
+            toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+        }).error(function(data){
+            tostErreur("echec de suppression");
+        });
+    }else{
+        tostAvertissement("oppeartion annulée");
+    }
+    
 }

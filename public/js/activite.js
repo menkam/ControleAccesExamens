@@ -497,16 +497,20 @@ function getPageDataMatiereActivity(id,typeActivite) {
     $("body").on("click",".removeActivity",function(){
         var id = $(this).parent("td").data('id');
         var c_obj = $(this).parents("tr");
-
-        $.ajax({
-            dataType: 'json',
-            type:'delete',
-            url: url + '/' + id
-        }).done(function(data){
-            c_obj.remove();
-            toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
-            getPageDataActivity();
-        });
+        if(confirm('Voulez-vous vraiment supprimer cette Activite ?')){
+            $.ajax({
+                dataType: 'json',
+                type:'delete',
+                url: url + '/' + id
+            }).done(function(data){
+                c_obj.remove();
+                toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+                getPageDataActivity();
+            });
+        }else{
+            tostAvertissement("oppeartion annulée");
+        }
+        
     });
 
     // Remove Matière activite
@@ -516,18 +520,22 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var c_obj = $(this).parents("tr");
 
         //alert("l'ide = "+id);
-        $.ajax({
-            dataType: 'json',
-            type:'delete',
-            url: 'delMatiereExamen',
-            data: {
-                id:id
-            }
-        }).done(function(data){
-            c_obj.remove();
-            toastr.success('Matière Deleted Successfully.', 'Success Alert', {timeOut: 5000});
-            getPageDataMatiereActivity(id_activite);
-        });
+        if(confirm('Voulez-vous vraiment supprimer cette Matiere?')){
+            $.ajax({
+                dataType: 'json',
+                type:'delete',
+                url: 'delMatiereExamen',
+                data: {
+                    id:id
+                }
+            }).done(function(data){
+                c_obj.remove();
+                toastr.success('Matière Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+                getPageDataMatiereActivity(id_activite);
+            });
+        }else{
+            tostAvertissement("oppeartion annulée");
+        }    
     });
 
 
@@ -537,18 +545,22 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var id = $(this).parent("td").data('id');
         var c_obj = $(this).parents("tr");
 
-        $.ajax({
-            dataType: 'json',
-            type:'delete',
-            url: 'delClasseActivite',
-            data: {
-                id:id
-            }
-        }).done(function(data){
-            c_obj.remove();
-            toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
-            getPageClasseActivity(id_activite);
-        });
+        if(confirm('Voulez-vous vraiment supprimer cette Classe ?')){
+            $.ajax({
+                dataType: 'json',
+                type:'delete',
+                url: 'delClasseActivite',
+                data: {
+                    id:id
+                }
+            }).done(function(data){
+                c_obj.remove();
+                toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+                getPageClasseActivity(id_activite);
+            });
+        }else{
+            tostAvertissement("oppeartion annulée");
+        }
     });
 
     // Remove salle activite
@@ -557,18 +569,22 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var id = $(this).parent("td").data('id');
         var c_obj = $(this).parents("tr");
 
-        $.ajax({
-            dataType: 'json',
-            type:'delete',
-            url: 'delSalleActivite',
-            data: {
-                id:id
-            }
-        }).done(function(data){
-            c_obj.remove();
-            toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
-            getPageDataSalleActivity(id_activite);
-        });
+        if(confirm('Voulez-vous vraiment supprimer ?')){
+            $.ajax({
+                dataType: 'json',
+                type:'delete',
+                url: 'delSalleActivite',
+                data: {
+                    id:id
+                }
+            }).done(function(data){
+                c_obj.remove();
+                toastr.success('Activity Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+                getPageDataSalleActivity(id_activite);
+            });
+        }else{
+            tostAvertissement("oppeartion annulée");
+        }
     });
 
 
