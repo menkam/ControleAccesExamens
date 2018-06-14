@@ -508,7 +508,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
                 getPageDataActivity();
             });
         }else{
-            tostAvertissement("oppeartion annulée");
+            tostAvertissement("Oppération Annulée");
         }
         
     });
@@ -534,7 +534,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
                 getPageDataMatiereActivity(id_activite);
             });
         }else{
-            tostAvertissement("oppeartion annulée");
+            tostAvertissement("Oppération Annulée");
         }    
     });
 
@@ -559,7 +559,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
                 getPageClasseActivity(id_activite);
             });
         }else{
-            tostAvertissement("oppeartion annulée");
+            tostAvertissement("Oppération Annulée");
         }
     });
 
@@ -583,7 +583,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
                 getPageDataSalleActivity(id_activite);
             });
         }else{
-            tostAvertissement("oppeartion annulée");
+            tostAvertissement("Oppération Annulée");
         }
     });
 
