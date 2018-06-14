@@ -188,7 +188,7 @@ function delMsg(id){
             tostErreur("echec de suppression");
         });
     }else{
-        tostAvertissement("oppeartion annulée");
+        tostAvertissement("Oppération Annulée");
     }
     
 }
