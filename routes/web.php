@@ -2,6 +2,8 @@
 
 
 Route::singularResourceParameters();
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,7 @@ Route::singularResourceParameters();
 /**
  * routes pour l'application android
 */
-Route::get('androidGetListEtudiant', ['as'=>'androidGetListEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListEtudiants']);
+/*Route::get('androidGetListEtudiant', ['as'=>'androidGetListEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListEtudiants']);
 Route::get('androidGetListAllEtudiant', ['as'=>'androidGetListAllEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListAllEtudiants']);
 Route::get('androidVerifierEmail', ['as'=>'androidVerifierEmail', 'uses'=>'AndroidApi\AuthController@verifierEmail']);
 Route::get('androidLogin', ['as'=>'androidLogin', 'uses'=>'AndroidApi\AuthController@login']);
@@ -26,7 +28,7 @@ Route::get('androidResetLogin', ['as'=>'androidResetLogin', 'uses'=>'AndroidApi\
 Route::get('androidAddStudent', ['as'=>'androidAddStudent', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantEnSalle']);
 Route::get('androidStudentFinish', ['as'=>'androidStudentFinish', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantAyantTerminer']);
 Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantsExclus']);
-
+*/
 
 Route::group(['middleware' => ['guest']], function() {
     Route::get('/', function () {
@@ -41,11 +43,20 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/home', 'HomeController@index');
-    Route::get('/inbox',['as'=>'inbox','uses'=>'InboxController@index']);
     Route::get('/contacts',['as'=>'contacts','uses'=>'ContactsController@index']);
     Route::get('/profil',['as'=>'profil','uses'=>'ProfilsController@index']);
     Route::get('/Activite-Rapports/',['as'=>'rapportActivite','uses'=>'RapportsController@index']);
     Route::get('/Activite-Plannings/',['as'=>'planningActivite','uses'=>'PlanningsController@index']);
+
+    /**
+    * Route pour les mails
+    */
+    Route::get('/inbox',['as'=>'inbox','uses'=>'InboxController@index']);
+    Route::get('getInbox',['as'=>'getInbox','uses'=>'InboxController@show']);
+    Route::post('verifierMail',['as'=>'verifierMail','uses'=>'InboxController@verifierMail']);
+    Route::post('sendMail',['as'=>'sendMail','uses'=>'InboxController@store']);
+    Route::post('lectureMail',['as'=>'lectureMail','uses'=>'InboxController@lectureMail']);
+    Route::delete('delMail',['as'=>'delMail','uses'=>'InboxController@destroy']);
     /*
      * Route pour l'admin'
      */

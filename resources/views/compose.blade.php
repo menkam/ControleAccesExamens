@@ -1,7 +1,7 @@
 <!-- compose -->
-<div class="compose col-md-6 col-xs-12">
+<div class="compose col-md-5 col-xs-12">
     <div class="compose-header">
-        New Message
+        Nouveau Message
         <button type="button" class="close compose-close">
             <span>×</span>
         </button>
@@ -10,7 +10,7 @@
     <div class="compose-body">
         <div id="alerts"></div>
 
-        <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
+        <!--div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -78,12 +78,42 @@
                 <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
             </div>
         </div>
+        <div id="editor" class="editor-wrapper"></div-->
+        <form data-toggle="validator" action="" method="POST">
+                {{ csrf_field() }}
 
-        <div id="editor" class="editor-wrapper"></div>
+            <!--div class="form-group">
+                <label class="control-label" for="matricule_enseignant">Destinataire</label>
+            </div-->
+
+            <div class="form-group">
+                <label class="control-label" for="emailFrom">De :</label>
+                <input style="color: green" type="email" name="emailFrom" id="emailFrom" value="{{ Auth::user()->email }}" class="form-control" data-error="from." required>
+                <input type="hidden" name="id_user_from" id="id_user_from" value="{{ Auth::user()->id }}" class="form-control" data-error="from." required>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="emailTo">A :</label>
+                <input type="email" name="emailTo" id="emailTo" class="form-control" data-error="A." required>
+                <input type="hidden" name="id_user_to" id="id_user_to" value="1" class="form-control" data-error="To." required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="objet">Objet :</label>
+                 <input type="text" name="objet" id="objet" class="form-control" data-error="objet." required>
+                 <div class="help-block with-errors"></div>
+            </div>
+            <label class="" for="message">Message :</label>
+            <textarea id="message"  name="message" class="form-control" data-error="message." required></textarea>            
+
+            <div class="compose-footer">
+                <button id="send" class="btn btn-sm btn-success" type="button">Send</button>
+            </div>
+        </form>    
+        
     </div>
 
-    <div class="compose-footer">
-        <button id="send" class="btn btn-sm btn-success" type="button">Send</button>
-    </div>
+    
 </div>
 <!-- /compose -->

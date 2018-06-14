@@ -43,8 +43,8 @@
                     @include('partials.info_profil')
                     <!-- /menu profile quick info -->
                     <br />
-                    <!-- sidebar menu --
-                    include('partials.menu')
+                    <!-- sidebar menu -->
+                    @include('partials.menu')
                     <!-- /sidebar menu -->
 
                     <!-- /menu footer buttons -->

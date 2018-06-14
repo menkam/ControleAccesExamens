@@ -7,6 +7,7 @@
 @section('page_content')
 <div class="container">
     @yield('contenu')
+    @include('compose')
 </div>
 @endsection
 

@@ -1,12 +1,16 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <h3>MENU</h3>
+        @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant') || \Auth::user()->hasRole('visiteur'))
         <ul class="nav side-menu"> <!-- /2 - menu de messagerie -->
             <li>
                 <a href="{{ route('inbox') }}"><i class="fa fa-inbox"></i> Inbox</a></li>
+            @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))    
             <li><!-- /3 - menu des contacts -->
                 <a href="{{ route('contacts') }}"><i class="fa fa-users"></i> Contacts</a></li>
+            @endif    
         </ul>
+        @endif
         <h3>PERSONNEL</h3>
         <ul class="nav side-menu">
             @if(\Auth::user()->hasRole('admin'))
@@ -22,6 +26,8 @@
                 </li>
                 @endif
                         <!-- /4 - menu des activites -->
+
+                @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))        
                 <li><a><i class="fa fa-tasks"></i> Activiter <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant'))
@@ -32,9 +38,10 @@
                         <li><a href="{{ route('getFormListEtudiant') }}"><i class="fa fa-list"></i> Liste des étudiants</a></li>
                     </ul>
                 </li>
+                @endif
 
                 <!-- /5 - menu des impressions ou virsualisation -->
-
+                @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
                 <li><a><i class="fa fa-table"></i> Planning <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('planningActivite',['type'=>'examens']) }}"><i class="fa fa-graduation-cap"></i> Planning Examens</a></li>
@@ -43,9 +50,11 @@
                         <li><a href="#"><i class="fa fa-exclamation-triangle"></i>Autres Planning</a></li>
                     </ul>
                 </li>
+                @endif
 
                 <!-- /6 - menu des rapports d'activité -->
 
+                @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
                 <li><a><i class="fa fa-bar-chart-o"></i> Rapports d'activités<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('rapportActivite',['type'=>'examens']) }}"><i class="fa fa-graduation-cap"></i>Examens</a></li>
@@ -54,6 +63,7 @@
                         <li><a href="#"><i class="fa fa-exclamation-triangle"></i>Autre activité</a></li>
                     </ul>
                 </li>
+                @endif
                 <!-- /(fin) menu de l'enseignant  -->
         </ul>
         <ul class="nav side-menu">

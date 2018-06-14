@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AndroidApi;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Fonction;
 
 class GetListEtudiantController extends Controller
 {

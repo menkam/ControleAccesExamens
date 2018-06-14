@@ -29,7 +29,7 @@
      
   </head>
   
-@if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
+@if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant') || \Auth::user()->hasRole('visiteur'))
   <body class="nav-md">
     <div class="container body">
         <div class="main_container">
@@ -76,7 +76,7 @@
     </div>
 
     <!-- compose -->
-    @include('compose')
+    
     <!-- /compose -->
    
     <!-- jQuery -->
@@ -100,6 +100,7 @@
     <script src="{{ asset('framework/build/js/custom.min.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <!--script src="{{ asset('js/compose.js') }}"></script-->
 
     <script type="text/javascript">
         $.ajaxSetup({

@@ -1,10 +1,11 @@
-@extends('layouts.global')
+@extends('layouts.form')
 @section('titre','Inbox')
+
 @section('stylesheets')
 
 @endsection
 
-@section('page_content')
+@section('contenu')
 <div class="">
 
     <div class="page-title">
@@ -141,7 +142,6 @@
 </div>
 @endsection
 
-
-@section('script')
-
+@section('script-form')
+    <script src="{{ asset('js/compose.js') }}"></script>
 @endsection
