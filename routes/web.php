@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getInbox',['as'=>'getInbox','uses'=>'MailController@show']);
     Route::post('verifierMail',['as'=>'verifierMail','uses'=>'MailController@verifierMail']);
     Route::post('getInfoUser',['as'=>'getInfoUser','uses'=>'MailController@getInfoUser']);
+    Route::post('getContentMsg',['as'=>'getContentMsg','uses'=>'MailController@getContentMsg']);
     Route::post('sendMail',['as'=>'sendMail','uses'=>'MailController@store']);
     Route::post('lectureMail',['as'=>'lectureMail','uses'=>'MailController@lectureMail']);
     Route::delete('delMail',['as'=>'delMail','uses'=>'MailController@destroy']);

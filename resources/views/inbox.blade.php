@@ -63,9 +63,7 @@
                         <div class="col-sm-9 mail_view">
                             <div id="libellemsg" class="inbox-body">
                                 <div class="mail_heading row">                                    
-                                    <div class="col-md-12">
-                                        <h4>objectif du message</h4>
-                                    </div>
+                                    <div id="objectifmsg" class="col-md-12"></div>
                                 </div>
                                 <div class="sender-info">
                                     <div class="row">
@@ -77,10 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="view-mail">
-                                    <br>
-                                    <p>Contenu du message...</p>
-                                </div>
+                                <div class="view-mail" id="mainMsg"></div>
                                 
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>

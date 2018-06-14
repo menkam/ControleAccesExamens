@@ -25,7 +25,7 @@ $(document).ready(function(){
             	id_user_from:id_user_from, 
             	id_user_to:id_user_to, 
             	objet:objet, 
-            	libelle:objet, 
+            	libelle:message, 
             	lue:lue
             }
         }).done(function(data){
@@ -104,7 +104,7 @@ function findNewMessage(){
             if(data.length > 0){
                 for($i=0; $i<data.length; $i++){
                     getInfoUser("name"+$i,data[$i].id_user_from);
-                    rows ='<a href="#">';
+                    rows ='<a href="#" onclick="getLibelle('+data[$i].id+')">';
                     rows +='<div class="mail_list">';
                     rows +='<div class="left">';
                     rows +='<i class="fa fa-circle"></i> <i class="fa fa-edit"></i>';
@@ -120,7 +120,6 @@ function findNewMessage(){
                 
             }else{
                 rows ='<p><b>pas de message</b></p>';
-                position.empty();
                 position.append(rows);
             }
         }
@@ -150,18 +149,17 @@ function getInfoUser($name,$id){
 }
 
 function getLibelle($id){
-    var position = $('#libellemsg');
-    var rows ='';
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: 'getInfoUser',
+        url: 'getContentMsg',
         data:{
             id:$id
         },
         success: function(data){
             if(data.length > 0){
-
+                $('#objectifmsg').html("<h3>"+data[0].objet+"</h3>");
+                $('#mainMsg').html("<br><p>"+data[0].libelle+"</p>");
             }
         }
 

@@ -68,6 +68,10 @@ class MailController extends Controller
         return DB::select("select * from users where id ='$request->id'");
     }
 
+    public function getContentMsg(Request $request){
+        return DB::select("select * from mails where id ='$request->id'");
+    }
+
     
     public function destroy($id)
     {
