@@ -1,10 +1,6 @@
-$(document).ready(function(){
+//$(document).ready(function(){
 
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+	
 
 	$("#send").click(function(e){
         e.preventDefault();
@@ -53,10 +49,10 @@ $(document).ready(function(){
     });
 
     
-    findNewMessage();
+    setInterval(findNewMessage,"1000");
 
 
-});	
+//});	
 
 
 
@@ -85,12 +81,10 @@ function verifierEmail(position,position2,email) {
     });
 }
 
-
-
 function findNewMessage(){
     //alert(iduser);
     var position = $("#listMail");
-    position.empty();
+    
     var rows = '';
     $.ajax({
         type: "POST",
@@ -103,23 +97,25 @@ function findNewMessage(){
             //alert(data.length);
             if(data.length > 0){
                 for($i=0; $i<data.length; $i++){
-                    getInfoUser("name"+$i,data[$i].id_user_from);
-                    rows ='<a href="#" onclick="getLibelle('+data[$i].id+')">';
-                    rows +='<div class="mail_list">';
-                    rows +='<div class="left">';
-                    rows +='<i class="fa fa-circle"></i> <i class="fa fa-edit"></i>';
-                    rows +='</div>';
-                    rows +='<div class="right">';
-                    rows +='<h3 id="name'+$i+'"></h3>';
-                    rows +='<p>'+data[$i].objet+'</p>';
-                    rows +='<h3><small>'+data[$i].updated_at+'</small></h3>';
-                    rows +='</div></div>';
-                    rows +='</a>';
-                    position.append(rows);
-                }                
+                    //getInfoUser("name"+$i,data[$i].id_user_from);
+                    rows = rows + '<a href="#" onclick="getLibelle('+data[$i].id+')">';
+                    rows = rows + '<div class="mail_list">';
+                    rows = rows + '<div class="left">';
+                    rows = rows + '<i class="fa fa-circle"></i> <i class="fa fa-edit"></i>';
+                    rows = rows + '</div>';
+                    rows = rows + '<div class="right">';
+                    rows = rows + '<h3>'+data[$i].name+' '+data[$i].prenom+'</h3>';
+                    rows = rows + '<p>'+data[$i].objet+'</p>';
+                    rows = rows + '<h3><small>'+data[$i].updated_at+'</small></h3>';
+                    rows = rows + '</div></div>';
+                    rows = rows + '</a>';
+                }      
+                position.empty();
+                position.append(rows).slideDown();        
                 
             }else{
                 rows ='<p><b>pas de message</b></p>';
+                position.empty();
                 position.append(rows);
             }
         }
@@ -158,9 +154,9 @@ function getLibelle($id){
         },
         success: function(data){
             if(data.length > 0){
-                $('#objectifmsg').html("<h3>"+data[0].objet+"</h3>");
-                $('#mainMsg').html("<br><p>"+data[0].libelle+"</p>");
-                var rows ='<strong>Jon Doe</strong>';
+                $('#objectifmsg').html("<hr><h3>"+data[0].objet+"</h3>");
+                $('#mainMsg').html("<hr><p>"+data[0].libelle+"</p>");
+                var rows ='<hr><strong>Jon Doe</strong>';
                 rows +='<span>(jon.doe@gmail.com)</span> to';
                 rows +='<strong>me</strong>';
                 rows +='<a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>';

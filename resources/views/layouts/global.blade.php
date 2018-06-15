@@ -98,8 +98,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('framework/build/js/custom.min.js') }}"></script>
-
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <!--script src="{{ asset('js/infoMailNav.js') }}"></script>
     <!--script src="{{ asset('js/compose.js') }}"></script-->
 
     <script type="text/javascript">

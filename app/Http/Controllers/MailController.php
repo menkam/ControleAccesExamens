@@ -32,12 +32,27 @@ class MailController extends Controller
     {
         return DB::select("
             SELECT 
-                * 
+              users.name, 
+              users.prenom, 
+              users.sexe, 
+              users.telephone, 
+              users.email, 
+              users.photo, 
+              users.date_nais, 
+              mails.id, 
+              mails.id_user_from, 
+              mails.id_user_to, 
+              mails.objet, 
+              mails.libelle, 
+              mails.lue, 
+              mails.updated_at
             FROM 
-                public.mails
+              public.mails, 
+              public.users
             WHERE 
+                mails.id_user_from = users.id AND (
                 mails.id_user_from = '$request->id' OR 
-                mails.id_user_to = '$request->id'
+                mails.id_user_to = '$request->id')
             ORDER BY
                 mails.updated_at DESC;
         ");

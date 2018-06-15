@@ -61,6 +61,7 @@
 
                         <!-- CONTENT MAIL -->
                         <div class="col-sm-9 mail_view">
+                            <div id="goupeBtn" class="btn-group" style="padding-top: 20px;"></div>
                             <div id="libellemsg" class="inbox-body">
                                 <div class="mail_heading row">                                    
                                     <div id="objectifmsg" class="col-md-12"></div>
@@ -71,8 +72,6 @@
                                     </div>
                                 </div>
                                 <div class="view-mail" id="mainMsg"></div>
-                                
-                                <div id="goupeBtn" class="btn-group" style="padding-top: 20px;"></div>
                             </div>
                         </div>
                         <!-- /CONTENT MAIL -->
