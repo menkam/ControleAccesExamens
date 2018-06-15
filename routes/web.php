@@ -124,6 +124,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
     Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
     Route::post('getOptionActivite', ['as'=>'getOptionActivite', 'uses'=>'RapportActiviteController@getOptionActivite']);
+    Route::get('getOptionActivite', ['as'=>'getOptionActivite', 'uses'=>'RapportActiviteController@getOptionActivite']);
 
 
 

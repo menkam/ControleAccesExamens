@@ -16,9 +16,9 @@ class RapportActiviteController extends Controller
     {
         $typeActivite1;
         $typeActivite2;
-        $idClass = $request->idClass;
+        $idClasse = $request->idClasse;
         $idAnnee = $request->idAnnee;
-        
+
         if($request->typeActivite=="examen"){
             $typeActivite1 = "normale";
             $typeActivite2 = "rattrapage";
@@ -26,6 +26,7 @@ class RapportActiviteController extends Controller
             $typeActivite1 = $request->typeActivite;
             $typeActivite2 = $request->typeActivite;
         }
+
         return DB::select("
             SELECT 
               activites.id, 
@@ -46,7 +47,7 @@ class RapportActiviteController extends Controller
               activite_conc_classes.id_classe = classes.id AND(
               activites.type_activite = '$typeActivite1' OR 
               activites.type_activite = '$typeActivite2') AND
-              classes.id = '$idClass' AND 
+              classes.id = '$idClasse' AND 
               annee_academiques.id = '$idAnnee' 
             ORDER BY
               activites.date_debut_activite DESC;
