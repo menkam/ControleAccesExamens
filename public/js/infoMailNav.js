@@ -1,27 +1,24 @@
 $(document).ready(function(){
 
-  $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+  // $(document).ready(function(){
 
-  setInterval(findNewMessageNav,"1000");
+ 
+
+  setInterval(findNewMessageNav,"5000");
 
 });
 
-
 function findNewMessageNav(){
-    //alert(iduser);
+    //var iduser = "<?php echo Auth::user()->id; ?>";
     var position = $("#listMailNav");
     
     var rows = '';
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: 'getInbox',
+        url: 'verifierMailRecive',
         data:{
-            id:iduser
+            id:idUser
         },
         success: function(data){
             //alert(data.length);
@@ -54,5 +51,7 @@ function findNewMessageNav(){
                 position.append(rows);
             }
         }
+
     });   
+    //alert (iduser);
 }    

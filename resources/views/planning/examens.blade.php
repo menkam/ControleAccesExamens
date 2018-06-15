@@ -1,26 +1,9 @@
-@extends('layouts.global')
+@extends('layouts.form')
 @section('titre','Virsualisation-Plannig-Examens')
-@section('stylesheets')
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- Datatables -->
-    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+@section('stylesheetss')
 @endsection
 
-@section('page_content')
+@section('contenu')
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -45,29 +28,50 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_panel">
-                    <form class="form-inline" method="POST" action="#affficher_activiter">
-                        <div class="form-group">
-                            <label for="date">Date :</label>
-                            <input type="date" id="date" class="form-control date" name="date" required="">
-                            <label for="classe"> Classe :</label>
-                            <select id="classe" class="form-control" name="classe" required="">
-                                <option value=""></option>
-                                <option value="LIR">LIR</option>
-                                <option value="GI2">GI1</option>
-                            </select>
-                            <label for="activiter"> Activité :</label>
-                            <select id="activiter" class="form-control" name="activiter" required="">
-                                <option value=""></option>
-                                <option value="1">Noumale LMD1</option>
-                                <option value="2">Normale LMD2</option>
-                            </select>
+                    <form class="form-group" method="POST" action="#affficher_activiter">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+                                        <label class="control-label" for="datePlanningExamen">Annee:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+                                        <select id="datePlanningExamen" class="form-control date" name="datePlanningExamen" required=""></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+                                        <label class="control-label" for="classePlanningExamen">Classe:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+                                        <select id="classePlanningExamen" class="form-control" name="classePlanningExamen" required=""></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+                                        <label class="control-label" for="idActiviterPlanningExamen">Activité:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+                                        <select id="idActiviterPlanningExamen" class="form-control" name="idActiviterPlanningExamen" required=""></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <br><button type="submit" class="form-control btn btn-primary">GO</button>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">GO</button>
                     </form>
                 </div><br/><br>
                 <div class="x_title">
                     <div class="clearfix"></div>
                 </div>
+                
+
+
                 <div class="x_content">
 
                     <table id="datatable-buttons" class="table table-striped table-bordered">
@@ -104,34 +108,6 @@
 @endsection
 
 
-@section('script')
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
-    <!-- Datatables -->
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+@section('script-form')
+    <script src="js/plagning.js"></script>
 @endsection

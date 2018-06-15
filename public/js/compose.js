@@ -1,6 +1,4 @@
-//$(document).ready(function(){
-
-	
+$(document).ready(function(){
 
 	$("#send").click(function(e){
         e.preventDefault();
@@ -49,10 +47,12 @@
     });
 
     
-    setInterval(findNewMessage,"1000");
+    //setInterval(findNewMessage,"1000");
+
+    findNewMessage();
 
 
-//});	
+});	
 
 
 

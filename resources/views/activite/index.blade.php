@@ -177,20 +177,15 @@
                 </div>
             </div>
 
-
-
-
 <!--script pour la page courante-->
 @section('script-form')
-
-
     <script type="text/javascript">
         var url = "<?php echo route('activite.index');?>";
+        var idUser = "<?php echo Auth::user()->id; ?>";
         var idActiviteCourante;
         var typeActiviteCourante;
         var DateDebutActiviteCourante;
         var DateFinActiviteCourante;
-        var idUser = 1;
         var compteurA;
         var compteurM;
         var compteurC;

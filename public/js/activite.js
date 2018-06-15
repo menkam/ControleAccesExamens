@@ -1,11 +1,15 @@
+var page = 1;
+var current_page = 1;
+var total_page = 0;
+var is_ajax_fire = 0;
+var datacurrent_page;
+var effectif_classe = 0;
+var idActivi = 0;
+
+
+
 $(document).ready(function(){
-    var page = 1;
-    var current_page = 1;
-    var total_page = 0;
-    var is_ajax_fire = 0;
-    var datacurrent_page;
-    var effectif_classe = 0;
-    var idActivi = 0;
+
     //alert(dateCourante+" "+heureCourante);
 
     $.ajaxSetup({
@@ -341,6 +345,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var id_enseignant;
 
 
+
         if(typeActivite=="normale" || typeActivite=="rattrapage"){
             dateMatiere = $("#dateMatiereActivite").val();
             id_creneau = $("#id_creneauMatiere").val();
@@ -410,6 +415,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
 
         function addExamen(id_session){
             //alert("url "+url+" id "+id_activite+" dateMatiere "+dateMatiere+" id_creneau "+id_creneau+" id_matiere "+id_matiere+" id_surveillant "+id_surveillant+" id_session "+id_session+" type activite"+typeActivite);
+            
             $.ajax({
                 dataType: 'json',
                 type:'POST',

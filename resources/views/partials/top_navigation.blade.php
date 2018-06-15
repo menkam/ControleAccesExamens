@@ -44,26 +44,29 @@
       </li>
     </ul>
   </li>
+  <li style="padding-top: 15px">
+    <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
+  </li>
 </ul>
 <script type="text/javascript">
  // $(document).ready(function(){
 
  
 
-  setInterval(findNewMessageNav,"1000");
+  setInterval(findNewMessageNav,"5000");
 
 //});
 
 
 function findNewMessageNav(){
-    //alert(iduser);
+    var iduser = "<?php echo Auth::user()->id; ?>";
     var position = $("#listMailNav");
     
     var rows = '';
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: 'getInbox',
+        url: 'verifierMailRecive',
         data:{
             id:iduser
         },

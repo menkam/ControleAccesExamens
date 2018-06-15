@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/inbox',['as'=>'inbox','uses'=>'MailController@index']);
     Route::post('getInbox',['as'=>'getInbox','uses'=>'MailController@show']);
     Route::post('verifierMail',['as'=>'verifierMail','uses'=>'MailController@verifierMail']);
+    Route::post('verifierMailRecive',['as'=>'verifierMailRecive','uses'=>'MailController@verifierMailRecive']);
     Route::post('getInfoUser',['as'=>'getInfoUser','uses'=>'MailController@getInfoUser']);
     Route::post('getContentMsg',['as'=>'getContentMsg','uses'=>'MailController@getContentMsg']);
     Route::post('sendMail',['as'=>'sendMail','uses'=>'MailController@store']);
@@ -122,6 +123,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
     Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
     Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
+    Route::post('getOptionActivite', ['as'=>'getOptionActivite', 'uses'=>'RapportActiviteController@getOptionActivite']);
 
 
 

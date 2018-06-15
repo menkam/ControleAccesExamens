@@ -75,6 +75,7 @@
         </div>
     </div>
 
+    @include('compose')
     <!-- compose -->
     
     <!-- /compose -->
@@ -98,8 +99,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('framework/build/js/custom.min.js') }}"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
-    <!--script src="{{ asset('js/infoMailNav.js') }}"></script>
     <!--script src="{{ asset('js/compose.js') }}"></script-->
 
     <script type="text/javascript">
@@ -154,8 +153,13 @@
         ?>';
         //alert(dateCourante+" "+heureCourante);
 
-
+        
+        var iduser = "<?php echo Auth::user()->id; ?>";
+        var idUser = "<?php echo Auth::user()->id; ?>";
     </script>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/compose.js') }}"></script>
 
     @yield('scripts_menu')
     

@@ -85,7 +85,5 @@
 
 @section('script-form')
     <script type="text/javascript">
-        var iduser = "<?php echo Auth::user()->id; ?>";
     </script>
-    <script src="{{ asset('js/compose.js') }}"></script>
 @endsection
