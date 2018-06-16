@@ -29,6 +29,7 @@
             <div class="x_panel">
                 <div class="x_panel">
                     <form class="form-group" method="POST" action="#affficher_activiter">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="row">
@@ -60,45 +61,59 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <br><button type="submit" class="form-control btn btn-primary">GO</button>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+                                        <button id="btnAfficherPlanningExamen" type="submit" class="form-control btn btn-primary">
+                                            AFFICHER <small>Planning</small> </button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <button type="reset" class="form-control btn btn-warning">
+                                            EFFACER</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div><br/><br>
-                <div class="x_title">
-                    <div class="clearfix"></div>
-                </div>
-                
+            </div>   
 
 
+            <div id="resultatPlanning" class="x_panel" style="display: none;">    
                 <div class="x_content">
-
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Heure</th>
-                            <th>Matière</th>
-                            <th>Durée</th>
-                        </tr>
-                        </thead>
-
-
-                        <tbody>
-                        <tr>
-                            <td>2-05-2018</td>
-                            <td>08h15-09h15</td>
-                            <td>Annalyse Fonctionnelle</td>
-                            <td>1h</td>
-                        </tr>
-                        <tr>
-                            <td>2-05-2018</td>
-                            <td>09h20-11h20</td>
-                            <td>Recherche Opérationnelle</td>
-                            <td>2h</td>
-                        </tr>
-                        </tbody>
+                    <div class="row" style="background-image: url('images/BANRFASA2.jpg');">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="text-align: center;">
+                            <b>REPUBLIQUE DU CAMEROUN<br>
+                            REPUBLIC OF CAMEROON</b><br>
+                            Preace-Work-Fatherland<br>
+                            <b>UNIVERSITE DE DSCHANG</b><br>
+                            UNIVERSITY OF DSCHANG<br>
+                            Scholae Thesaurus Dshangenisi Ibi Cc<br>
+                            Bp 96 Dschang Tel/Fax (237) 33 45 13 81<br>
+                            Website : www.univ-dschang.org<br>
+                            Email : udsrectorat@univ-dschang.org<br>
+                            N°........../UDS/IUT/D/DA/DGC/SSOF
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align: center;">
+                            <img src="images/logo_iut.png" alt="logo" style="width: 50%; margin-top: 25%;">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="text-align: center;">
+                            <b>INSTITUT UNIVERSITAIRE DE TECHNOLOGI FOTSO VICTOR<br>
+                            FOTSO VICTOR INSTITUTE OF TECHNOLOGY<br>
+                            la Direction</b><br>
+                            The Head Office<br>
+                            Bp 134 Bandjoun Cameroun<br>
+                            Tél: (237) 697 922 938 / 666 585 422<br>
+                            Email : iutfv-bandjoun@univ-dschang.org<br>
+                        </div>
+                        <br>
+                        <div id="nomClasse" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-top: 10px;"></div>
+                        <div id="descpActivite" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-top: 10px;"></div>
+                    </div>
+                    
+                    <table id="datatable-buttons" class="table table-striped table-bordered" style="margin-top: 15px">
+                        <thead id="enTetetabPlanning"></thead>
+                        <tbody id="contenuTabPlanning"></tbody>
                     </table>
                 </div>
             </div>
@@ -109,5 +124,5 @@
 
 
 @section('script-form')
-    <script src="js/plagning.js"></script>
+    <script src="js/planning.js"></script>
 @endsection
