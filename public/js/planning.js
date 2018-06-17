@@ -47,12 +47,14 @@ $(document).ready(function(){
 
 	$("#btnAfficherPlanning").click(function(e){
         e.preventDefault();
-
+        chargement("chargement");
 		var idActivite = $("#idActiviterPlanning").val();
         var typeActivite = $("#typeActivitePlanning").val();
 
-		getMatierePlanning(typeActivite,idActivite);
-
+		setTimeout(function(){
+            getMatierePlanning(typeActivite,idActivite);
+            $("#chargement").hide();
+        },1000);
 	});
 
 });
@@ -124,7 +126,7 @@ function getMatierePlanning(typeActivite,idActivite) {
             enTetetabPlanning.append(rowsH);
             contenuTabPlanning.empty();
             contenuTabPlanning.append(rowsB);
-            $("#resultatPlanning").show('slideUp');
+            $("#resultatPlanning").show();
         }
     });
 }

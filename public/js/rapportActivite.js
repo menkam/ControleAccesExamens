@@ -8,6 +8,7 @@ $(document).ready(function(){
     var rowEtudiantPresent = $("#rowEtudiantPresent");
     var rowEtudiantTricheur = $("#rowEtudiantTricheur");
     var rowEtudiantAbsent = $("#rowEtudiantAbsent");
+    var table = "";
 
 	getOptionAnnee("idDateRapport");
 
@@ -28,7 +29,7 @@ $(document).ready(function(){
                 var idActivite = filterInfo(typeActiviteRapport,"g");
                 var typeActivite = filterInfo(typeActiviteRapport,"d");
     			var idDateRapport = $("#idDateRapport").val();
-                var table = "";
+                
                 if(typeActivite=="normale" || typeActivite=="rattrapage"){
                     table = "public.examens";
                 }else{
@@ -45,6 +46,7 @@ $(document).ready(function(){
     				idActivite,
                     table
     			);
+                
             });    
 		});
 	});
@@ -68,11 +70,83 @@ $(document).ready(function(){
     $("#btnAfficherRapport").click(function(e){
         e.preventDefault();
 
+        $("#resultatRapport").hide();
+        chargement("chargement");
+        var typeActiviteRapport = $("#typeActiviteRapport").val();
         var idMatiere = $("#idMatiere").val();
-        var typeActivite = $("#typeActiviteRapport").val();
+        var idActivite = filterInfo(typeActiviteRapport,"g");
+        var typeActivite = filterInfo(typeActiviteRapport,"d");
+        
+
+        setTimeout(function(){
+
+            getListeEtudiant(
+                "getListePresence",
+                "pp",
+                "rowEtudiantPresent",
+                { idActivite:idActivite }
+            );
+
+            getListeEtudiant(
+                "getListeTricheur",
+                "pt",
+                "rowEtudiantTricheur",
+                { idActivite:idActivite }
+            );
+            
+            getListeEtudiant(
+                "getListAbsent",
+                "pa",
+                "rowEtudiantAbsent",
+                {idActivite:idActivite,idMatiere:idMatiere,table:table}
+            );
+
+
+            $("#resultatRapport").show('slideDown');
+            $("#chargement").hide();
+        },1000);
+
     });
 
 });
+
+
+
+function getListeEtudiant(url,position,position2,data) 
+{
+    var rows = '';
+    var num = 0;
+    var position = $("."+position+"");
+    var position2 = $("#"+position2+"");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url:url,
+        data:data,
+        success: function(data){
+            if(data.length>0){
+                for(var i= 0; i < data.length; i++) {
+                    //alert(data[i].libelle_annee);
+                    rows = rows + '<tr>';
+                    rows = rows + '<td>'+(num+1)+'</td>';
+                    rows = rows + '<td>'+data[i].matricule_etudiant+'</td>';
+                    rows = rows + '<td>'+data[i].name+'</td>';
+                    rows = rows + '<td>'+data[i].prenom+'</td>';
+                    rows = rows + '<td>'+data[i].date_nais+'</td>';                
+                    rows = rows + '<td>'+data[i].regime+'</td>';
+                    rows = rows + '</tr>';
+                    num++;
+                }
+            }else{
+                rows = rows + '<tr><td colspan="6" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
+            }
+            position.empty();
+            position.html(num);
+            position2.empty();
+            position2.append(rows).slideDown();
+        }
+    });    
+}
 
 function getOptionMatiere(position,idActivite,table) 
 {
@@ -96,31 +170,6 @@ function getOptionMatiere(position,idActivite,table)
         }
     });
 }
-
-function getListePresence(position,idAnnee,idClasse,typeActivite) 
-{
-    var rows = '<option value="">-----</option>';
-    var position = $("#"+position+"");
-    $.ajax({
-        type: "POST",
-        dataType: 'json',
-        url: 'getOptionActivite',
-        data:{
-            idAnnee:idAnnee,
-            idClasse:idClasse,
-            typeActivite:typeActivite
-        },
-        success: function(data){
-            for(var i= 0; i < data.length; i++) {
-                //alert(data[i].libelle_annee);
-                rows = rows + '<option value="'+data[i].id+'">'+data[i].type_activite+' (Du '+data[i].date_debut_activite+' Au '+data[i].date_fin_activite+') </option>';
-                position.empty();
-                position.append(rows).slideDown();
-            }
-        }
-    });
-}
-
 function getOptionTypeActivite(position,idClasse) 
 {
     var rows = '<option value="">-----</option>';

@@ -1,4 +1,4 @@
-<div id="resultatPlanning" class="x_panel" style="display: none;">    
+<div id="resultatPlanning" class="x_panel" style="display: none;">
     <div class="x_content table-responsive">
         <div class="row" class="hidden-xs" style="background-image: url('images/BANRFASA2.jpg');">
             <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs" style="text-align: center;">
@@ -38,3 +38,4 @@
         </table>
     </div>
 </div>
+<div id="chargement" style="display: none;text-align: center; padding-top: 10px"></div> 

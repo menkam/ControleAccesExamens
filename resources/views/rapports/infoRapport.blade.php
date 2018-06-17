@@ -3,7 +3,7 @@
         <h3>Resultat de la recherche</h3>
     </div>
 </div>
-<div class="x_panel">
+<div id="resultatRapport" class="x_panel" style="display: none;">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="">
             <div class="x_title">
@@ -25,11 +25,11 @@
             <div class="x_content">
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Présents <span class="badge bg-green"><div id="pp"></div></span> </a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Présents <span class="badge bg-green"><div class="pp"></div></span> </a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Tricheries <span class="badge bg-red"><div id="pt"></div></span></a>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Tricheries <span class="badge bg-red"><div class="pt"></div></span></a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Absents <span class="badge bg-purple"><div id="pa"></div></span></a>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Absents <span class="badge bg-purple"><div class="pa"></div></span></a>
                         </li>
                         <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">Bilan</a>
                         </li>
@@ -68,7 +68,7 @@
                                                     <table id="datatable-buttons" class="table table-striped table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th>N°</th>
+                                                                <th>#</th>
                                                                 <th>Matricule</th>
                                                                 <th>Nom</th>
                                                                 <th>Prenom</th>
@@ -119,7 +119,7 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>N°</th>
+                                                            <th>#</th>
                                                             <th>Matricule</th>
                                                             <th>Nom</th>
                                                             <th>Prenom</th>
@@ -165,7 +165,7 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>N°</th>
+                                                            <th>#</th>
                                                             <th>Matricule</th>
                                                             <th>Nom</th>
                                                             <th>Prenom</th>
@@ -219,17 +219,17 @@
                                                     <table class="table table-responsive tile_info">
                                                         <tr>
                                                             <td>
-                                                                <p><i class="fa fa-square green"></i> <div id="pp"></div> Presents</p>
+                                                                <p><i class="fa fa-square green"></i><strong class="pp"></strong> Presents</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <p><i class="fa fa-square purple"></i> <div id="pa"></div> Ascents</p>
+                                                                <p><i class="fa fa-square purple"></i><strong class="pa"></strong> Ascents</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <p><i class="fa fa-square red"></i> <div id="pt"></div> Fraude</p>
+                                                                <p><i class="fa fa-square red"></i><strong class="pt"></strong> Fraude</p>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -246,4 +246,5 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
+<div id="chargement" style="display: none;text-align: center; padding-top: 10px"></div> 

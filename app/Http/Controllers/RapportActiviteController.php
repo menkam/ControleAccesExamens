@@ -36,8 +36,9 @@ class RapportActiviteController extends Controller
     	$table = $request->table;
     	return DB::select("
     		SELECT 
-			  matieres.code_matiere, 
-			  matieres.libelle_matiere
+    		  id,
+			  code_matiere, 
+			  libelle_matiere
 			FROM 
 			  public.matieres
 			WHERE 
@@ -116,7 +117,7 @@ class RapportActiviteController extends Controller
 
     public function getListAbsent(Request $request)
     {
-    	$table = $request->idActivite;
+    	$table = $request->table;
     	$idActivite = $request->idActivite;
     	$idMatiere = $request->idMatiere;
     	return DB::select("
