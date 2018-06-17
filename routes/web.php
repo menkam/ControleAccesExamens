@@ -46,11 +46,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/contacts',['as'=>'contacts','uses'=>'ContactsController@index']);
     Route::get('/profil',['as'=>'profil','uses'=>'ProfilsController@index']);
     Route::get('/Activite-Rapports/',['as'=>'rapportActivite','uses'=>'RapportsController@index']);
-    Route::get('/Activite-Plannings/',['as'=>'planningActivite','uses'=>'PlanningsController@index']);
 
-    /**
-    * Route pour les mails
-    */
+    //Route pour les mails
     Route::get('/inbox',['as'=>'inbox','uses'=>'MailController@index']);
     Route::post('getInbox',['as'=>'getInbox','uses'=>'MailController@show']);
     Route::post('verifierMail',['as'=>'verifierMail','uses'=>'MailController@verifierMail']);
@@ -60,141 +57,128 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('sendMail',['as'=>'sendMail','uses'=>'MailController@store']);
     Route::post('lectureMail',['as'=>'lectureMail','uses'=>'MailController@lectureMail']);
     Route::delete('delMail',['as'=>'delMail','uses'=>'MailController@destroy']);
-    /*
-     * Route pour l'admin'
-     */
+
+    //Route pour l'admin'
     Route::resource('admin', 'Users\AdminController');
     Route::get('database',['as'=>'dataBase', 'uses'=>'Users\AdminController@pageMenu']);
-    /*
-     * Route pour l'enseignant'
-     */
-    Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');
 
-    /*
-     * Route pour le visiteur
-     */
+    //Route pour l'enseignant'
+    Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');    
+    Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
+
+    Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
+    Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
+    //end.
+
+    //Route pour les Etudiants
+    Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
+    Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
+    //end.
+
+    //Route pour le visiteur
     Route::resource('visiteur', 'Users\VisiteurController');
+    //end.
 
-    /**
-     * Route pour le surveillants
-     */
+    //Route pour le surveillants
     Route::resource('surveillants', 'SurveillantsController');
+    Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
+    Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
+    //end.
 
-    /*
-     * route activiter
-     */
+    //route activiter
     Route::resource('activite', 'ActivitesController');
-
     Route::get('mes_activites', ['as'=>'mes_activites', 'uses'=>'ActivitesController@accueille']);
     Route::get('activites-encours', ['as'=>'activites-encours', 'uses'=>'ActivitesController@en_cours']);
     Route::get('activite-ListEtudiant',['as' => 'getFormListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
-    Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
-    Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
-    Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
-
-    Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);
-
-    //Route::resource('activite_conc_classe', 'Activite_conc_classesController');
-    //Route::resource('salle_activite', 'Salle_activitesController');
-    Route::post('addMatiereExamen', ['as'=>'addMatiereExamen', 'uses'=>'ExamensController@store']);
-    Route::post('addMatiereCours', ['as'=>'addMatiereCours', 'uses'=>'CourssController@store']);
-    Route::post('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
     Route::post('addClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@store']);
-    Route::post('addSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@store']);
-    Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
-    Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
-
-    Route::delete('delMatiereExamen', ['as'=>'delMatiereExamen', 'uses'=>'ExamensController@destroy']);
-    Route::delete('delClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@destroy']);
-    Route::delete('delSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@destroy']);
-
-    Route::post('matiere_activiter', 'ExamensController@index2');
-    Route::post('AjaxExamen', ['as'=>'AjaxExamen', 'uses'=>'ExamensController@AjaxExamen' ]);
     Route::post('classeActivite', 'Activite_conc_classesController@show');
-    Route::post('salleActivite', 'Salle_activitesController@show');
     Route::post('getTypeActivite', ['as'=>'getTypeActivite', 'uses'=>'ActivitesController@getTypeActivite']);
     Route::post('getListEtudiant',['as' => 'getListEtudiant', 'uses' => 'ActivitesController@showListEtudiant']);
     Route::post('getListExamenEnCour',['as' => 'getListExamenEnCour', 'uses' => 'ActivitesController@examenEnCours']);
+    Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
     Route::post('getListTpEnCour',['as' => 'getListTpEnCour', 'uses' => 'ActivitesController@tpEnCours']);
     Route::post('getListCoursEnCour',['as' => 'getListCoursEnCour', 'uses' => 'ActivitesController@coursEnCours']);
     Route::post('getListCcEnCour',['as' => 'getListCcEnCour', 'uses' => 'ActivitesController@ccEnCours']);
-    Route::post('getListEtudiantsEnSalle',['as' => 'getListEtudiantsEnSalle', 'uses' => 'ActivitesController@showListEtudiantEtudiantEnSalle']);
-    Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
-    Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
+    Route::post('activiteStore',['as' => 'activiteStore', 'uses' => 'ActivitesController@store']);
+    Route::post('salleActivite', 'Salle_activitesController@show');
     Route::post('getSalleLibre', ['as'=>'getSalleLibre', 'uses'=>'Salle_activitesController@findClasse']);
-    Route::post('getMatiereActivite',['as' => 'getMatiereActivite', 'uses' => 'ActivitesController@getmatiereActivite']);
-    Route::post('getOptionActivite', ['as'=>'getOptionActivite', 'uses'=>'RapportActiviteController@getOptionActivite']);
-    Route::post('getMatierePlanning', ['as'=>'getMatierePlanning', 'uses'=>'RapportActiviteController@getMatierePlanning']);
+    Route::post('addSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@store']);
+    Route::post('getListEtudiantsEnSalle',['as' => 'getListEtudiantsEnSalle', 'uses' => 'ActivitesController@showListEtudiantEtudiantEnSalle']);
+    Route::delete('delSalleActivite', ['as'=>'addSalleActivite', 'uses'=>'Salle_activitesController@destroy']);
+    Route::delete('delClasseActivite', ['as'=>'addClasseActivite', 'uses'=>'Activite_conc_classesController@destroy']);
+    //end.
 
+    //Route pour les Planning
+    Route::get('planningActivite',['as'=>'planningActivite','uses'=>'PlanningActiviteController@planningActivite']);
+    Route::post('getOptionActivite', ['as'=>'getOptionActivite', 'uses'=>'PlanningActiviteController@getOptionActivite']);
+    Route::post('getOptionTypeActivite', ['as'=>'getOptionTypeActivite', 'uses'=>'PlanningActiviteController@getOptionTypeActivite']);
+    Route::post('getMatierePlanning', ['as'=>'getMatierePlanning', 'uses'=>'PlanningActiviteController@getMatierePlanning']);
+    //end.
 
+    //Route pour les Rapports d'activite
+    Route::get('rapportActivite',['as'=>'rapportActivite','uses'=>'RapportActiviteController@rapportActivite']);
 
-    /*
-     * Route pour les matières
-     */
+    //Route pour les matières
     Route::post('matieres','MatieresController@matiere');
     Route::post('getMatieres','MatieresController@show');
+    //end.
 
     /********Route for annee_academiques*************/
     Route::post('getAnneeAcademique', ['as'=>'getAnneeAcademique', 'uses'=>'Annee_academiquesController@show']);
     Route::post('addAnneeAca', ['as'=>'addAnneeAca', 'uses'=>'Annee_academiquesController@store']);
+    //end.
 
-
-    /**
-     * Route for creneaux_horaire
-     */
+    //Route for creneaux_horaire
     Route::post('getCreneaux', ['as'=>'getCreneaux', 'uses'=>'Creneaux_horairesController@show']);
     Route::post('addCreneaux', ['as'=>'addCreneaux', 'uses'=>'Creneaux_horairesController@store']);
+    //end.
 
-    /**
-     * Route for cursus_acc
-     */
+    //Route for cursus_acc
     //Route::resource('cursus_acc', 'Cursus_accsController');
     Route::post('getCursus', ['as'=>'getCursus', 'uses'=>'Cursus_accsController@show']);
+    //end.
 
-    /**
-     * Route for classes
-     */
+    //Route for classes
     Route::post('getClasse', ['as'=>'getClasse', 'uses'=>'ClassesController@show']);
+    //end.
 
-    /**
-     * Route for departements
-     **/
+    //Route for departements
     Route::post('getDepartement', ['as'=>'getDepartement', 'uses'=>'DepartementsController@show']);
+    //end.
 
-    /**
-     * Route for salles
-     */
+    //Route for salles
     Route::post('getSalle', ['as'=>'getSalle', 'uses'=>'SallesController@show']);
+    //end.
 
-    /**
-     * Route for examens
-     */
+    //Route for examens
     Route::post('getExamen', ['as'=>'getExamen', 'uses'=>'ExamensController@show']);
+    Route::post('addMatiereExamen', ['as'=>'addMatiereExamen', 'uses'=>'ExamensController@store']);
+    Route::post('matiere_activiter', 'ExamensController@index2');
+    Route::post('AjaxExamen', ['as'=>'AjaxExamen', 'uses'=>'ExamensController@AjaxExamen' ]);
+    Route::delete('delMatiereExamen', ['as'=>'delMatiereExamen', 'uses'=>'ExamensController@destroy']);
+    //end.
 
-    /**
-     * Route for cours
-     */
+    //Route for cours
+    Route::post('addMatiereCours', ['as'=>'addMatiereCours', 'uses'=>'CourssController@store']);
     Route::post('getCours', ['as'=>'getCours', 'uses'=>'CourssController@show']);
+    //end.
 
-    /**
-     * Route for tps
-     */
+    //Route for tps
     //Route::resource('tp', 'TpsController');
     Route::post('getTp', ['as'=>'getTp', 'uses'=>'TpsController@show']);
+    Route::post('addMatiereTp', ['as'=>'addMatiereTp', 'uses'=>'TpsController@store']);
+    //end.
 
-    /**
-     * Route for Niveau
-     */
+    //Route for Niveau
     Route::post('getNiveau', ['as'=>'getNiveau', 'uses'=>'NiveauController@show']);
+    //end.
 
-    /**
-     * Route for Semestre
-     */
+    //Route for Semestre
     Route::post('getSemestre', ['as'=>'getSemestre', 'uses'=>'SemestresController@show']);
+    //end.
 
-    /**
-     * Route for Session
-     */
+    //Route for Session
     Route::post('getSession', ['as'=>'getSession', 'uses'=>'SessionsController@show']);
-});
+    //end.
 
+});

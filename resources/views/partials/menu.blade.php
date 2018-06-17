@@ -44,9 +44,7 @@
                 @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
                 <li><a><i class="fa fa-table"></i> Planning <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('planningActivite',['type'=>'examens']) }}"><i class="fa fa-graduation-cap"></i> Planning Examens</a></li>
-                        <li><a href="{{ route('planningActivite',['type'=>'cours']) }}"><i class="fa fa-book"></i> Planning cours</a></li>
-                        <li><a href="{{ route('planningActivite',['type'=>'tps']) }}"><i class="fa fa-flag-checkered"></i> Planning Tps</a></li>
+                        <li><a href="{{ route('planningActivite') }}"><i class="fa fa-graduation-cap"></i> Planning Activite</a></li>
                         <li><a href="#"><i class="fa fa-exclamation-triangle"></i>Autres Planning</a></li>
                     </ul>
                 </li>
@@ -55,12 +53,10 @@
                 <!-- /6 - menu des rapports d'activité -->
 
                 @if(\Auth::user()->hasRole('admin') || \Auth::user()->hasRole('enseignant') || \Auth::user()->hasRole('etudiant'))
-                <li><a><i class="fa fa-bar-chart-o"></i> Rapports d'activités<span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-bar-chart-o"></i> Rapports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('rapportActivite',['type'=>'examens']) }}"><i class="fa fa-graduation-cap"></i>Examens</a></li>
-                        <li><a href="{{ route('rapportActivite',['type'=>'cours']) }}"><i class="fa fa-book"></i> Cours</a></li>
-                        <li><a href="{{ route('rapportActivite',['type'=>'tp']) }}"><i class="fa fa-flag-checkered"></i>Tp</a></li>
-                        <li><a href="#"><i class="fa fa-exclamation-triangle"></i>Autre activité</a></li>
+                        <li><a href="{{ route('rapportActivite') }}"><i class="fa fa-graduation-cap"></i>Rapport Activité</a></li>
+                        <li><a href="#"><i class="fa fa-exclamation-triangle"></i>Autre rapport</a></li>
                     </ul>
                 </li>
                 @endif

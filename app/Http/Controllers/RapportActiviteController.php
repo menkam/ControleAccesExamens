@@ -7,157 +7,77 @@ use DB;
 
 class RapportActiviteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getOptionActivite(Request $request)
+    public function rapportActivite()
     {
-        $typeActivite1;
-        $typeActivite2;
-        $idClasse = $request->idClasse;
-        $idAnnee = $request->idAnnee;
-
-        if($request->typeActivite=="examen"){
-            $typeActivite1 = "normale";
-            $typeActivite2 = "rattrapage";
-        }else{
-            $typeActivite1 = $request->typeActivite;
-            $typeActivite2 = $request->typeActivite;
-        }
-
-        return DB::select("
-            SELECT 
-              activites.id, 
-              activites.id_annee, 
-              activites.id_semestre, 
-              activites.id_niveau, 
-              activites.date_debut_activite, 
-              activites.date_fin_activite, 
-              activites.type_activite
-            FROM 
-              public.activites, 
-              public.annee_academiques, 
-              public.classes, 
-              public.activite_conc_classes
-            WHERE 
-              activites.id_annee = annee_academiques.id AND
-              activite_conc_classes.id_activite = activites.id AND
-              activite_conc_classes.id_classe = classes.id AND(
-              activites.type_activite = '$typeActivite1' OR 
-              activites.type_activite = '$typeActivite2') AND
-              classes.id = '$idClasse' AND 
-              annee_academiques.id = '$idAnnee' 
-            ORDER BY
-              activites.date_debut_activite DESC;
-        ");
+        return view('rapports.index');
     }
 
-    
-    public function getMatierePlanning(Request $request)
+    public function getListePresence(Request $request)
     {
-        $type = $request->typeActivite;
-        $idActivite = $request->idActivite;
-
-        // si Examen (normale et ou rattrapage)
-        if($type == 'examen'){
-            return DB::select("
-                SELECT 
-                  examens.date_examen as datem,
-                  creneaux_horaires.libelle_creneaux, 
-                  matieres.libelle_matiere, 
-                  activites.date_debut_activite, 
-                  activites.date_fin_activite, 
-                  activites.type_activite, 
-                  classes.code_classe, 
-                  classes.libelle_classe, 
-                  classes.effectif_classe 
-                FROM 
-                  public.activites, 
-                  public.matieres, 
-                  public.creneaux_horaires, 
-                  public.examens, 
-                  public.activite_conc_classes, 
-                  public.classes
-                WHERE 
-                  examens.id_activite = activites.id AND
-                  examens.id_matiere = matieres.id AND
-                  examens.id_creneau = creneaux_horaires.id AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  classes.id = activite_conc_classes.id_classe AND
-                  activites.id = '$idActivite'
-                ORDER BY
-                  examens.date_examen ASC, 
-                  creneaux_horaires.libelle_creneaux ASC;
-            ");
-        }
-
-        // si Cours
-        if($type == 'cours'){
-            return DB::select("
-                SELECT 
-                  cours.date_cours as datem, 
-                  creneaux_horaires.libelle_creneaux, 
-                  matieres.libelle_matiere,
-                  activites.date_debut_activite, 
-                  activites.date_fin_activite, 
-                  activites.type_activite, 
-                  classes.code_classe, 
-                  classes.libelle_classe, 
-                  classes.effectif_classe 
-                FROM 
-                  public.activites, 
-                  public.cours, 
-                  public.matieres, 
-                  public.creneaux_horaires
-                WHERE 
-                  cours.id_activite = activites.id AND
-                  cours.id_matiere = matieres.id AND
-                  creneaux_horaires.id = cours.id_creneau AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  activite_conc_classes.id_classe = classes.id AND
-                  activites.id = '$idActivite'
-                ORDER BY
-                  cours.date_cours ASC, 
-                  creneaux_horaires.libelle_creneaux ASC;
-            ");
-        }
-
-        // si Tp
-        if($type == 'tp'){
-            return DB::select("
-                SELECT 
-                  creneaux_horaires.libelle_creneaux, 
-                  matieres.libelle_matiere, 
-                  tps.date_tp as datem,
-                  activites.date_debut_activite, 
-                  activites.date_fin_activite, 
-                  activites.type_activite, 
-                  classes.code_classe, 
-                  classes.libelle_classe, 
-                  classes.effectif_classe 
-                FROM 
-                  public.activites, 
-                  public.matieres, 
-                  public.creneaux_horaires, 
-                  public.tps
-                WHERE 
-                  tps.id = activites.id AND
-                  tps.id_matiere = matieres.id AND
-                  tps.id_creneau = creneaux_horaires.id AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  activite_conc_classes.id_classe = classes.id AND
-                  activites.id = '$idActivite'
-                ORDER BY
-                  tps.date_tp ASC, 
-                  creneaux_horaires.libelle_creneaux ASC;
-            ");
-        }
+    	$idActivite = $request->idActivite;
+    	return DB::select("
+    		SELECT 
+			  etudiants.matricule_etudiant, 
+			  users.name, 
+			  users.prenom, 
+			  users.date_nais, 
+			  etud_ins_mats.regime
+			FROM 
+			  public.activites, 
+			  public.users, 
+			  public.etudiants, 
+			  public.etud_scolariser_clas, 
+			  public.etud_ins_mats, 
+			  public.etud_realise_activs
+			WHERE 
+			  etudiants.id_user = users.id AND
+			  etudiants.id = etud_scolariser_clas.id_etudiant AND
+			  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
+			  etud_ins_mats.id = etud_realise_activs.id_etud_ins_mat AND
+			  etud_realise_activs.id_activite = activites.id AND
+			  activites.id = '$idActivite'
+			ORDER BY
+			  users.name ASC, 
+			  users.prenom ASC;
+    	");
     }
 
-    public function create(Request $request)
+    public function getListeTricheur(Request $request)
     {
-        //
+    	$idActivite = $request->idActivite;
+    	return DB::select("
+    		SELECT 
+			  etudiants.matricule_etudiant, 
+			  users.name, 
+			  users.prenom, 
+			  users.date_nais, 
+			  etud_ins_mats.regime
+			FROM 
+			  public.activites, 
+			  public.users, 
+			  public.etudiants, 
+			  public.etud_scolariser_clas, 
+			  public.etud_ins_mats, 
+			  public.etud_realise_activs
+			WHERE 
+			  etudiants.id_user = users.id AND
+			  etudiants.id = etud_scolariser_clas.id_etudiant AND
+			  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
+			  etud_ins_mats.id = etud_realise_activs.id_etud_ins_mat AND
+			  etud_realise_activs.id_activite = activites.id AND
+			  activites.id = '$idActivite' AND 
+			  etud_realise_activs.statut = '2'
+			ORDER BY
+			  users.name ASC, 
+			  users.prenom ASC;
+    	");
+    }
+
+    public function getListAbsent(Request $request)
+    {
+    	$idActivite = $request->idActivite;
+    	return DB::select("
+
+    	");
     }
 }
