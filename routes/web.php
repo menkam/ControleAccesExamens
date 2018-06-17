@@ -120,6 +120,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('getListePresence',['as'=>'getListePresence','uses'=>'RapportActiviteController@getListePresence']);
     Route::post('getListeTricheur',['as'=>'getListeTricheur','uses'=>'RapportActiviteController@getListeTricheur']);
     Route::post('getListAbsent',['as'=>'getListAbsent','uses'=>'RapportActiviteController@getListAbsent']);
+    Route::post('getNombre',['as'=>'getNombre','uses'=>'RapportActiviteController@getNombre']);
     Route::post('getOptionMatiere',['as'=>'getOptionMatiere','uses'=>'RapportActiviteController@getOptionMatiere']);
     Route::post('getOptionTypeActivite', ['as'=>'RapportActiviteController', 'uses'=>'RapportActiviteController@getOptionTypeActivite']);
     //end.

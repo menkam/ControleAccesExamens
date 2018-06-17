@@ -47,12 +47,15 @@ $(document).ready(function(){
 
 	$("#btnAfficherPlanning").click(function(e){
         e.preventDefault();
+
+        $("#resultatPlanning").hide();
         chargement("chargement");
 		var idActivite = $("#idActiviterPlanning").val();
         var typeActivite = $("#typeActivitePlanning").val();
 
 		setTimeout(function(){
             getMatierePlanning(typeActivite,idActivite);
+            $("#resultatPlanning").show();
             $("#chargement").hide();
         },1000);
 	});
@@ -126,7 +129,6 @@ function getMatierePlanning(typeActivite,idActivite) {
             enTetetabPlanning.append(rowsH);
             contenuTabPlanning.empty();
             contenuTabPlanning.append(rowsB);
-            $("#resultatPlanning").show();
         }
     });
 }
@@ -148,7 +150,7 @@ function getOptionActivite(position,idAnnee,idClasse,typeActivite) {
                 //alert(data[i].libelle_annee);
                 rows = rows + '<option value="'+data[i].id+'">'+data[i].type_activite+' (Du '+data[i].date_debut_activite+' Au '+data[i].date_fin_activite+') </option>';
                 position.empty();
-                position.append(rows).slideDown();
+                position.append(rows);
             }
         }
     });
@@ -167,7 +169,7 @@ function getOptionTypeActivite(position,idClasse) {
                 //alert(data[i].libelle_annee);
                 rows = rows + '<option value="'+data[i].type_activite+'">'+data[i].type_activite+'</option>';
                 position.empty();
-                position.append(rows).slideDown();
+                position.append(rows);
             }
         }
     });

@@ -160,4 +160,35 @@ class RapportActiviteController extends Controller
 			;
     	");
     }
+
+	public function getNombre(Request $request)
+    {
+    	$table = $request->table;
+    	$idActivite = $request->idActivite;
+    	$idMatiere = $request->idMatiere;
+    	return DB::select("
+    		SELECT 
+			  count(*)
+			FROM 
+			  public.users, 
+			  public.etudiants, 
+			  public.etud_scolariser_clas, 
+			  public.etud_ins_mats, 
+			  public.matieres
+			WHERE 
+			  users.id = etudiants.id_user AND
+			  etudiants.id = etud_scolariser_clas.id_etudiant AND
+			  etud_scolariser_clas.id = etud_ins_mats.id_scolariser AND
+			  matieres.id = etud_ins_mats.id_matiere AND
+			  matieres.id IN(
+			    SELECT 
+			      id_matiere
+			    FROM
+			      $table
+			    WHERE
+			     id_activite = '$idActivite' AND
+			     id_matiere = '$idMatiere'
+			  );
+    	");
+    }
 }

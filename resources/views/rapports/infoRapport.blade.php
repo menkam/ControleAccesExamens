@@ -6,7 +6,7 @@
 <div id="resultatRapport" class="x_panel" style="display: none;">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="">
-            <div class="x_title">
+            <div class="x_title">                
                 <h2><i class="fa fa-bars"></i> Examen : Normale 2015-2016</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -217,7 +217,7 @@
                                                 </td>
                                                 <td>
                                                     <table class="table table-responsive tile_info">
-                                                        <tr>
+                                                        <!--tr>
                                                             <td>
                                                                 <p><i class="fa fa-square green"></i><strong class="pp"></strong> Presents</p>
                                                             </td>
@@ -231,7 +231,7 @@
                                                             <td>
                                                                 <p><i class="fa fa-square red"></i><strong class="pt"></strong> Fraude</p>
                                                             </td>
-                                                        </tr>
+                                                        </tr-->
                                                     </table>
                                                 </td>
                                             </tr>

@@ -1,5 +1,5 @@
 
-
+ var data1;
 $(document).ready(function(){
 
     var pp = $("#pp");
@@ -9,6 +9,7 @@ $(document).ready(function(){
     var rowEtudiantTricheur = $("#rowEtudiantTricheur");
     var rowEtudiantAbsent = $("#rowEtudiantAbsent");
     var table = "";
+   
 
 	getOptionAnnee("idDateRapport");
 
@@ -76,7 +77,7 @@ $(document).ready(function(){
         var idMatiere = $("#idMatiere").val();
         var idActivite = filterInfo(typeActiviteRapport,"g");
         var typeActivite = filterInfo(typeActiviteRapport,"d");
-        
+        data1 = {idActivite:idActivite,idMatiere:idMatiere,table:table};
 
         setTimeout(function(){
 
@@ -86,13 +87,6 @@ $(document).ready(function(){
                 "rowEtudiantPresent",
                 { idActivite:idActivite }
             );
-
-            getListeEtudiant(
-                "getListeTricheur",
-                "pt",
-                "rowEtudiantTricheur",
-                { idActivite:idActivite }
-            );
             
             getListeEtudiant(
                 "getListAbsent",
@@ -100,29 +94,51 @@ $(document).ready(function(){
                 "rowEtudiantAbsent",
                 {idActivite:idActivite,idMatiere:idMatiere,table:table}
             );
+            getListeEtudiant(
+                "getListeTricheur",
+                "pt",
+                "rowEtudiantTricheur",
+                { idActivite:idActivite }
+            );
 
+            calcule();
 
             $("#resultatRapport").show('slideDown');
             $("#chargement").hide();
         },1000);
 
     });
-
 });
 
+function calcule(position,eff)
+{
+    var position = $("."+position);
 
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url:'getNombre',
+        data:data1,
+        success: function(data){
+            if(data.length>0){
+                position.empty();
+                var pourcentage = parseInt(eff)*100 / data[0].count;
+                position.append(pourcentage+"%");
+            }
+        }
+    }); 
+}
 
-function getListeEtudiant(url,position,position2,data) 
+function getListeEtudiant(url,position,position2,data1) 
 {
     var rows = '';
     var num = 0;
-    var position = $("."+position+"");
-    var position2 = $("#"+position2+"");
+    var position2 = $("#"+position2);
     $.ajax({
         type: "POST",
         dataType: 'json',
         url:url,
-        data:data,
+        data:data1,
         success: function(data){
             if(data.length>0){
                 for(var i= 0; i < data.length; i++) {
@@ -140,10 +156,9 @@ function getListeEtudiant(url,position,position2,data)
             }else{
                 rows = rows + '<tr><td colspan="6" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
             }
-            position.empty();
-            position.html(num);
+            setTimeout(function(){calcule(position,num);},1000);
             position2.empty();
-            position2.append(rows).slideDown();
+            position2.append(rows);
         }
     });    
 }
@@ -165,7 +180,7 @@ function getOptionMatiere(position,idActivite,table)
                 //alert(data[i].libelle_annee);
                 rows = rows + '<option value="'+data[i].id+'">'+data[i].code_matiere+' => ('+data[i].libelle_matiere+') </option>';
                 position.empty();
-                position.append(rows).slideDown();
+                position.append(rows);
             }
         }
     });
@@ -184,7 +199,7 @@ function getOptionTypeActivite(position,idClasse)
                 //alert(data[i].libelle_annee);
                 rows = rows + '<option value="'+data[i].id+'@'+data[i].type_activite+'">'+data[i].type_activite+'</option>';
                 position.empty();
-                position.append(rows).slideDown();
+                position.append(rows);
             }
         }
     });
