@@ -71,40 +71,40 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
-                                <label class="control-label" for="idDatePlanning">Annee :</label>
+                                <label class="control-label" for="idDateRapport">Annee :</label>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
-                                <select id="idDatePlanning" class="form-control date" name="idDatePlanning" required=""></select>
+                                <select id="idDateRapport" class="form-control date" name="idDateRapport" required=""></select>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
-                                <label class="control-label" for="idClassePlanning">Classe :</label>
+                                <label class="control-label" for="idClasseRapport">Classe :</label>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
-                                <select id="idClassePlanning" class="form-control" name="idClassePlanning" required=""></select>
+                                <select id="idClasseRapport" class="form-control" name="idClasseRapport" required=""></select>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
-                                <label class="control-label" for="typeActivitePlanning">Type :</label>
+                                <label class="control-label" for="typeActiviteRapport">Type :</label>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
-                                <select id="typeActivitePlanning" class="form-control" name="typeActivitePlanning" required=""></select>
+                                <select id="typeActiviteRapport" class="form-control" name="typeActiviteRapport" required=""></select>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
-                                <label class="control-label" for="idActiviterPlanning">Activité :</label>
+                                <label class="control-label" for="idMatiere">Matière :</label>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
-                                <select id="idActiviterPlanning" class="form-control" name="idActiviterPlanning" required=""></select>
+                                <select id="idMatiere" class="form-control" name="idMatiere" required=""></select>
                             </div>
                         </div>
                     </div>
@@ -112,8 +112,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
-                                <button id="btnAfficherPlanning" type="submit" class="form-control btn btn-primary">
-                                    AFFICHER <small>Planning</small> </button>
+                                <button id="btnAfficherRapport" type="submit" class="form-control btn btn-primary">
+                                    AFFICHER <small>Rapport</small> </button>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <button type="reset" class="form-control btn btn-warning">

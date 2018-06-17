@@ -117,6 +117,13 @@ Route::group(['middleware' => ['auth']], function(){
 
     //Route pour les Rapports d'activite
     Route::get('rapportActivite',['as'=>'rapportActivite','uses'=>'RapportActiviteController@rapportActivite']);
+    Route::post('getListePresence',['as'=>'getListePresence','uses'=>'RapportActiviteController@getListePresence']);
+    Route::post('getListeTricheur',['as'=>'getListeTricheur','uses'=>'RapportActiviteController@getListeTricheur']);
+    Route::post('getListAbsent',['as'=>'getListAbsent','uses'=>'RapportActiviteController@getListAbsent']);
+    Route::post('getOptionMatiere',['as'=>'getOptionMatiere','uses'=>'RapportActiviteController@getOptionMatiere']);
+    Route::post('getOptionTypeActivite', ['as'=>'RapportActiviteController', 'uses'=>'RapportActiviteController@getOptionTypeActivite']);
+    //end.
+
 
     //Route pour les matières
     Route::post('matieres','MatieresController@matiere');
