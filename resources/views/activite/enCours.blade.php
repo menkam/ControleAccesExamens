@@ -32,7 +32,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Choisir une ativité</h3>
+            <h3>Activité en cours...</h3>
         </div>
     </div>
     <div class="clearfix"></div>

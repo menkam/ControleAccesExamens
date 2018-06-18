@@ -16,44 +16,38 @@ class GetListEtudiantController extends Controller
       $date = Fonction::getDate();
     $heure = Fonction::getTime("h");
         //if (!empty($request->idActivite)) {
-            $idActivite = $request->idActivite;
+            $idActivite = 1;//$request->idActivite;
             $statut = $request->statut;
             $listEtudiant = DB::select("
-                SELECT
-                  etudiants.matricule_etudiant,
-                  users.name,
-                  users.prenom,
-                  users.sexe,
-                  users.date_nais,
-                  users.telephone,
-                  users.email,
-                  users.photo,
+                SELECT 
+                  etudiants.matricule_etudiant, 
+                  users.name, 
+                  users.prenom, 
+                  users.sexe, 
+                  users.telephone, 
+                  users.photo, 
                   etud_ins_mats.regime
-                FROM
-                  public.users,
-                  public.etudiants,
-                  public.etud_scolariser_clas,
-                  public.classes,
-                  public.etud_ins_mats,
-                  public.matieres,
-                  public.examens,
-                  public.activites,
-                  public.etud_realise_activs,
+                FROM 
+                  public.etudiants, 
+                  public.users, 
+                  public.etud_compose_examens, 
+                  public.etud_ins_mats, 
+                  public.etud_scolariser_clas, 
+                  public.activites, 
+                  public.examens, 
                   public.creneaux_horaires
-                WHERE
-                  users.id = etudiants.id_user AND
-                  etud_scolariser_clas.id_etudiant = etudiants.id AND
-                  etud_scolariser_clas.id_classe = classes.id AND
+                WHERE 
+                  etudiants.id_user = users.id AND
+                  etud_compose_examens.id_etud_ins_mat = etud_ins_mats.id AND
+                  etud_compose_examens.id_examen = examens.id AND
                   etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
-                  examens.id_matiere = matieres.id AND
-                  activites.id = examens.id_activite AND
-                  etud_realise_activs.id_activite = activites.id AND
-                  etud_realise_activs.id_etud_ins_mat = etud_ins_mats.id AND
+                  etud_scolariser_clas.id_etudiant = etudiants.id AND
+                  examens.id_activite = activites.id AND
                   creneaux_horaires.id = examens.id_creneau AND
-                  activites.id = '" . $idActivite . "' AND
-                  examens.date_examen = '" . $date . "' AND
-                  etud_realise_activs.statut = '$statut' AND
-                  creneaux_horaires.libelle_creneaux LIKE '%" . $heure . "%'
+                  activites.id = '$idActivite' AND
+                  examens.date_examen = '$date' AND
+                  etud_compose_examens.statut = '$statut' AND
+                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
             ");
             $etudiants = array();
             foreach ($listEtudiant as $key => $value) {
@@ -63,7 +57,8 @@ class GetListEtudiantController extends Controller
                     "prenom"            => $value->prenom,
                     "sexe"              => $value->sexe,
                     "telephone"         => $value->telephone,
-                    "regime"            => $value->regime
+                    "regime"            => $value->regime,
+                    "photo"             => $value->photo
                 );
                 $path = "images/".$value->photo;
                 if(file_exists($path)){
@@ -82,37 +77,33 @@ class GetListEtudiantController extends Controller
      $idActivite = 1;//$request->idActivite;
      $listEtudiant = DB::select("
         SELECT
-          etudiants.matricule_etudiant,
-          users.name,
-          users.prenom,
-          users.sexe,
-          users.date_nais,
-          users.telephone,
-          users.email,
-          users.photo,
+          etudiants.matricule_etudiant, 
+          users.name, 
+          users.prenom, 
+          users.sexe, 
+          users.telephone, 
+          users.photo, 
           etud_ins_mats.regime
-        FROM
-          public.users,
-          public.etudiants,
-          public.etud_scolariser_clas,
-          public.classes,
-          public.etud_ins_mats,
-          public.matieres,
-          public.examens,
-          public.activites,
+        FROM 
+          public.etudiants, 
+          public.users, 
+          public.etud_compose_examens, 
+          public.etud_ins_mats, 
+          public.etud_scolariser_clas, 
+          public.activites, 
+          public.examens, 
           public.creneaux_horaires
-        WHERE
-          users.id = etudiants.id_user AND
-          etud_scolariser_clas.id_etudiant = etudiants.id AND
-          etud_scolariser_clas.id_classe = classes.id AND
+        WHERE 
+          etudiants.id_user = users.id AND
+          etud_compose_examens.id_etud_ins_mat = etud_ins_mats.id AND
+          etud_compose_examens.id_examen = examens.id AND
           etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
-          etud_ins_mats.id_matiere = matieres.id AND
+          etud_scolariser_clas.id_etudiant = etudiants.id AND
+          examens.id_activite = activites.id AND
           creneaux_horaires.id = examens.id_creneau AND
-          examens.id_matiere = matieres.id AND
-          activites.id = examens.id_activite AND
-          activites.id = '$idActivite' AND
-          examens.id_creneau = '1' AND
-          creneaux_horaires.libelle_creneaux LIKE '%" . $heure . "%'
+          activites.id = '$idActivite' AND 
+          examens.date_examen = '$date' AND 
+          creneaux_horaires.libelle_creneaux LIKE '%$heure%'
      ");
     $etudiants = array();
     foreach ($listEtudiant as $key => $value) {
@@ -123,7 +114,8 @@ class GetListEtudiantController extends Controller
             "prenom"            => $value->prenom,
             "sexe"              => $value->sexe,
             "telephone"         => $value->telephone,
-            "regime"            => $value->regime
+            "regime"            => $value->regime,
+            "photo"             => $value->photo
         );
         $path = "images/".$value->photo;
         if(file_exists($path)){

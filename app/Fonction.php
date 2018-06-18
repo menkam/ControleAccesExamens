@@ -11,22 +11,22 @@ class Fonction extends Model
         $currentTime = '';
         if($format == "h:m"){
             if(($heure["hours"]+1) < 10 && $heure["minutes"] < 10){
-                $currentTime = ("0".($heure["hours"]+1)."h0".$heure["minutes"]);
+                $currentTime = ("0".($heure["hours"]+1)."H0".$heure["minutes"]);
             }
             if(($heure["hours"]+1) < 10 && $heure["minutes"] > 10){
-                $currentTime = ("0".($heure["hours"]+1)."h".$heure["minutes"]);
+                $currentTime = ("0".($heure["hours"]+1)."H".$heure["minutes"]);
             }
             if(($heure["hours"]+1) > 10 && $heure["minutes"] < 10){
-                $currentTime = (($heure["hours"]+1)."h0".$heure["minutes"]);
+                $currentTime = (($heure["hours"]+1)."H0".$heure["minutes"]);
             }
             if(($heure["hours"]+1) > 10 && $heure["minutes"] > 10){
                 $currentTime = (($heure["hours"]+1)."h".$heure["minutes"]);
             }
-        }if($format == "h"){
+        }if($format == "H"){
             if(($heure["hours"]+1) < 10){
-                $currentTime = ("0".($heure["hours"]+1)."h");
+                $currentTime = ("0".($heure["hours"]+1)."H");
             }else {
-                $currentTime = (($heure["hours"]+1)."h");
+                $currentTime = (($heure["hours"]+1)."H");
             }
         }
         return $currentTime;
