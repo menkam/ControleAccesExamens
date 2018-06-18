@@ -25,4 +25,5 @@ App\Models\Etud_etudie_cours::create(['id_cours' => '1', 'id_etud_ins_mat' => '4
 App\Models\Etud_etudie_cours::create(['id_cours' => '1', 'id_etud_ins_mat' => '5']);
 App\Models\Etud_etudie_cours::create(['id_cours' => '1', 'id_etud_ins_mat' => '6']);
 App\Models\Etud_etudie_cours::create(['id_cours' => '1', 'id_etud_ins_mat' => '7']);
+
 */

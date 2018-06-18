@@ -1940,7 +1940,7 @@ if (typeof NProgress != 'undefined') {
 				});
 				
 			}
-
+/*
 			
 			if ($('#canvas_line1').length ){
 			
@@ -2040,7 +2040,6 @@ if (typeof NProgress != 'undefined') {
 
 			}	
 			
-			
 			if ($('#canvas_line4').length ){
 				
 				var canvas_line_04 = new Chart(document.getElementById("canvas_line4"), {
@@ -2073,7 +2072,7 @@ if (typeof NProgress != 'undefined') {
 				
 			}
 			
-			
+			*/
 				
 			  
 			  

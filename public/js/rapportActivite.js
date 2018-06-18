@@ -101,7 +101,7 @@ $(document).ready(function(){
                 {idActivite:idActivite, idMatiere:idMatiere, table:table}
             );
 
-            calcule();
+            //calcule();
 
             $("#resultatRapport").show('slideDown');
             $("#chargement").hide();
@@ -113,6 +113,7 @@ $(document).ready(function(){
 function calcule(position,data,eff)
 {
     var position = $("."+position);
+    var eff = parseInt(eff);
     var pourcentage = 0;
     $.ajax({
         type: "POST",
@@ -123,8 +124,11 @@ function calcule(position,data,eff)
             if(data.length>0){
                 if(data[0].count>0){
                     position.empty();
-                    pourcentage = parseInt(eff)*100 / data[0].count;
+                    pourcentage = eff*100 / data[0].count;
                     position.append(pourcentage+"%");
+                }else{
+                    position.empty();
+                    position.append("0%");
                 }
             }
         }
@@ -158,10 +162,12 @@ function getListeEtudiant(url,position,position2,data1)
             }else{
                 rows = rows + '<tr><td colspan="6" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
             }
-            setTimeout(function(){calcule(position,data1,num);},1000);
             $("#"+position).empty();
             position2.empty();
-            position2.append(rows);
+            setTimeout(function(){
+                calcule(position,data1,num);
+                position2.append(rows);
+            },100);
         }
     });    
 }

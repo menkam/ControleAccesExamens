@@ -90,6 +90,7 @@ class RapportActiviteController extends Controller
 			  etudiants.id_user = users.id AND
 			  etud_scolariser_clas.id_etudiant = etudiants.id AND
 			  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
+			  etud_ins_mats.id_matiere = '$idMatiere' AND
 			  etud_ins_mats.id IN (
 			    SELECT
 			      id_etud_ins_mat
@@ -142,6 +143,7 @@ class RapportActiviteController extends Controller
 			  etudiants.id_user = users.id AND
 			  etud_scolariser_clas.id_etudiant = etudiants.id AND
 			  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
+			  etud_ins_mats.id_matiere = '$idMatiere' AND
 			  etud_ins_mats.id IN (
 			    SELECT
 			      id_etud_ins_mat
@@ -195,6 +197,7 @@ class RapportActiviteController extends Controller
 			  etudiants.id_user = users.id AND
 			  etud_scolariser_clas.id_etudiant = etudiants.id AND
 			  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
+			  etud_ins_mats.id_matiere = '$idMatiere' AND
 			  etud_ins_mats.id NOT IN (
 			    SELECT
 			      id_etud_ins_mat
