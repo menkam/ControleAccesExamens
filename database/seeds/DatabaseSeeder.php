@@ -21,29 +21,30 @@ class DatabaseSeeder extends Seeder
         // Activity seeder created.
         $this->call(ActiviteSeeder::class);
 
-        $this->call(Activite_conc_classeSeeder::class);
-        $this->call(Annee_academiqueSeeder::class);
         $this->call(MatiereSeeder::class);
         $this->call(Cursus_accSeeder::class);
-        $this->call(Creneaux_horaireSeeder::class);
         $this->call(DepartementSeeder::class);
         $this->call(Ens_chef_dptSeeder::class);
         $this->call(EnseignatSeeder::class);
-        $this->call(Etud_ins_matSeeder::class);
-        $this->call(Etud_realise_activSeeder::class);
-        $this->call(Etud_scolriser_clasSeeder::class);
         $this->call(EtudiantSeeder::class);
         $this->call(ExamenSeeder::class);
         $this->call(SalleSeeder::class);
         $this->call(TpSeeder::class);
         $this->call(SurveillantSeeder::class);
-        $this->call(Salle_ActiviteSeeder::class);
         $this->call(SemestreSeeder::class);
         $this->call(SessionSeeder::class);
 
         $this->call(ClasseSeeder::class);
         $this->call(NiveauSeeder::class);
         $this->call(CoursSeeder::class);
+        
+        //$this->call(Etud_ins_matSeeder::class);
+        //$this->call(Etud_realise_activSeeder::class);
+        //$this->call(Etud_scolriser_clasSeeder::class);
+        //$this->call(Activite_conc_classeSeeder::class);
+        //$this->call(Annee_academiqueSeeder::class);
+        //$this->call(Creneaux_horaireSeeder::class);
+        //$this->call(Salle_ActiviteSeeder::class);
 
     }
 }

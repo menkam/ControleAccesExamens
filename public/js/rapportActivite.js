@@ -32,12 +32,12 @@ $(document).ready(function(){
     			var idDateRapport = $("#idDateRapport").val();
                 
                 if(typeActivite=="normale" || typeActivite=="rattrapage"){
-                    table = "public.examens";
+                    table = "examens";
                 }else{
                     if(typeActivite=="tp")
-                        table = "public."+typeActivite+"s";
+                        table = typeActivite+"s";
                     else
-                        table = "public."+typeActivite;
+                        table = typeActivite;
                 }
 
                 $("#idMatiere").empty();
@@ -77,28 +77,28 @@ $(document).ready(function(){
         var idMatiere = $("#idMatiere").val();
         var idActivite = filterInfo(typeActiviteRapport,"g");
         var typeActivite = filterInfo(typeActiviteRapport,"d");
-        data1 = {idActivite:idActivite,idMatiere:idMatiere,table:table};
 
         setTimeout(function(){
-
+            //alert(idActivite+"  "+idMatiere+"  "+table);
             getListeEtudiant(
                 "getListePresence",
                 "pp",
                 "rowEtudiantPresent",
-                { idActivite:idActivite }
+                { idActivite:idActivite, idMatiere:idMatiere, table:table }
+            );
+
+            getListeEtudiant(
+                "getListeTricheur",
+                "pt",
+                "rowEtudiantTricheur",
+                { idActivite:idActivite, idMatiere:idMatiere, table:table }
             );
             
             getListeEtudiant(
                 "getListAbsent",
                 "pa",
                 "rowEtudiantAbsent",
-                {idActivite:idActivite,idMatiere:idMatiere,table:table}
-            );
-            getListeEtudiant(
-                "getListeTricheur",
-                "pt",
-                "rowEtudiantTricheur",
-                { idActivite:idActivite }
+                {idActivite:idActivite, idMatiere:idMatiere, table:table}
             );
 
             calcule();
@@ -110,20 +110,22 @@ $(document).ready(function(){
     });
 });
 
-function calcule(position,eff)
+function calcule(position,data,eff)
 {
     var position = $("."+position);
-
+    var pourcentage = 0;
     $.ajax({
         type: "POST",
         dataType: 'json',
         url:'getNombre',
-        data:data1,
+        data:data,
         success: function(data){
             if(data.length>0){
-                position.empty();
-                var pourcentage = parseInt(eff)*100 / data[0].count;
-                position.append(pourcentage+"%");
+                if(data[0].count>0){
+                    position.empty();
+                    pourcentage = parseInt(eff)*100 / data[0].count;
+                    position.append(pourcentage+"%");
+                }
             }
         }
     }); 
@@ -156,7 +158,8 @@ function getListeEtudiant(url,position,position2,data1)
             }else{
                 rows = rows + '<tr><td colspan="6" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
             }
-            setTimeout(function(){calcule(position,num);},1000);
+            setTimeout(function(){calcule(position,data1,num);},1000);
+            $("#"+position).empty();
             position2.empty();
             position2.append(rows);
         }

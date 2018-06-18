@@ -93,7 +93,7 @@ function getMatierePlanning(typeActivite,idActivite) {
             var dateOld;
             var nbr = 1;
             rowsH = '<tr><th></th>';
-            rowsB = '<tr><td style="text-align: center; width: 40px;">'+data[0].datem+'444</td>';
+            rowsB = '<tr><td style="text-align: center; width: 40px;">'+data[0].datem+'</td>';
             for(var i= 0; i < data.length; i++) {
                 if(data[0].datem == data[i].datem){
                     if(nbr==3){

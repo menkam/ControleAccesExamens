@@ -17,3 +17,4 @@ class Activite extends Model
 	   	'date_fin_activite'
    ];
 }
+
