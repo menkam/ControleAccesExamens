@@ -19,23 +19,23 @@ class UserTableSeeder extends Seeder
 	    $role_etudiant  = Role::where('name', 'etudiant')->first();
         $role_surveillant  = Role::where('name', 'surveillant')->first();
 
+        $admin = new User();
+        $admin->name = 'MENKAM';
+        $admin->prenom = 'Francis';
+        $admin->photo = 'admin.png';
+        $admin->email = 'men_franc@gmail.com';
+        $admin->password = bcrypt('123321');
+        $admin->save();
+        $admin->roles()->attach($role_admin);
+
 	    $admin = new User();
 	    $admin->name = 'admin';
-        $admin->prenom = 'MENKAM Francis';
-        $admin->photo = 'admin.png';
+        $admin->prenom = 'admin';
+        $admin->photo = 'user.png';
 	    $admin->email = 'admin@gmail.com';
 	    $admin->password = bcrypt('000000');
 	    $admin->save();
 	    $admin->roles()->attach($role_admin);
-
-	    $enseignant = new User();
-	    $enseignant->name = 'KUATE';
-        $enseignant->prenom = 'Victor';
-	    $enseignant->email = 'victor@gmail.com';
-	    $enseignant->photo = 'kuate.png';
-	    $enseignant->password = bcrypt('000000');
-	    $enseignant->save();
-	    $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
         $enseignant->name = 'NKENLIFACK';
@@ -47,8 +47,17 @@ class UserTableSeeder extends Seeder
         $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
-        $enseignant->name = 'nom';
-        $enseignant->prenom = 'prenom';
+        $enseignant->name = 'KUATE';
+        $enseignant->prenom = 'Victor';
+        $enseignant->email = 'victor@gmail.com';
+        $enseignant->photo = 'kuate.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'LANDRI';
+        $enseignant->prenom = 'Adrian';
         $enseignant->email = 'ensgant3@gmail.com';
         $enseignant->photo = 'user.png';
         $enseignant->password = bcrypt('000000');
@@ -56,17 +65,17 @@ class UserTableSeeder extends Seeder
         $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
-        $enseignant->name = 'nom';
-        $enseignant->prenom = 'prenom';
-        $enseignant->email = 'email@gmail.com';
-        $enseignant->photo = 'user.png';
+        $enseignant->name = 'DJIONGO';
+        $enseignant->prenom = 'Cedrigue Boris';
+        $enseignant->email = 'djiongo@gmail.com';
+        $enseignant->photo = 'djiongo.png';
         $enseignant->password = bcrypt('000000');
         $enseignant->save();
         $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
-        $enseignant->name = 'test';
-        $enseignant->prenom = 'test';
+        $enseignant->name = 'enseignant2';
+        $enseignant->prenom = 'pre_enseignant';
         $enseignant->email = 'test@gmail.com';
         $enseignant->photo = 'user.png';
         $enseignant->password = bcrypt('000000');
@@ -74,8 +83,8 @@ class UserTableSeeder extends Seeder
         $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
-        $enseignant->name = 'nom';
-        $enseignant->prenom = 'prenom';
+        $enseignant->name = 'enseignant3';
+        $enseignant->prenom = 'prenom_enseignant';
         $enseignant->email = 'ensigant4@gmail.com';
         $enseignant->photo = 'user.png';
         $enseignant->password = bcrypt('000000');
@@ -83,13 +92,80 @@ class UserTableSeeder extends Seeder
         $enseignant->roles()->attach($role_enseignant);
 
         $enseignant = new User();
-        $enseignant->name = 'NOM';
-        $enseignant->prenom = 'prenom';
-        $enseignant->email = 'ensigant5@gmail.com';
+        $enseignant->name = 'enseignant4';
+        $enseignant->prenom = 'prenom enseignant';
+        $enseignant->email = 'ensigant50@gmail.com';
         $enseignant->photo = 'user.png';
         $enseignant->password = bcrypt('000000');
         $enseignant->save();
         $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'NKENLIFACK';
+        $enseignant->prenom = 'Marcelin';
+        $enseignant->email = 'marcelin0@gmail.com';
+        $enseignant->photo = 'user.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'KUATE';
+        $enseignant->prenom = 'Victor';
+        $enseignant->email = 'victor0@gmail.com';
+        $enseignant->photo = 'kuate.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'LANDRI';
+        $enseignant->prenom = 'Adrian';
+        $enseignant->email = 'ensgant03@gmail.com';
+        $enseignant->photo = 'user.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'DJIONGO';
+        $enseignant->prenom = 'Cedrigue Boris';
+        $enseignant->email = 'djiongo0@gmail.com';
+        $enseignant->photo = 'djiongo.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'enseignant2';
+        $enseignant->prenom = 'pre_enseignant';
+        $enseignant->email = 'test0@gmail.com';
+        $enseignant->photo = 'user.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'enseignant3';
+        $enseignant->prenom = 'prenom_enseignant';
+        $enseignant->email = 'ensigant40@gmail.com';
+        $enseignant->photo = 'user.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+        $enseignant = new User();
+        $enseignant->name = 'enseignant4';
+        $enseignant->prenom = 'prenom enseignant';
+        $enseignant->email = 'ensigant50@gmail.com';
+        $enseignant->photo = 'user.png';
+        $enseignant->password = bcrypt('000000');
+        $enseignant->save();
+        $enseignant->roles()->attach($role_enseignant);
+
+
+
+
 
 	    $etudiant = new User();
 	    $etudiant->name = 'MANFO';
