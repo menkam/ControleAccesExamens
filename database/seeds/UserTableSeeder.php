@@ -157,7 +157,7 @@ class UserTableSeeder extends Seeder
         $enseignant = new User();
         $enseignant->name = 'enseignant4';
         $enseignant->prenom = 'prenom enseignant';
-        $enseignant->email = 'ensigant50@gmail.com';
+        $enseignant->email = 'ensigant55@gmail.com';
         $enseignant->photo = 'user.png';
         $enseignant->password = bcrypt('000000');
         $enseignant->save();
