@@ -245,7 +245,7 @@ class ActivitesController extends Controller
         //alert($heure+$date);
         if($request->ajax()) {
             return DB::select("
-                SELECT
+                SELECT 
                   activites.id,
                   cursus_accs.code,
                   departements.code_departement,
@@ -254,27 +254,27 @@ class ActivitesController extends Controller
                   creneaux_horaires.libelle_creneaux,
                   matieres.libelle_matiere,
                   sessions.libelle_session
-                FROM
-                  departements,
-                  cursus_accs,
-                  classes,
-                  activite_conc_classes,
-                  activites,
-                  examens,
-                  matieres,
-                  sessions,
-                  semestres, 
-                  creneaux_horaires
-                WHERE
+                FROM 
+                  public.departements, 
+                  public.cursus_accs, 
+                  public.classes, 
+                  public.activite_conc_classes, 
+                  public.activites, 
+                  public.examens, 
+                  public.matieres, 
+                  public.sessions, 
+                  public.semestres, 
+                  public.creneaux_horaires
+                WHERE 
                   classes.id_cursus = cursus_accs.id AND
                   classes.id_departement = departements.id AND
-                  activite_conc_classes.id_classe = classes.id AND
                   activite_conc_classes.id_activite = activites.id AND
-                  examens.id_activite = activites.id AND
-                  examens.id_matiere = matieres.id AND
+                  activite_conc_classes.id_classe = classes.id AND
+                  activites.id_semestre = semestres.id AND
+                  activites.id = examens.id_activite AND
                   examens.id_session = sessions.id AND
-                  semestres.id = activites.id_semestre AND
-                  creneaux_horaires.id = examens.id_creneau AND
+                  examens.id_creneau = creneaux_horaires.id AND
+                  examens.id_matiere = matieres.id AND
                   examens.date_examen = '$date' AND
                   creneaux_horaires.libelle_creneaux LIKE '%$heure%'
                 ORDER BY

@@ -148,12 +148,12 @@
     <script src="{{ asset('framework/vendors/pnotify/dist/pnotify.buttons.js') }}"></script>
     <script src="{{ asset('framework/vendors/pnotify/dist/pnotify.nonblock.js') }}"></script-->
 
-    <!-- Chart.js -->
+    <!-- Chart.js --
     <script src="{{ asset('framework/vendors/Chart.js/dist/Chart.min.js') }}"></script>
 
-    <!-- Custom Theme Scripts-->
-    <script src="{{ asset('js/rapportActivite.js') }}"></script>
+    <!-- Custom Theme Scripts--
     <script src="{{ asset('framework/build/js/custom.min.js') }}"></script>
-    <script src="{{ asset('framework/build/js/diagramme_bilan.js') }}"></script>
+    <script src="{{ asset('framework/build/js/diagramme_bilan.js') }}"></script-->
 
+    <script src="{{ asset('js/rapportActivite.js') }}"></script>
 @endsection

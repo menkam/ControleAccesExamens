@@ -68,8 +68,9 @@
                     <div class="x_title">
                         Examens en cours...
                         <div class="clearfix"></div>
-                    </div>
+                    </div> 
                     <div class="x_content">
+                        <div id="chargementExamen" style="display: none;text-align: center; padding-top: 10px"></div>
                         <table class="table table-hover ">
                             <thead>
                             <tr>
@@ -95,6 +96,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <div id="chargementTp" style="display: none;text-align: center; padding-top: 10px"></div>
                         <table class="table">
                             <thead>
                             <tr>
@@ -120,6 +122,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <div id="chargementCours" style="display: none; text-align: center; padding-top: 10px"></div>
                         <table class="table">
                             <thead>
                             <tr>
@@ -181,6 +184,4 @@
 @section('scripts')
     <script type="text/javascript"></script>
     <script type="text/javascript" src="js/activite_en_cour.js"></script>
-    <script type="text/javascript">
-    </script>
 @endsection

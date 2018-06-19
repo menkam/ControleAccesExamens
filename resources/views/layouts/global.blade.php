@@ -128,16 +128,16 @@
          var heureCourante2 = '<?php
             $heure = getDate();
             if(((int)$heure["hours"]+1) < 10 && (int)$heure["minutes"] < 10){
-                echo "0".($heure["hours"]+1)."h0".$heure["minutes"];
+                echo "0".($heure["hours"]+1)."H0".$heure["minutes"];
             }
             if(((int)$heure["hours"]+1) < 10 && (int)$heure["minutes"] > 10){
-                echo "0".($heure["hours"]+1)."h".$heure["minutes"];
+                echo "0".($heure["hours"]+1)."H".$heure["minutes"];
             }
             if(((int)$heure["hours"]+1) >= 10 && (int)$heure["minutes"] < 10){
-                echo ($heure["hours"]+1)."h0".$heure["minutes"];
+                echo ($heure["hours"]+1)."H0".$heure["minutes"];
             }
             if(((int)$heure["hours"]+1) >= 10 && (int)$heure["minutes"] > 10){
-                echo ($heure["hours"]+1)."h".$heure["minutes"];
+                echo ($heure["hours"]+1)."H".$heure["minutes"];
             }
             //echo $heure["hours"]."h".$heure["minutes"].":".$heure["seconds"];
         ?>';
@@ -146,9 +146,9 @@
         var heureCourante = '<?php
             $heure = getDate();
             if(($heure["hours"]+1) < 10){
-                echo "0".($heure["hours"]+1)."h";
+                echo "0".($heure["hours"]+1)."H";
             }else {
-                echo ($heure["hours"]+1)."h";
+                echo ($heure["hours"]+1)."H";
             }
         ?>';
         //alert(dateCourante+" "+heureCourante);

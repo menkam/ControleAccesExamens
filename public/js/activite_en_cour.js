@@ -1,6 +1,6 @@
 
-//alert(dateCourante);
-//alert(heureCourante);
+alert(dateCourante);
+alert(heureCourante);
 
 
 
@@ -46,7 +46,12 @@ $(document).ready(function(){
 
     $("#btn-examen").click(function(){
         typeActiviteChoisi = 'Examen';
-        afficherElement("examen");
+        //chargement("chargementExamen");
+        setTimeout(function(){
+            afficherElement("examen");
+            //$("#chargementExamen").hide();
+        },1000);
+        
     });
     $("#btn-tp").click(function(){
         typeActiviteChoisi = 'Tp';
