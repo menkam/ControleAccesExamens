@@ -14,3 +14,7 @@ class Matiere extends Model
    	'nbr_credit'
    ];
 }
+
+/*
+App\Models\Creneaux_horaire::create(['code_matiere' => '', 'libelle_matiere' => 'RAS', 'nbr_credit' => '']);
+*/

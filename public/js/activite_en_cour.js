@@ -1,7 +1,7 @@
-
+/*
 alert(dateCourante);
 alert(heureCourante);
-
+*/
 
 
 /*
@@ -22,6 +22,7 @@ var intervalListeEtudiant;
 var temps = 2000;
 
 var idActiviteForListEtudians=0;
+var table = "examens";
 
 /*var intervalExamen = setInterval(getListExamen,1000);
 var intervalCours = setInterval(getListCours,1000);
@@ -127,9 +128,10 @@ function MouseOver()
      });
  }
 
-function setIdActivite(id){
+function setIdActivite(id,table){
     clearInterval(intervalListeEtudiant);
     idActiviteForListEtudians = id;
+    table = table;
     intervalListeEtudiant = setInterval("AfficherListeEtudiantEnSelle()",temps);
     $('#lignesListeEtudiantEnSalle').empty();
 }
@@ -149,7 +151,8 @@ function AfficherListeEtudiantEnSelle(){
         data: {
             date:date,
             heure:heure,
-            idActivite:idActiviteForListEtudians
+            idActivite:idActiviteForListEtudians,
+            table:table
         }
     }).done(function (data) {
         if(data.length > 0){
@@ -219,7 +222,7 @@ function getListExamen()
             rows = rows + '<td>'+data[i].libelle_semestre+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id2+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             //rows = rows + '<a target="new" href="'+url+'"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
@@ -259,7 +262,7 @@ function getListCours()
             rows = rows + '<td>'+data[i].code_departement+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id2+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }
@@ -297,7 +300,7 @@ function getListTp()
             rows = rows + '<td>'+data[i].code_departement+'</td>';
 
             rows = rows + '<td id="AfficherListEtudiants" data-id="'+data[i].id+'">';
-            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
+            rows = rows + '<a data-toggle="modal" data-target="#show-list" onclick="setIdActivite('+data[i].id2+')"  title="Voire la liste des etudiants en salle"><i class="btn btn-info fa fa-eye"></i></a> ';
             rows = rows + '</td>';
             rows = rows + '</tr>';
         }

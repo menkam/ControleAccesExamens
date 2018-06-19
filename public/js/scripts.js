@@ -265,7 +265,7 @@ function getOptionEnseignant(position,duree) {
 function getOptionDuree(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
-    rows = rows + '<option value="45">45Min</option>';
+    rows = rows + '<option value="30">30Min</option>';
     rows = rows + '<option value="1">01H</option>';
     rows = rows + '<option value="2">02H</option>';
     position.empty();

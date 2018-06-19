@@ -3,7 +3,7 @@
         <h3>Resultat de la recherche</h3>
     </div>
 </div>
-<div id="resultatRapport" class="x_panel" style="display: ;">
+<div id="resultatRapport" class="x_panel" style="display: none;">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="">
             <div class="x_title">                

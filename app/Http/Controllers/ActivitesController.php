@@ -198,43 +198,61 @@ class ActivitesController extends Controller
     }
 
     public function showListEtudiantEtudiantEnSalle(Request $request){
-        $idActivite = $request->idActivite;      
-
-
+        
+        $idActivite = $request->idActivite; 
+        $table = $request->table; 
+        $table2="";
+        $idTable="";
+        $idTable2="";    
+        
+        if($table=="examens"){
+          $table2="etud_compose_examens";
+          $idTable="id_examen";
+        }else{
+            if($table=="cours"){
+            $table2="etud_etudie_cours";
+            $idTable="id_cours";
+          }else{
+            $table2="etud_participe_tps";
+            $idTable="id_tp";
+          }
+        }
         if($request->ajax()) {
 
-            return DB::select('
-                SELECT
-                  etudiants.matricule_etudiant,
-                  users.name,
-                  users.prenom,
-                  users.email,
-                  users.date_nais,
-                  etud_ins_mats.regime,
-                  etud_realise_activs.statut,
-                  salles.code_salle,
-                  salles.libelle_salle
-                FROM
-                  public.activites,
-                  public.etud_realise_activs,
-                  public.etud_ins_mats,
-                  public.etudiants,
-                  public.etud_scolariser_clas,
-                  public.users,
-                  public.salle_activites,
+            return DB::select("
+                SELECT 
+                  etudiants.matricule_etudiant, 
+                  users.name, 
+                  users.prenom, 
+                  users.email, 
+                  users.date_nais, 
+                  etud_ins_mats.regime, 
+                  salles.code_salle, 
+                  salles.libelle_salle,
+                  $table2.statut
+                FROM 
+                  public.users, 
+                  public.etudiants, 
+                  public.etud_scolariser_clas, 
+                  public.etud_ins_mats, 
+                  public.$table2, 
+                  public.$table, 
+                  public.activites, 
+                  public.salle_activites, 
                   public.salles
-                WHERE
-                  activites.id = etud_realise_activs.id_activite AND
-                  etud_realise_activs.id_etud_ins_mat = etud_ins_mats.id AND
-                  etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
-                  etudiants.id_user = users.id AND
-                  etud_scolariser_clas.id_etudiant = etudiants.id AND
+                WHERE 
+                  users.id = etudiants.id_user AND
+                  etudiants.id = etud_scolariser_clas.id_etudiant AND
+                  etud_scolariser_clas.id = etud_ins_mats.id_scolariser AND
+                  etud_ins_mats.id = $table2.id_etud_ins_mat AND
+                  $table.id = $table2.$idTable AND
+                  activites.id = $table.id_activite AND
                   salle_activites.id_activite = activites.id AND
-                  salle_activites.id_salle = salles.id AND
-                  activites.id = '.$idActivite.'
+                  salles.id = salle_activites.id_salle AND
+                  $table.id = '$idActivite'
                 ORDER BY
-                  etud_realise_activs.statut ASC
-            ');
+                  $table2.updated_at ASC;
+            ");
         }
     }
 
@@ -247,6 +265,7 @@ class ActivitesController extends Controller
             return DB::select("
                 SELECT 
                   activites.id,
+                  examens.id as id2,
                   cursus_accs.code,
                   departements.code_departement,
                   classes.code_classe,
@@ -290,10 +309,11 @@ class ActivitesController extends Controller
         if($request->ajax()) {
             return DB::select("
                 SELECT
+                  activites.id,
+                  tps.id as id2,
                   cursus_accs.code,
                   departements.code_departement,
                   classes.code_classe,
-                  activites.id,
                   creneaux_horaires.libelle_creneaux,
                   matieres.libelle_matiere,
                   users.name,
@@ -335,10 +355,11 @@ class ActivitesController extends Controller
       if($request->ajax()) {
           return DB::select("
               SELECT
+                  activites.id,
+                  cours.id as id2,
                   cursus_accs.code,
                   departements.code_departement,
                   classes.code_classe,
-                  activites.id,
                   creneaux_horaires.libelle_creneaux,
                   matieres.libelle_matiere,
                   users.name,
