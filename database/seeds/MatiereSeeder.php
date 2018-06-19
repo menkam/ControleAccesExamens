@@ -36,31 +36,31 @@ class MatiereSeeder extends Seeder
         $objet->save();
 
         $objet = new Matiere();
-        $objet->code_matiere = 'DET0';
+        $objet->code_matiere = 'DET10';
         $objet->libelle_matiere = 'Développement Internet';
         $objet->nbr_credit = '3';
         $objet->save();
 
         $objet = new Matiere();
-        $objet->code_matiere = 'ApR0';
+        $objet->code_matiere = 'ApR10';
         $objet->libelle_matiere = 'Application Répartie';
         $objet->nbr_credit = '3';
         $objet->save();
 
         $objet = new Matiere();
-        $objet->code_matiere = 'RSF0';
+        $objet->code_matiere = 'RSF10';
         $objet->libelle_matiere = 'Réseaux San File';
         $objet->nbr_credit = '2';
         $objet->save();
 
         $objet = new Matiere();
-        $objet->code_matiere = 'PEI0';
+        $objet->code_matiere = 'PEI10';
         $objet->libelle_matiere = 'Projet Internet Intranet';
         $objet->nbr_credit = '3';
         $objet->save();
 
         $objet = new Matiere();
-        $objet->code_matiere = 'MIC0';
+        $objet->code_matiere = 'MIC10';
         $objet->libelle_matiere = 'Micro-Contrôlleur';
         $objet->nbr_credit = '3';
         $objet->save();

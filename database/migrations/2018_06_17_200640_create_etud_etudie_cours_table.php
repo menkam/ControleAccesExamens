@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEtudRealiseActivsTable extends Migration
+class CreateEtudEtudieCoursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateEtudRealiseActivsTable extends Migration
      */
     public function up()
     {
-        Schema::create('etud_realise_activs', function (Blueprint $table) {
+        Schema::create('etud_etudie_cours', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_activite');
+            $table->integer('id_cours');
             $table->integer('id_etud_ins_mat');
-            $table->date('fin_realisation')->nullable();
             $table->string('statut')->default('0');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ class CreateEtudRealiseActivsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etud_realise_activs');
+        Schema::dropIfExists('etud_etudie_cours');
     }
 }

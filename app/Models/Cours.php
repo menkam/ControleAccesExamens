@@ -16,3 +16,4 @@ class Cours extends Model
     'date_cours'
    ];
 }
+

@@ -5,11 +5,12 @@ namespace App\Http\Controllers\AndroidApi;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Fonction;
 
 class GetListEtudiantController extends Controller
 {
-    public $date = '2018-05-08'; //Fonction::getDate();
-    public $heure = "08h";//Fonction::getTime("h");
+    public $date = Fonction::getDate();
+    public $heure = Fonction::getTime("h");
 
     public function getListEtudiants(Request $request)
     {

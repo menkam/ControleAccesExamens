@@ -29,8 +29,8 @@
 </head>
 <body>
 
-	<div class="limiter divRegister" style="">
-		<div class="container-login100" style="background-image: url('Login_v3/images/bg-02.jpg');">
+	<div class="limiter divRegister">
+		<div class="container-login100" style="background-image: url('images/background.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}

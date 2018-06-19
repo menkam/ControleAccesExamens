@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\etud_participe_tp;
 use Illuminate\Http\Request;
 
-class InboxController extends Controller
+class EtudParticipeTpController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class InboxController extends Controller
      */
     public function index()
     {
-        return view('inbox');
+        //
     }
 
     /**
@@ -40,10 +41,10 @@ class InboxController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_participe_tp  $etud_participe_tp
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(etud_participe_tp $etud_participe_tp)
     {
         //
     }
@@ -51,10 +52,10 @@ class InboxController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_participe_tp  $etud_participe_tp
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(etud_participe_tp $etud_participe_tp)
     {
         //
     }
@@ -63,10 +64,10 @@ class InboxController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\etud_participe_tp  $etud_participe_tp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, etud_participe_tp $etud_participe_tp)
     {
         //
     }
@@ -74,10 +75,10 @@ class InboxController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_participe_tp  $etud_participe_tp
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(etud_participe_tp $etud_participe_tp)
     {
         //
     }

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
+use App\Models\etud_etudie_cours;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use DB;
-use App\Models\User;
 
-class ManageUserController extends Controller
+class EtudEtudieCoursController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
-        //dd($users);
-        return view('admin\ManageUser',['users'=>$users]);
+        //
     }
 
     /**
@@ -45,23 +41,21 @@ class ManageUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_etudie_cours  $etud_etudie_cours
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(etud_etudie_cours $etud_etudie_cours)
     {
-        $user = User::findOrFail($id);
-        //dd($user);
-        return view('admin\showUser', compact('user'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_etudie_cours  $etud_etudie_cours
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(etud_etudie_cours $etud_etudie_cours)
     {
         //
     }
@@ -70,10 +64,10 @@ class ManageUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\etud_etudie_cours  $etud_etudie_cours
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, etud_etudie_cours $etud_etudie_cours)
     {
         //
     }
@@ -81,10 +75,10 @@ class ManageUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_etudie_cours  $etud_etudie_cours
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(etud_etudie_cours $etud_etudie_cours)
     {
         //
     }

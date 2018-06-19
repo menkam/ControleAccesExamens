@@ -329,3 +329,10 @@ function tostAvertissement(msg){
 function tostErreur(msg){
     toastr.error(msg, 'Erreur !!!', {timeOut: 5000});
 }
+
+function chargement(position){
+    var position = $("#"+position+"");
+    position.empty();
+    position.append('<div><img src="images/chargementCouleur.gif" alt="chargement du contenu">');
+    position.show();
+}

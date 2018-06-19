@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\etud_compose_examen;
 use Illuminate\Http\Request;
 
-class PlanningsController extends Controller
+class EtudComposeExamenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('planning.'.$request->type);
+        //
     }
 
     /**
@@ -40,10 +41,10 @@ class PlanningsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_compose_examen  $etud_compose_examen
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(etud_compose_examen $etud_compose_examen)
     {
         //
     }
@@ -51,10 +52,10 @@ class PlanningsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_compose_examen  $etud_compose_examen
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(etud_compose_examen $etud_compose_examen)
     {
         //
     }
@@ -63,10 +64,10 @@ class PlanningsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\etud_compose_examen  $etud_compose_examen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, etud_compose_examen $etud_compose_examen)
     {
         //
     }
@@ -74,10 +75,10 @@ class PlanningsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\etud_compose_examen  $etud_compose_examen
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(etud_compose_examen $etud_compose_examen)
     {
         //
     }

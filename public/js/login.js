@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+	
 	/*$("#aRegister").click(function(){
 		$(".divRegister").show("slow");
 		$(".divLogin").hide("slow");
