@@ -92,16 +92,16 @@ function getMatierePlanning(typeActivite,idActivite) {
         	}
             var dateOld;
             var nbr = 1;
-            rowsH = '<tr><th></th>';
+            rowsH = '<tr><th>#</th>';
             rowsB = '<tr><td style="text-align: center; width: 40px;">'+data[0].datem+'</td>';
             for(var i= 0; i < data.length; i++) {
                 if(data[0].datem == data[i].datem){
-                    if(nbr==3){
+                    /*if(nbr==3){
                         rowsH = rowsH +'<th style="text-align: center; width: 15px;">pause</th>';
                         rowsB = rowsB +'<td></td>';
                         nbr++;
-                    }
-                    if(nbr==6){
+                    }*/
+                    if(nbr==5){
                         rowsH = rowsH +'</tr>';
                         rowsB = rowsB +'</tr><tr><td style="text-align: center; width: 40px;">'+data[(i+1)].datem+'</td>';
                         nbr = 1;
@@ -112,11 +112,11 @@ function getMatierePlanning(typeActivite,idActivite) {
 
                 }else{
 
-                    if(nbr==3){
+                    /*if(nbr==3){
                         rowsB = rowsB +'<td style="text-align: center; width: 15px;"></td>';
                         nbr++;
-                    }
-                    if(nbr==6){
+                    }*/
+                    if(nbr==5){
                         rowsB = rowsB +'</tr><tr><td  style="text-align: center; width: 40px;">'+data[(i+1)].datem+'</td>';
                         nbr = 1;
                     }
