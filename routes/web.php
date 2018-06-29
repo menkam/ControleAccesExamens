@@ -18,13 +18,13 @@ Route::singularResourceParameters();
 /**
  * routes pour l'application android
 */
+Route::get('androidLogin', ['as'=>'androidLogin', 'uses'=>'AndroidApi\AuthController@login']);
+Route::get('androidRegister', ['as'=>'androidRegister', 'uses'=>'AndroidApi\AuthController@register']);
+Route::get('androidResetLogin', ['as'=>'androidResetLogin', 'uses'=>'AndroidApi\AuthController@resetPass']);
 Route::get('androidGetListEtudiant', ['as'=>'androidGetListEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListEtudiants']);
 Route::get('androidGetListAllEtudiant', ['as'=>'androidGetListAllEtudiant', 'uses'=>'AndroidApi\GetListEtudiantController@getListAllEtudiants']);
 Route::get('androidVerifierEmail', ['as'=>'androidVerifierEmail', 'uses'=>'AndroidApi\AuthController@verifierEmail']);
-Route::get('androidLogin', ['as'=>'androidLogin', 'uses'=>'AndroidApi\AuthController@login']);
 Route::get('androidScanCodeBare', ['as'=>'androidScanCodeBare', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantEnSalle']);
-Route::get('androidRegister', ['as'=>'androidRegister', 'uses'=>'AndroidApi\AuthController@register']);
-Route::get('androidResetLogin', ['as'=>'androidResetLogin', 'uses'=>'AndroidApi\AuthController@resetPass']);
 Route::get('androidAddStudent', ['as'=>'androidAddStudent', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantEnSalle']);
 Route::get('androidStudentFinish', ['as'=>'androidStudentFinish', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantAyantTerminer']);
 Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantsExclus']);
@@ -39,10 +39,49 @@ Route::group(['middleware' => ['guest']], function() {
 
 Auth::routes();
 
+Route::group(['middleware' => ['admin']], function(){
+});
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/home', 'HomeController@index');
+    Route::group(['middleware' => ['admin']], function(){
+        //route etudiant ici
+
+        
+    });
+    Route::group(['middleware' => ['admin']], function(){
+        //route admin ici
+        
+    });
+
+    Route::group(['middleware' => ['admin']], function(){
+        //route enseignant ici
+        Route::get('database',['as'=>'dataBase', 'uses'=>'Users\AdminController@pageMenu']);
+        Route::resource('admin', 'Users\AdminController');
+
+        //Route pour l'enseignant'
+        Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');    
+        Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
+
+        Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
+        Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
+        //end.
+
+        //Route pour les Etudiants
+        Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
+        Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
+        //end.
+
+
+        Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
+
+        
+        Route::post('addAnneeAca', ['as'=>'addAnneeAca', 'uses'=>'Annee_academiquesController@store']);
+        Route::post('addCreneaux', ['as'=>'addCreneaux', 'uses'=>'Creneaux_horairesController@store']);
+    });
+
+    //Route::get('/home', 'HomeController@index');
+    Route::get('/home',['as'=>'home','uses'=>'HomeController@index']);
     Route::get('/contacts',['as'=>'contacts','uses'=>'ContactsController@index']);
     Route::get('/profil',['as'=>'profil','uses'=>'ProfilsController@index']);
     //Route::get('/Activite-Rapports/',['as'=>'rapportActivite','uses'=>'RapportsController@index']);
@@ -58,22 +97,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('lectureMail',['as'=>'lectureMail','uses'=>'MailController@lectureMail']);
     Route::delete('delMail',['as'=>'delMail','uses'=>'MailController@destroy']);
 
-    //Route pour l'admin'
-    Route::resource('admin', 'Users\AdminController');
-    Route::get('database',['as'=>'dataBase', 'uses'=>'Users\AdminController@pageMenu']);
-
-    //Route pour l'enseignant'
-    Route::resource('ens_chef_dpts', 'Ens_chef_dptsController');    
-    Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
-
-    Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
-    Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
-    //end.
-
-    //Route pour les Etudiants
-    Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
-    Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
-    //end.
 
     //Route pour le visiteur
     Route::resource('visiteur', 'Users\VisiteurController');
@@ -81,7 +104,6 @@ Route::group(['middleware' => ['auth']], function(){
 
     //Route pour le surveillants
     Route::resource('surveillants', 'SurveillantsController');
-    Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
     Route::post('getSurveillant', ['as'=>'getSurveillant', 'uses'=>'SurveillantsController@show']);
     //end.
 
@@ -133,12 +155,10 @@ Route::group(['middleware' => ['auth']], function(){
 
     /********Route for annee_academiques*************/
     Route::post('getAnneeAcademique', ['as'=>'getAnneeAcademique', 'uses'=>'Annee_academiquesController@show']);
-    Route::post('addAnneeAca', ['as'=>'addAnneeAca', 'uses'=>'Annee_academiquesController@store']);
     //end.
 
     //Route for creneaux_horaire
     Route::post('getCreneaux', ['as'=>'getCreneaux', 'uses'=>'Creneaux_horairesController@show']);
-    Route::post('addCreneaux', ['as'=>'addCreneaux', 'uses'=>'Creneaux_horairesController@store']);
     //end.
 
     //Route for cursus_acc
