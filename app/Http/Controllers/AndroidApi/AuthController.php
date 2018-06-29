@@ -27,7 +27,7 @@ class AuthController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if(Auth::attempt(['email'=>$email, 'password'=>$password])){
+        if(Auth::attempt(['email'=>$email, 'password'=>$password]) || Auth::attempt(['email'=>$email.'@gmail.com', 'password'=>$password])){
             $nom = Auth::user()->name;
             $prenom = Auth::user()->prenom;
             $sexe = Auth::user()->sexe;
