@@ -9,11 +9,12 @@ use App\Fonction;
 
 class GetListEtudiantController extends Controller
 {
-    public $date = Fonction::getDate();
-    public $heure = Fonction::getTime("h");
+    
 
     public function getListEtudiants(Request $request)
     {
+      $date = Fonction::getDate();
+    $heure = Fonction::getTime("h");
         //if (!empty($request->idActivite)) {
             $idActivite = $request->idActivite;
             $statut = $request->statut;
@@ -50,9 +51,9 @@ class GetListEtudiantController extends Controller
                   etud_realise_activs.id_etud_ins_mat = etud_ins_mats.id AND
                   creneaux_horaires.id = examens.id_creneau AND
                   activites.id = '" . $idActivite . "' AND
-                  examens.date_examen = '" . $this->date . "' AND
+                  examens.date_examen = '" . $date . "' AND
                   etud_realise_activs.statut = '$statut' AND
-                  creneaux_horaires.libelle_creneaux LIKE '%" . $this->heure . "%'
+                  creneaux_horaires.libelle_creneaux LIKE '%" . $heure . "%'
             ");
             $etudiants = array();
             foreach ($listEtudiant as $key => $value) {
@@ -76,6 +77,8 @@ class GetListEtudiantController extends Controller
     }
 
     public function getListAllEtudiants(Request $request){
+    $date = Fonction::getDate();
+    $heure = Fonction::getTime("h");
      $idActivite = 1;//$request->idActivite;
      $listEtudiant = DB::select("
         SELECT
@@ -109,7 +112,7 @@ class GetListEtudiantController extends Controller
           activites.id = examens.id_activite AND
           activites.id = '$idActivite' AND
           examens.id_creneau = '1' AND
-          creneaux_horaires.libelle_creneaux LIKE '%" . $this->heure . "%'
+          creneaux_horaires.libelle_creneaux LIKE '%" . $heure . "%'
      ");
     $etudiants = array();
     foreach ($listEtudiant as $key => $value) {
