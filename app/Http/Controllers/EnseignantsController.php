@@ -57,6 +57,30 @@ class EnseignantsController extends Controller{
         "));
     }
 
+    public function show0(Request $request)
+    {
+      return response()->json(DB::select("
+          SELECT 
+            users.id, 
+            users.name, 
+            users.prenom, 
+            users.sexe, 
+            users.date_nais, 
+            users.telephone, 
+            users.email, 
+            users.info_codebar, 
+            users.photo
+          FROM 
+            public.users, 
+            public.role_user, 
+            public.roles
+          WHERE 
+            role_user.role_id = roles.id AND
+            role_user.user_id = users.id AND
+            roles.id = '2';
+      "));
+    }
+
     public function update(Request $request, $id)
     {
         $object = Enseignant::find($id)->update($request->all());

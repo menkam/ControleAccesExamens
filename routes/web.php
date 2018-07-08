@@ -51,18 +51,22 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('formAddEnseignant',['as' => 'formAddEnseignant', 'uses' => 'EnseignantsController@index']);
 
         Route::post('AddEnseignant',['as' => 'AddEnseignant', 'uses' => 'EnseignantsController@store']);
-        Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);
+        Route::post('getEnseignant', ['as'=>'getEnseignant', 'uses'=>'EnseignantsController@show']);        
+        Route::post('getEnseignant0', ['as'=>'getEnseignant0', 'uses'=>'EnseignantsController@show0']);
         //end.
 
         //Route pour les Etudiants
         Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
         Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);       
         Route::post('getListEtudiantScolarise',['as' => 'getListEtudiantScolarise', 'uses' => 'EtudiantsController@show']);
+        Route::get('getInfoEtudiant',['as' => 'getInfoEtudiant', 'uses' => 'EtudiantsController@showInfo']);
         //end.
 
 
+        //Route Surveillant
         Route::get('formAddSurveillant',['as' => 'formAddSurveillant', 'uses' => 'SurveillantsController@index']);
-
+        Route::post('getSurveillant0', ['as'=>'getSurveillant0', 'uses'=>'SurveillantsController@show0']);
+        //end.
         
         Route::post('addAnneeAca', ['as'=>'addAnneeAca', 'uses'=>'Annee_academiquesController@store']);
         Route::post('addCreneaux', ['as'=>'addCreneaux', 'uses'=>'Creneaux_horairesController@store']);

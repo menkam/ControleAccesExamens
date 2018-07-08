@@ -17,7 +17,7 @@ class CreateEnseignantsTable extends Migration
             $table->increments('id');
             $table->string('matricule_enseignant');
             $table->integer('id_user');
-            $table->string('id_departement');
+            $table->integer('id_departement');
             $table->string('grade');
             $table->string('fonction');
             $table->timestamps();
