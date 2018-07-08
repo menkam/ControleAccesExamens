@@ -3,7 +3,6 @@
 
 Route::singularResourceParameters();
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,7 +58,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
         Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);       
         Route::post('getListEtudiantScolarise',['as' => 'getListEtudiantScolarise', 'uses' => 'EtudiantsController@show']);
-        Route::get('getInfoEtudiant',['as' => 'getInfoEtudiant', 'uses' => 'EtudiantsController@showInfo']);
+        Route::post('getInfoEtudiant',['as' => 'getInfoEtudiant', 'uses' => 'EtudiantsController@showInfo']);
         //end.
 
 

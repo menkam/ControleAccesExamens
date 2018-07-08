@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use App\CodeBarre;
 use App\Http\Controllers\Controller;
+use \Milon\Barcode\DNS2D;
+use DB;
 
 class EtudiantsController extends Controller
 {
@@ -140,10 +140,15 @@ class EtudiantsController extends Controller
                   annee_academiques.id = '$idAnnee';
             ");
 
-            $data = $student[0]->id."_".$student[0]->matricule_etudiant;
-            CodeBarre::generer($data,"H","4");
-
-          //return response()->json($student); 
+            $data = "".$student[0]->id."_".$student[0]->matricule_etudiant."";
+            //echo $data;
+            $d = new DNS2D();
+            $d->setStorPath(__DIR__."/cache/");
+            //echo DNS2D::getBarcodeHTML("4445645656", "QRCODE");
+            $codeBarre = $d->getBarcodeHTML($data, "QRCODE", 6, 6);
+            $student[0]->codeBarre = $codeBarre;
+            //echo $student[0]->codeBarre;
+            return response()->json($student); 
         }
     }
 
