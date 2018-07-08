@@ -188,6 +188,7 @@
         </div>
     </div>
 </div>
+@include('admin.infoEtudiant')
 @endsection
 
 @section('scripts')
@@ -219,7 +220,6 @@
         });
     });
 
-
     
 
     function getListeEtudiant() 
@@ -247,12 +247,63 @@
                         rows = rows + '<td>'+data[i].date_nais+'</td>';  
                         rows = rows + '<td>'+data[i].telephone+'</td>';              
                         rows = rows + '<td>'+data[i].sexe+'</td>';
-                        rows = rows + '<td><button class="btn btn-success">Afficher</button></td>';
+                        rows = rows + '<td><button type="button" onclick="showInfoEtudiant('+data[i].id_annee+','+data[i].id+');" class="btn btn-success" data-toggle="modal" data-target="#infoEtudiant">Afficher</button></td>';
                         rows = rows + '</tr>';
                         num++;
                     }
                 }else{
                     rows = rows + '<tr><td colspan="9" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
+                }
+                position.empty();
+                position.append(rows);
+            }
+        });    
+    }
+
+//showInfoEtudiant() 
+    function showInfoEtudiant(idAnnee,idUser) 
+    {
+        var rows = '';
+        var position = $("#infoStudent");
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: 'getInfoEtudiant',
+            data: {idAnnee:idAnnee, idUser:idUser},
+            success: function(data){
+                if(data.length>0){
+                    //for(var i= 0; i < data.length; i++) {
+                        //alert(data[i].libelle_annee);
+                    var info = data[0];
+
+                    rows = rows + '<div class="row">';
+                    rows = rows + '<div class="col-lg-12" style="text-align: center;">';
+                    rows = rows + 'IUT FOTSO VICTOR DE BANDJOUN<br>';
+                    rows = rows + '<!--University Institue of Technology - Bandjoun<br--><hr></div>';
+                    rows = rows + '</div>';
+                    rows = rows + '<div class="row">';
+                    rows = rows + '<div class="col-lg-4">';
+                    rows = rows + '<div class="row" style="text-align: center;">';
+                    rows = rows + '<div class="col-lg-12">Année Académique<br><b>'+info.libelle_annee+'</b></div>';
+                    rows = rows + '<div class="col-lg-12">';
+                    rows = rows + '<img src="images/'+info.photo+'" style="height: 120px; width: 120px" alt="avatar etudiant" >';
+                    rows = rows + '</div>';
+                    rows = rows + '<div class="col-lg-12">';
+                    rows = rows + '<img src="phpqrcode/temp/codeBarre.png" style="height: 120px; width: 120px" alt="code barre etudiant">';
+                    rows = rows + '</div>';
+                    rows = rows + '</div>';
+                    rows = rows + '</div>';
+                    rows = rows + '<div class="col-lg-8">';
+                    rows = rows + '<div class="col-lg-12"><h2>INFORMATION SUR L\'ETUDIANT</h2></div>';
+                    rows = rows + '<div class="col-lg-12">Matricule/Restration number : <b>'+info.matricule_etudiant+'</b><br><br></div>';
+                    rows = rows + '<div class="col-lg-12">Nom/Surname : <b>'+info.name+'</b><br><br></div>';
+                    rows = rows + '<div class="col-lg-12">Prénom/Given Name : <b>'+info.prenom+'</b><br><br></div>';
+                    rows = rows + '<div class="col-lg-12">Né(e) le/Bon on : <b>'+info.date_nais+'</b><br><br></div>';
+                    rows = rows + '<div class="col-lg-12">Parcours/Course : <b>'+info.libelle_classe+'</b><br><br></div>';
+                    rows = rows + '<div class="col-lg-12">Niveau/Level : <b>'+info.code_classe+'</b></div>';
+                    rows = rows + '</div>';
+                    rows = rows + '</div>';
+                   // }
                 }
                 position.empty();
                 position.append(rows);

@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.admin')
 @section('titre','Enregistrement d\'un enseignant en cours...')
 
 @section('stylesheets')
@@ -31,32 +31,35 @@
         </div>
 
         <div class="x_content">
-            <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnseignant">Ajouter un Enseignant</button></div>
-            <div class="row">
-                <div class="table-responsive col-md-12">
-                    <table class="table table-striped jambo_table bulk_action table-bordered">
-                        <thead>
-                        <tr class="headings">
-                            <th class="column-title">id</th>
-                            <th class="column-title">MATRICULE</th>
-                            <th class="column-title">NOM</th>
-                            <th class="column-title">PRENOM</th>
-                            <th class="column-title">EMAIL</th>
-                            <th class="column-title">Date DE NAIS.</th>
-                            <th class="column-title">TELEPHONE</th>
-                            <th class="column-title">FONCTION</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody id="lignes_activites"></tbody>
-                    </table>
+            <div id="listeEnseigant" style="display: none;">
+                <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnseignant">Ajouter un Enseignant</button></div>
+                <div class="row">
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped jambo_table bulk_action table-bordered">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title">id</th>
+                                <th class="column-title">MATRICULE</th>
+                                <th class="column-title">NOM</th>
+                                <th class="column-title">PRENOM</th>
+                                <th class="column-title">EMAIL</th>
+                                <th class="column-title">Date DE NAIS.</th>
+                                <th class="column-title">TELEPHONE</th>
+                                <th class="column-title">SEXE</th>
+                                <th class="column-title">FONCTION</th>
+                                <th class="column-title no-link last"><span class="nobr">Action</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="lignes_Enseignant"></tbody>
+                        </table>
+                    </div>                
                 </div>
-                
             </div>
+            <div id="chargement" style="display: none;text-align: center; padding-top: 10px"></div> 
         </div>
     </div>
 </div>
@@ -207,6 +210,52 @@
         
     });
 */
+
+chargement("chargement");
+
+setTimeout(function(){
+    getListeEnseignant();
+
+    $("#listeEnseigant").show('slideDown');
+    $("#chargement").hide();
+},2000);
+
+function getListeEnseignant() 
+{
+    var rows = '';
+    var num = 0;
+    var position = $("#lignes_Enseignant");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getEnseignant0',
+        data: {},
+        success: function(data){
+            if(data.length>0){
+                for(var i= 0; i < data.length; i++) {
+                    //alert(data[i].libelle_annee);
+                    rows = rows + '<tr>';
+                    rows = rows + '<td>'+(num+1)+'</td>';
+                    rows = rows + '<td>CM-UDS-00'+(num+1)+'</td>';
+                    rows = rows + '<td>'+data[i].name+'</td>';
+                    rows = rows + '<td>'+data[i].prenom+'</td>';
+                    rows = rows + '<td>'+data[i].email+'</td>';
+                    rows = rows + '<td>'+data[i].date_nais+'</td>';  
+                    rows = rows + '<td>'+data[i].telephone+'</td>';              
+                    rows = rows + '<td>'+data[i].sexe+'</td>';              
+                    rows = rows + '<td></td>';
+                    rows = rows + '<td><button class="btn btn-success">Afficher</button></td>';
+                    rows = rows + '</tr>';
+                    num++;
+                }
+            }else{
+                rows = rows + '<tr><td colspan="10" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
+            }
+            position.empty();
+            position.append(rows);
+        }
+    });    
+}
 </script>
 
 @endsection
