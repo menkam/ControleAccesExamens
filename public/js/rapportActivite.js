@@ -47,6 +47,47 @@ $(document).ready(function(){
     				idActivite,
                     table
     			);
+
+                $("#btnAfficherRapport").click(function(e){
+                    e.preventDefault();
+
+                    $("#resultatRapport").hide();
+                    chargement("chargement");
+                    var typeActiviteRapport = $("#typeActiviteRapport").val();
+                    var idMatiere = $("#idMatiere").val();
+                    var idActivite = filterInfo(typeActiviteRapport,"g");
+                    var typeActivite = filterInfo(typeActiviteRapport,"d");
+
+                    setTimeout(function(){
+                        //alert(idActivite+"  "+idMatiere+"  "+table);
+                        getListeEtudiant(
+                            "getListePresence",
+                            "pp",
+                            "rowEtudiantPresent",
+                            { idActivite:idActivite, idMatiere:idMatiere, table:table }
+                        );
+
+                        getListeEtudiant(
+                            "getListeTricheur",
+                            "pt",
+                            "rowEtudiantTricheur",
+                            { idActivite:idActivite, idMatiere:idMatiere, table:table }
+                        );
+                        
+                        getListeEtudiant(
+                            "getListAbsent",
+                            "pa",
+                            "rowEtudiantAbsent",
+                            {idActivite:idActivite, idMatiere:idMatiere, table:table}
+                        );
+
+                        //calcule();
+
+                        $("#resultatRapport").show('slideDown');
+                        $("#chargement").hide();
+                    },2000);
+
+                });
                 
             });    
 		});
@@ -68,46 +109,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#btnAfficherRapport").click(function(e){
-        e.preventDefault();
-
-        $("#resultatRapport").hide();
-        chargement("chargement");
-        var typeActiviteRapport = $("#typeActiviteRapport").val();
-        var idMatiere = $("#idMatiere").val();
-        var idActivite = filterInfo(typeActiviteRapport,"g");
-        var typeActivite = filterInfo(typeActiviteRapport,"d");
-
-        setTimeout(function(){
-            //alert(idActivite+"  "+idMatiere+"  "+table);
-            getListeEtudiant(
-                "getListePresence",
-                "pp",
-                "rowEtudiantPresent",
-                { idActivite:idActivite, idMatiere:idMatiere, table:table }
-            );
-
-            getListeEtudiant(
-                "getListeTricheur",
-                "pt",
-                "rowEtudiantTricheur",
-                { idActivite:idActivite, idMatiere:idMatiere, table:table }
-            );
-            
-            getListeEtudiant(
-                "getListAbsent",
-                "pa",
-                "rowEtudiantAbsent",
-                {idActivite:idActivite, idMatiere:idMatiere, table:table}
-            );
-
-            //calcule();
-
-            $("#resultatRapport").show('slideDown');
-            $("#chargement").hide();
-        },1000);
-
-    });
+    
 });
 
 function calcule(position,data,eff)

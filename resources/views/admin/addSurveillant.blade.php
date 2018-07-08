@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.admin')
 @section('titre','Enregistrement d\'un enseignant en cours...')
 
 @section('stylesheets')

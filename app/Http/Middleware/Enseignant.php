@@ -17,9 +17,9 @@ class Enseignant
     {
         $user = $request->user();
 
-        if($user && $user->role == 'enseignant'){
-            return $next($request);
-        }
+        if($user)
+            if($user->role == 'enseignant' or $user->role == 'admin')
+                return $next($request);
         
         return redirect()->route('home');
     }

@@ -154,12 +154,12 @@ function getLibelle($id){
         },
         success: function(data){
             if(data.length > 0){
-                $('#objectifmsg').html("<hr><h3>"+data[0].objet+"</h3>");
-                $('#mainMsg').html("<hr><p>"+data[0].libelle+"</p>");
-                var rows ='<hr><strong>Jon Doe</strong>';
-                rows +='<span>(jon.doe@gmail.com)</span> to';
-                rows +='<strong>me</strong>';
-                rows +='<a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>';
+                $('#objectifmsg').html("<hr><h2><u>Objet :</u> " +data[0].objet+"</h2>");
+                $('#mainMsg').html("<hr><p><h2><u>Message :</u></h2>"+data[0].libelle+"</p>");
+                //var rows ='<hr><strong>Jon Doe</strong>';
+                //rows +='<span>(jon.doe@gmail.com)</span> to';
+                //rows +='<strong>me</strong>';
+                //rows +='<a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>';
                 $('#infoSender').html(rows);
                 var rows2 ='<button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>';
                 rows2 +='<button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>';

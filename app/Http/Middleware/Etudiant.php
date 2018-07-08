@@ -17,7 +17,7 @@ class Etudiant
     {
         $user = $request->user();
 
-        if($user && $user->role == 'etudiant'){
+        if($user && ($user->role == 'etudiant' || $user->role == 'enseignant' || $user->role == 'admin')){
             return $next($request);
         }
         

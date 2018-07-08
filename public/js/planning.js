@@ -25,6 +25,22 @@ $(document).ready(function(){
     				idClassePlanning,
     				typeActivitePlanning
     			);
+
+                $("#btnAfficherPlanning").click(function(e){
+                    e.preventDefault();
+
+                    $("#resultatPlanning").hide();
+                    chargement("chargement");
+                    var idActivite = $("#idActiviterPlanning").val();
+                    var typeActivite = $("#typeActivitePlanning").val();
+
+                    setTimeout(function(){
+                        getMatierePlanning(typeActivite,idActivite);
+                        $("#resultatPlanning").show();
+                        $("#chargement").hide();
+                    },2000);
+                });
+
             });    
 		});
 	});
@@ -44,21 +60,6 @@ $(document).ready(function(){
             tostAvertissement("il faut d'abord choisir une annee !!!");
         }
     });
-
-	$("#btnAfficherPlanning").click(function(e){
-        e.preventDefault();
-
-        $("#resultatPlanning").hide();
-        chargement("chargement");
-		var idActivite = $("#idActiviterPlanning").val();
-        var typeActivite = $("#typeActivitePlanning").val();
-
-		setTimeout(function(){
-            getMatierePlanning(typeActivite,idActivite);
-            $("#resultatPlanning").show();
-            $("#chargement").hide();
-        },1000);
-	});
 
 });
 

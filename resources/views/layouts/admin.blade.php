@@ -1,12 +1,6 @@
-@extends('layouts.global')
 @if(\Auth::user()->hasRole('admin'))
+@extends('layouts.form')
 
-@section('accueil')
-<a href="{{ route('admin.index') }}" class="site_title"><i class="fa"><small>PFE</small></i> <span>LIR-2017</span></a>
-@endsection
-
-@section('sidebar_menu')
-@endsection
 @else
 @section('page_content')
 <div class="row">

@@ -39,22 +39,9 @@ Route::group(['middleware' => ['guest']], function() {
 
 Auth::routes();
 
-Route::group(['middleware' => ['admin']], function(){
-});
-
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::group(['middleware' => ['admin']], function(){
-        //route etudiant ici
-
-        
-    });
-    Route::group(['middleware' => ['admin']], function(){
-        //route admin ici
-        
-    });
-
-    Route::group(['middleware' => ['admin']], function(){
+    //Route::group(['middleware' => ['admin']], function(){
         //route enseignant ici
         Route::get('database',['as'=>'dataBase', 'uses'=>'Users\AdminController@pageMenu']);
         Route::resource('admin', 'Users\AdminController');
@@ -69,7 +56,8 @@ Route::group(['middleware' => ['auth']], function(){
 
         //Route pour les Etudiants
         Route::get('formAddEtudiant',['as' => 'formAddEtudiant', 'uses' => 'EtudiantsController@indexForm']);
-        Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);
+        Route::post('AddEtudiant',['as' => 'AddEtudiant', 'uses' => 'EtudiantsController@store']);       
+        Route::post('getListEtudiantScolarise',['as' => 'getListEtudiantScolarise', 'uses' => 'EtudiantsController@show']);
         //end.
 
 
@@ -78,7 +66,7 @@ Route::group(['middleware' => ['auth']], function(){
         
         Route::post('addAnneeAca', ['as'=>'addAnneeAca', 'uses'=>'Annee_academiquesController@store']);
         Route::post('addCreneaux', ['as'=>'addCreneaux', 'uses'=>'Creneaux_horairesController@store']);
-    });
+    //});
 
     //Route::get('/home', 'HomeController@index');
     Route::get('/home',['as'=>'home','uses'=>'HomeController@index']);

@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.admin')
 @section('titre','Enregistrement d\'un enseignant en cours...')
 
 @section('stylesheets')
@@ -10,41 +10,107 @@
 @section('contenu')
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
-        <div class="x_title">
-            <h2>LISTE DES ETUDIANTS</h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-
         <div class="x_content">
+            <!--ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul-->
+            <form class="form-group" method="POST" action="#affficher_activiter">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
+                                <label class="control-label" for="idAnneeAcad">Annee :</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
+                                <select id="idAnneeAcad" class="form-control date" name="idAnneeAcad" required=""></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
+                                <label class="control-label" for="idClasseEtud">Classe :</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
+                                <select id="idClasseEtud" class="form-control" name="idClasseEtud" required=""></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
+                                <label class="control-label" for="btnAfficherListeEtud"></label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
+                                <button id="btnAfficherListeEtud" type="submit" class="form-control btn btn-primary">
+                                    AFFICHER <small>Etudiants</small> </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-5">
+                                <label class="control-label" for="ras"></label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7">
+                                <button type="reset" class="form-control btn btn-warning">
+                                    EFFACER</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr>
+        </div>
+        
+
+        <div  id="resultat" class="x_panel" style="display: none;">
+            <div class="x_title">
+                <h2>LISTE DES ETUDIANTS</h2>
+                <!--ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul-->
+                <div class="clearfix"></div>
+            </div>
             <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEtudiant">Ajouter un Etudiant</button></div>
             <div class="row">
                 <div class="table-responsive col-md-12">
                     <table class="table table-striped jambo_table bulk_action table-bordered">
                         <thead>
                         <tr class="headings">
-                            <th class="column-title">id</th>
+                            <th class="column-title">#</th>
                             <th class="column-title">MATRICULE</th>
                             <th class="column-title">NOM</th>
                             <th class="column-title">PRENOM</th>
                             <th class="column-title">EMAIL</th>
                             <th class="column-title">Date DE NAIS.</th>
                             <th class="column-title">TELEPHONE</th>
-                            <th class="column-title">ClASSE ACTUELLE</th>
+                            <th class="column-title">SEXE</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -52,11 +118,12 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody id="lignes_activites"></tbody>
+                        <tbody id="lignes_etudiant"></tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <div id="chargement" style="display: none;text-align: center; padding-top: 10px"></div> 
     </div>
 </div>
 
@@ -126,8 +193,73 @@
 @section('scripts')
 
 <script type="text/javascript">
+    $(document).ready(function(){
+
+        getOptionAnnee("idAnneeAcad");
+
+        $("#idAnneeAcad").change(function(){
+            getOptionClasse("idClasseEtud");
+
+            $("#btnAfficherListeEtud").click(function(e){
+                e.preventDefault();
+
+                $("#resultat").hide();
+                chargement("chargement");
+
+                setTimeout(function(){
+                    //alert(idActivite+"  "+idMatiere+"  "+table);
+                    getListeEtudiant();
+
+                    $("#resultat").show('slideDown');
+                    $("#chargement").hide();
+                },2000);
+
+            });
+
+        });
+    });
+
+
     
-    
+
+    function getListeEtudiant() 
+    {
+        var rows = '';
+        var num = 0;
+        var position = $("#lignes_etudiant");
+        var idAnnee = $("#idAnneeAcad").val();
+        var idClasse = $("#idClasseEtud").val();
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: 'getListEtudiantScolarise',
+            data: {idAnnee:idAnnee, idClasse:idClasse},
+            success: function(data){
+                if(data.length>0){
+                    for(var i= 0; i < data.length; i++) {
+                        //alert(data[i].libelle_annee);
+                        rows = rows + '<tr>';
+                        rows = rows + '<td>'+(num+1)+'</td>';
+                        rows = rows + '<td>'+data[i].matricule_etudiant+'</td>';
+                        rows = rows + '<td>'+data[i].name+'</td>';
+                        rows = rows + '<td>'+data[i].prenom+'</td>';
+                        rows = rows + '<td>'+data[i].email+'</td>';
+                        rows = rows + '<td>'+data[i].date_nais+'</td>';  
+                        rows = rows + '<td>'+data[i].telephone+'</td>';              
+                        rows = rows + '<td>'+data[i].sexe+'</td>';
+                        rows = rows + '<td><button class="btn btn-success">Afficher</button></td>';
+                        rows = rows + '</tr>';
+                        num++;
+                    }
+                }else{
+                    rows = rows + '<tr><td colspan="9" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
+                }
+                position.empty();
+                position.append(rows);
+            }
+        });    
+    }
+
 </script>
 
 @endsection
