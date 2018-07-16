@@ -47,6 +47,9 @@
   <li style="padding-top: 15px">
     <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
   </li>
+  <li style="padding-top: 15px; margin-right: 15px">
+    <button id="getApk" class="btn btn-sm btn-default btn-block" type="button"><a href="apk/app-debug.apk">Get APK</a></button>
+  </li>
 </ul>
 <script type="text/javascript">
  // $(document).ready(function(){

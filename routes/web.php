@@ -14,6 +14,7 @@ Route::singularResourceParameters();
 |
 */
 
+
 /**
  * routes pour l'application android
 */
@@ -27,6 +28,7 @@ Route::get('androidScanCodeBare', ['as'=>'androidScanCodeBare', 'uses'=>'Android
 Route::get('androidAddStudent', ['as'=>'androidAddStudent', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantEnSalle']);
 Route::get('androidStudentFinish', ['as'=>'androidStudentFinish', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantAyantTerminer']);
 Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantsExclus']);
+//Route::get('testApi', ['as'=>'testApi', 'uses'=>'AndroidApi\Main@test']);
 
 
 Route::group(['middleware' => ['guest']], function() {

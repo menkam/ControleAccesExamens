@@ -9,12 +9,12 @@ use App\Fonction;
 
 class GetListEtudiantController extends Controller
 {
-    
+    public $date = "18-06-2018";//Fonction::getDate();
+    public $heure = "08H";//Fonction::getTime("h");
 
     public function getListEtudiants(Request $request)
     {
-      $date = Fonction::getDate();
-    $heure = Fonction::getTime("h");
+      
         //if (!empty($request->idActivite)) {
             $idActivite = 1;//$request->idActivite;
             $statut = $request->statut;
@@ -45,9 +45,9 @@ class GetListEtudiantController extends Controller
                   examens.id_activite = activites.id AND
                   creneaux_horaires.id = examens.id_creneau AND
                   activites.id = '$idActivite' AND
-                  examens.date_examen = '$date' AND
+                  examens.date_examen = '$this->date' AND
                   etud_compose_examens.statut = '$statut' AND
-                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
+                  creneaux_horaires.libelle_creneaux LIKE '%$this->heure%'
             ");
             $etudiants = array();
             foreach ($listEtudiant as $key => $value) {
@@ -72,8 +72,8 @@ class GetListEtudiantController extends Controller
     }
 
     public function getListAllEtudiants(Request $request){
-    $date = Fonction::getDate();
-    $heure = Fonction::getTime("h");
+    //$date = Fonction::getDate();
+    //$heure = Fonction::getTime("h");
      $idActivite = 1;//$request->idActivite;
      $listEtudiant = DB::select("
         SELECT
@@ -102,8 +102,8 @@ class GetListEtudiantController extends Controller
           examens.id_activite = activites.id AND
           creneaux_horaires.id = examens.id_creneau AND
           activites.id = '$idActivite' AND 
-          examens.date_examen = '$date' AND 
-          creneaux_horaires.libelle_creneaux LIKE '%$heure%'
+          examens.date_examen = '$this->date' AND 
+          creneaux_horaires.libelle_creneaux LIKE '%$this->heure%'
      ");
     $etudiants = array();
     foreach ($listEtudiant as $key => $value) {
