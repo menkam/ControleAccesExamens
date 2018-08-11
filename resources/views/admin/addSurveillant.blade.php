@@ -163,7 +163,7 @@ function getListeEnseignant()
                     num++;
                 }
             }else{
-                rows = rows + '<tr><td colspan="9" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
+                rows = rows + '<tr><td colspan="10" style="text-aling: center;">Pas d\'Etudiant</td></tr>';
             }
             position.empty();
             position.append(rows);
