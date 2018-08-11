@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fonction extends Model
+class Fonction
 {
     public static function getTime($format){
         $heure = getDate();
@@ -29,7 +29,8 @@ class Fonction extends Model
                 $currentTime = (($heure["hours"]+1)."H");
             }
         }
-        return $currentTime;
+        //return $currentTime;
+        return "08H";
     }
 
     public static  function getDate(){
@@ -47,6 +48,7 @@ class Fonction extends Model
         if((int)$date["mon"] >= 10 && (int)$date["mday"] >= 10){
             $currentDate = $date["year"]."-".$date["mon"]."-".$date["mday"];
         }
-        return $currentDate;
+        //return $currentDate;
+        return "18-07-2018";
     }
 }

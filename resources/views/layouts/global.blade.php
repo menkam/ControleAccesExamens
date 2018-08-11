@@ -108,9 +108,9 @@
             }
         });
         // Variable de reccupération de la date et l'heure courande du serveur
-        //var dateCourante = "2018-06-07";
+        var dateCourante = "2018-07-18";
 
-        var dateCourante = "<?php
+        var dateCourante0 = "<?php
             $date = getDate();
             if((int)$date["mon"] < 10 && (int)$date["mday"] < 10){
                 echo $date["year"]."-0".$date["mon"]."-0".$date["mday"];
@@ -141,9 +141,9 @@
             }
             //echo $heure["hours"]."h".$heure["minutes"].":".$heure["seconds"];
         ?>';
-        //var heureCourante = '08h';
+        var heureCourante = '08H';
         
-        var heureCourante = '<?php
+        var heureCourante0 = '<?php
             $heure = getDate();
             if(($heure["hours"]+1) < 10){
                 echo "0".($heure["hours"]+1)."H";

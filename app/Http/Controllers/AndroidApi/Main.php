@@ -11,29 +11,9 @@ use App\Fonction;
 class Main extends Controller
 {
 	public function test(Request $request){
-		$date = "18-06-2018";
-		$heure = "08H";
-		//$codebare = "15_CM-UDS-16IUT0008"; //a terminer
-		//$codebare = "14_CM-UDS-16IUT0007"; //en salle
-		//$codebare = "16_CM-UDS-16IUT0009"; //exclus
-		//$codebare = "12_CM-UDS-16IUT0005"; //déjà identifier
-		//$codebare = "18_CM-UDS-16IUT0011"; //pas inscrit en la matiere
+		$date = Fonction::getDate();
+      	$heure = Fonction::getTime("H");
 		$newStatut = "1";
-
-		
-		
-		/*$objet->infos();
-		$objet->VerifierInscritMatier();
-		$objet->verifierEnSalle();
-		$objet->verifierStatut();
-		//$objet->ajouterSurListePresence();
-		$objet->setNewStatut($newStatut);
-		$objet->modifierStatut();
-		$objet->setAllInfos2("statut","5");
-		dump($objet->allInfos());
-
-		$objet->setIdSurveillant("28");
-		$objet->sentMessage();*/
 
 		if(isset($request->codeBare) && isset($request->numTab) && isset($request->id))
 		{
@@ -52,18 +32,18 @@ class Main extends Controller
 						if(!$objet->verifierEnSalle()){
 							if($objet->getIdExamen()){
 								$objet->ajouterSurListePresence();
-								$message = "Accès autoriser";
+								$message = "Accès autorisé";
 								$statut = 1;
 							}
 						}else{
 							$status = $objet->verifierStatut();
 							if($status == 0){
-								$message = "déjà identifier";//fin
+								$message = "déjà identifié";//fin
 								$statut = 2;
 							}else{
 								$objet->setIdSurveillant($idSurveillant);
 								$objet->sentMessage();
-								$message = "Accès refuser (attention!!!)";//fin
+								$message = "Accès refusé (attention!!!)";//fin
 								$statut = 0;
 							}
 						}
@@ -72,7 +52,7 @@ class Main extends Controller
 						$statut = 0;
 					}
 				}else{
-					$message = "Accès refuser";//fin
+					$message = "Accès refusé";//fin
 					$statut = 0;
 				}
 				if($objet->allInfos() != null){
@@ -101,7 +81,7 @@ class Main extends Controller
 							if($status == 0){
 								$objet->setNewStatut("1");
 								$objet->modifierStatut();
-								$message = "cette etudiant a terminé";//fin	
+								$message = "cet etudiant a terminé";//fin	
 							    $statut = 1;
 							}else if($status == 2){
 								$message = "attention!!! vous ête exclus de la classe";//fin	
@@ -109,7 +89,7 @@ class Main extends Controller
 								$objet->setIdSurveillant($idSurveillant);
 								$objet->sentMessage();
 							}else{
-								$message = "cette etudiant a déjà terminer";//fin	
+								$message = "cet etudiant a déjà terminer";//fin	
 							    $statut = 1;
 							}
 						}else{
@@ -153,7 +133,7 @@ class Main extends Controller
 							if($status == 0){
 								$objet->setNewStatut("2");
 								$objet->modifierStatut();
-								$message = "cette etudiant est exclus de la classe";//fin	
+								$message = "cet etudiant est exclus de la classe";//fin	
 							    $statut = 1;
 							}else if($status == 1){
 								$message = "attention!!! cette etudiant a déjà terminer";//fin	

@@ -209,7 +209,7 @@ class Etudiants
 		//dump ($sol);
 	}
 
-	public function sentMessage()
+	public function sentMessage($message)
 	{
 		$from = $this->idSurveillant();
 		$name = $this->allInfos[0]->name;
@@ -217,7 +217,7 @@ class Etudiants
 		$matricule = $this->allInfos[0]->matricule_etudiant;
 		$date = $this->date;
 		$heure = $this->heure;
-		$msg = "l'etudiant : <b>$name $prenom</b> <br>Matricule : <b>$matricule</b> <br>a essayé de fauter bizarement <br>le <b>$date</b> à <b>$heure</b>";
+		$msg = "l'etudiant : <b>$name $prenom</b> <br>Matricule : <b>$matricule</b> <br>a essayé de frauder <br>le <b>$date</b> à <b>$heure</b><br><b>Motif</b> : <i>$message</i>";
 		$mail = Mail::create([
 			'id_user_from' => $from, 
 			'id_user_to' => '1',

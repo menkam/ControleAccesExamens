@@ -1,5 +1,5 @@
 @extends('layouts.form')
-@section('titre','Gestion des activités')
+@section('titre','update datas bases')
 
 @section('stylesheets')
     <!-- bootstrap-progressbar -->
@@ -34,15 +34,15 @@
                     <div class="bs-docs-section">
                         <div class="bs-glyphicons">
                             <ul class="bs-glyphicons-list">
-                                <li data-toggle="modal" data-target="#create-activite"x><a href="#"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
+                                <!--li data-toggle="modal" data-target="#create-activite"x><a href="#"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
                                         <span class="glyphicon-class">Activités</span></a>
-                                </li>
+                                </li-->
 
                                 <li  data-toggle="modal" data-target="#create-annee_academique"><a href="#"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Années Académiques</span></a>
                                 </li>
 
-                                <li data-toggle="modal" data-target="#create-classe"><a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                                <li data-toggle="modal" data-target="#create-classes"><a href="#"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Classes</span></a>
                                 </li>
 
@@ -62,17 +62,17 @@
                                         <span class="glyphicon-class">Départements</span></a>
                                 </li>
 
-                                <li data-toggle="modal" data-target="#create-tp"enseignant><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <!--li data-toggle="modal" data-target="#create-tp"enseignant><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Enseignants</span></a>
-                                </li>
+                                </li-->
 
-                                <li  data-toggle="modal" data-target="#create-etudiant"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <!--li  data-toggle="modal" data-target="#create-etudiant"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Etudiants</span></a>
-                                </li>
+                                </li-->
 
-                                <li data-toggle="modal" data-target="#create-examen"><a href="#"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                                <!--li data-toggle="modal" data-target="#create-examen"><a href="#"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Examens</span></a>
-                                </li>
+                                </li-->
 
                                 <li data-toggle="modal" data-target="#create-matiere"><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Matières</span></a>
@@ -94,13 +94,13 @@
                                         <span class="glyphicon-class">Semestres</span></a>
                                 </li>
 
-                                <li data-toggle="modal" data-target="#create-suveillant"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <!--li data-toggle="modal" data-target="#create-suveillant"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Surveillant</span></a>
-                                </li>
+                                </li-->
 
-                                <li id="tp" data-toggle="modal" data-target="#create-tp"><a href="#"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                                <!--li id="tp" data-toggle="modal" data-target="#create-tp"><a href="#"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
                                         <span class="glyphicon-class">Tp</span></a>
-                                </li>
+                                </li-->
                             </ul>
                         </div>
                     </div>
@@ -108,31 +108,19 @@
             </div>
             <!-- Create Item Modal -->
             @include('admin.database.tp')
-
             @include('admin.database.cursus')
-
             @include('admin.database.creneaux_horaires')
-
             @include('admin.database.annee_academique')
-
             @include('admin.database.cours')
-
+            @include('admin.database.classes')
             @include('admin.database.activite')
-
             @include('admin.database.departement')
-
             @include('admin.database.matiere')
-
             @include('admin.database.niveau_scolaire')
-
             @include('admin.database.roles')
-
             @include('admin.database.salle_classe')
-
             @include('admin.database.semestre')
-
             @include('admin.database.suveillant')
-
             @include('admin.database.examen')
         </div>
     </div>

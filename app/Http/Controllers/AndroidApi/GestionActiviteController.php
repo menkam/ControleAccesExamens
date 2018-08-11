@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Etud_compose_examen;
 use App\Http\Controllers\AndroidApi\Etudiants;
+use App\Fonction;
 
 class GestionActiviteController extends Controller
 {
-    
-
+  
     public function ajouterEtudiantEnSalle(Request $request)
     {
-      $date = "18-06-2018";//Fonction::getDate();
-      $heure = "08H";//Fonction::getTime("h");
+      $date = Fonction::getDate();
+      $heure = Fonction::getTime("H");
       $annee = '2017-2018';
 
       if(isset($request->codeBare) && isset($request->numTab) && isset($request->idUser))
@@ -35,27 +35,27 @@ class GestionActiviteController extends Controller
               if(!$objet->verifierEnSalle()){
                 if($objet->getIdExamen()){
                   $objet->ajouterSurListePresence();
-                  $message = "Accès autoriser";
+                  $message = "Accès autorisé";
                   $statut = 1;
                 }
               }else{
                 $status = $objet->verifierStatut();
                 if($status == 0){
-                  $message = "déjà identifier";//fin
+                  $message = "Cet étudiant a déjà été identifié et est autorisé d’accéder en salle";//fin
                   $statut = 2;
                 }else{
                   $objet->setIdSurveillant($idSurveillant);
-                  $objet->sentMessage();
-                  $message = "Accès refuser (attention!!!)";//fin
+                  $objet->sentMessage("Il a terminé l’activité et essayé de s’introduire de nouveau en salle");
+                  $message = "Accès refusé (attention!!!) un message a été envoyé au manager à cette occasion";//fin
                   $statut = 0;
                 }
               }
             }else{
-              $message = "pas inscrit en la matière";//fin
+              $message = "Cet étudiant n’est pas inscrit en la matière";//fin
               $statut = 0;
             }
           }else{
-            $message = "Accès refuser";//fin
+            $message = "Les informations de cette personne n’ont pas été trouvées dans la base de données";//fin
             $statut = 0;
           }
           if($objet->allInfos() != null){
@@ -84,30 +84,30 @@ class GestionActiviteController extends Controller
                 if($status == 0){
                   $objet->setNewStatut("1");
                   $objet->modifierStatut();
-                  $message = "cette etudiant a terminé";//fin 
+                  $message = "cet étudiant a terminé";//fin 
                     $statut = 1;
                 }else if($status == 2){
-                  $message = "attention!!! vous ête exclus de la classe";//fin  
-                  $statut = 0;
+                  $message = "Cet étudiant à déjà été exclus de cette activité";//fin  
+                  $statut = 2;
                   $objet->setIdSurveillant($idSurveillant);
-                  $objet->sentMessage();
+                  $objet->sentMessage("exclus de la salle et se présente pour comme ayant terminé");
                 }else{
-                  $message = "cette etudiant a déjà terminer";//fin 
-                    $statut = 1;
+                  $message = "cet étudiant a déjà terminer";//fin 
+                  $statut = 1;
                 }
               }else{
-                $message = "attention!!!";//fin 
+                $message = "attention!!! étudiant inconnu";//fin 
                 $statut = 0;
                 $objet->setIdSurveillant($idSurveillant);
-                $objet->sentMessage();
+                $objet->sentMessage("il ne sait pas fait identifier au début de l’activité mais s'identifie comme ayant terminé");
               } 
             }else{
-              $message = "attention!!!";//fin 
+              $message = "attention!!! étudiant inconnu";//fin 
               $statut = 0;
             }       
                     
           }else{
-            $message = "pas de cette classe";//fin
+            $message = "cet étudiant n'est pas de cette classe";//fin
             $statut = 0;
           }
           if($objet->allInfos() != null){
@@ -136,30 +136,34 @@ class GestionActiviteController extends Controller
                 if($status == 0){
                   $objet->setNewStatut("2");
                   $objet->modifierStatut();
-                  $message = "cette etudiant est exclus de la classe";//fin 
+                  $objet->setIdSurveillant($idSurveillant);
+                  $objet->sentMessage("Pris en flagrant délire avec document à l’appuis");
+                  $message = "cet étudiant vient de se faire exclus de la classe";//fin 
                     $statut = 1;
                 }else if($status == 1){
                   $message = "attention!!! cette etudiant a déjà terminer";//fin  
                   $statut = 1;
                   $objet->setIdSurveillant($idSurveillant);
-                  $objet->sentMessage();
-                }else{
+                  $objet->sentMessage("Cet étudiant a déjà terminé l’activité et pris en flagrant délire");
+                }else{                  
+                  $objet->setIdSurveillant($idSurveillant);
+                  $objet->sentMessage("Cet étudiant a déjà été exclus de l’activité et pris en flagrant délire");
                   $message = "déjà exclus de la salle";//fin  
                   $statut = 1;
                 }
               }else{
-                $message = "attention!!!";//fin 
+                $message = "attention!!! cet étudiant n'est pas de la classe";//fin 
                 $statut = 0;
                 $objet->setIdSurveillant($idSurveillant);
-                $objet->sentMessage();
+                $objet->sentMessage("Cet étudiant n’est pas de la salle et pris en flagrant délire dans la fraude");
               } 
             }else{
-              $message = "attention!!!";//fin 
+              $message = "attention!!! cet étudiant n'est autorisé d'être en salle";//fin
               $statut = 0;
             }       
                     
           }else{
-            $message = "pas de cette classe";//fin
+            $message = "cet étudiant n'est pas de cette classe";//fin
             $statut = 0;
           }
           if($objet->allInfos() != null){
@@ -174,7 +178,18 @@ class GestionActiviteController extends Controller
           }
           //dump($etudiant);          
         }
-        if(!empty($etudiant)){
+        if(!empty($etudiant[0]->photo) && 
+          !empty($etudiant[0]->id) && 
+          !empty($etudiant[0]->matricule_etudiant &&
+          !empty($etudiant[0]->name) &&
+          !empty($etudiant[0]->prenom) &&
+          !empty($etudiant[0]->date_nais) &&
+          !empty($etudiant[0]->regime) &&
+          !empty($etudiant[0]->telephone) &&
+          !empty($etudiant[0]->statut) &&
+          !empty($etudiant[0]->msg) &&
+          !empty($etudiant[0]->libelle_matiere)
+          )){
 
           $photo = $etudiant[0]->photo;
           $id_etudiant = $etudiant[0]->id;
@@ -187,126 +202,32 @@ class GestionActiviteController extends Controller
           $statut=$etudiant[0]->statut;
           $msg=$etudiant[0]->msg;
           $libelle_matiere=$etudiant[0]->libelle_matiere;
+        
+          return Response()->json(compact(
+              'statut',
+              'msg',
+              'matricule_etudiant',
+              'name',
+              'prenom',
+              'regime',
+              'telephone',
+              'date_nais',
+              'id_etudiant',
+              'libelle_matiere',
+              'photo'
+          ));
+        }else{
+          //echo "ras";
+          //$statut=0;
+          $msg=$message;
+          
+          return Response()->json(compact(
+              'statut',
+              'msg'
+          ));
+          
         }
-        return Response()->json(compact(
-            'statut',
-            'msg',
-            'matricule_etudiant',
-            'name',
-            'prenom',
-            'regime',
-            'telephone',
-            'date_nais',
-            'id_etudiant',
-            'libelle_matiere',
-            'photo'
-        ));
-
         //return json_encode($etudiant);
       }      
     }
-
-    /*public function ajouterEtudiantAyantTerminer(Request $request){
-      public $date = "18-06-2018";//Fonction::getDate();
-    public $heure = "08H";//Fonction::getTime("h");
-    public $annee = '2017-2018';
-    public function ajouterEtudiantEnSalle(Request $request)
-    {
-        //$codeBare = '12838_CM-UDS-14IUT0004';        
-        $codeBare = $request->codeBare;
-        $idActivite = 1;
-        $etudiant = array();
-        $etudiant = DB::select("
-            SELECT 
-              etudiants.matricule_etudiant, 
-              users.name, 
-              users.prenom, 
-              users.photo, 
-              etud_ins_mats.regime, 
-              matieres.libelle_matiere, 
-              creneaux_horaires.libelle_creneaux, 
-              etud_compose_examens.id, 
-              users.sexe, 
-              users.telephone, 
-              users.email, 
-              annee_academiques.libelle_annee, 
-              examens.id as id_examen, 
-              etud_scolariser_clas.id as id_etudiant
-            FROM 
-              public.users, 
-              public.etudiants, 
-              public.etud_scolariser_clas, 
-              public.etud_ins_mats, 
-              public.matieres, 
-              public.examens, 
-              public.etud_compose_examens, 
-              public.activites, 
-              public.creneaux_horaires, 
-              public.annee_academiques
-            WHERE 
-              etudiants.id_user = users.id AND
-              etud_scolariser_clas.id_etudiant = etudiants.id AND
-              etud_ins_mats.id_scolariser = etud_scolariser_clas.id AND
-              matieres.id = etud_ins_mats.id_matiere AND
-              examens.id_activite = activites.id AND
-              etud_compose_examens.id_etud_ins_mat = etud_ins_mats.id AND
-              etud_compose_examens.id_examen = examens.id AND
-              creneaux_horaires.id = examens.id_creneau AND
-              annee_academiques.id = etud_scolariser_clas.id_annee AND
-              users.info_codebar = '$codeBare' AND
-              activites.id = '$idActivite' AND
-              examens.date_examen = '$this->date' AND
-              creneaux_horaires.libelle_creneaux LIKE '%$this->heure%' AND
-              annee_academiques.libelle_annee = '$this->annee'
-        ");
-
-        if(!empty($etudiant)){
-            $photo = '';
-            $path = "images/".$etudiant[0]->photo;
-            if(file_exists($path)){  $photo = base64_encode(file_get_contents($path)); }
-
-            $etudiant[0]->photo = $photo;
-            $id_etudiant = $etudiant[0]->id_etudiant;
-            $id_examen = $etudiant[0]->id_examen;
-            $exite = DB::select(" select count(id) from etud_compose_examens WHERE  id_examen = '".$id_examen."' AND id_etud_ins_mat = '".$id_etudiant."' AND statut = '0'");
-            $matricule_etudiant=$etudiant[0]->matricule_etudiant;
-            $name=$etudiant[0]->name;
-            $prenom=$etudiant[0]->prenom;
-            $libelle_matiere=$etudiant[0]->libelle_matiere;
-            $regime=$etudiant[0]->regime;
-            $telephone=$etudiant[0]->telephone;
-            $libelle_creneaux=$etudiant[0]->libelle_creneaux;
-            $libelle_annee=$etudiant[0]->libelle_annee;
-            $id_etudiant=$etudiant[0]->id_etudiant;
-            $id_examen=$etudiant[0]->id_examen;
-            //si l'etudiant à déjà ete identifier
-            if($exite[0]->count == 0){
-                //Ajout de l'Etudiant identifier dans la table Etud_realise-activite
-                Etud_compose_examen::create(['id_examen' => $id_examen, 'id_etud_ins_mat' => $id_etudiant]);
-                $statut = 1;
-            }
-            else $statut = 2;
-        }else $statut = 0;
-        //dd (compact('etudiant'));
-        return Response()->json(compact(
-            'statut',
-            'matricule_etudiant',
-            'name',
-            'prenom',
-            'libelle_matiere',
-            'regime',
-            'telephone',
-            'libelle_annee',
-            'id_etudiant',
-            'id_activite',
-            'libelle_creneaux',
-            'photo'
-        ));
-
-        //return json_encode($etudiant);
-    }
-
-    public function ajouterEtudiantsExclus(Request $request){
-
-    }*/
 }

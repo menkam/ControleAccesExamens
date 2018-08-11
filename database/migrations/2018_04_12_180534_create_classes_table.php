@@ -15,8 +15,7 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cursus');
-            $table->integer('id_departement');
+            $table->integer('id_option');
             $table->integer('id_niveau');
             $table->string('code_classe');
             $table->text('libelle_classe');
