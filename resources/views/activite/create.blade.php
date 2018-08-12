@@ -172,11 +172,11 @@
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group" id="dateSaleDispos"></div>
-                    <div class="form-group">
+                    <!--div class="form-group">
                         <label class="control-label" for="dureesaledispo">Durée:</label>
                         <select name="dureesaledispo" id="dureesaledispo" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
-                    </div>
+                    </div-->
                     <div class="form-group">
                         <label class="control-label" for="id_creneauSalleDispo">Creneau horaire:</label>
                         <select name="id_creneauSalleDispo" id="id_creneauSalleDispo" class="form-control" data-error="Choisir un créneau horaire." required ></select>
