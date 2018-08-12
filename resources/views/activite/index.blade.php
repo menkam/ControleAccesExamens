@@ -30,7 +30,7 @@
             </div>
 
             <div class="x_content">
-                <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-item">Ajouter une Activité</button></div>
+                <div class="pull-right"><button type="button" id="addActivity" class="btn btn-success" data-toggle="modal" data-target="#create-item">Ajouter une Activité</button></div>
                 <div class="row">
                     <div class="table-responsive col-md-12">
                         <table class="table table-striped jambo_table bulk_action table-bordered">
@@ -43,6 +43,7 @@
                                 <th class="column-title">Année Acad</th>
                                 <th class="column-title">Semestre</th>
                                 <th class="column-title">Niveau</th>
+                                <th class="column-title">Durée</th>
                                 <th class="column-title">Type</th>
                                 <th class="column-title">Date de début</th>
                                 <th class="column-title">Date de fin</th>
@@ -183,6 +184,7 @@
         var url = "<?php echo route('activite.index');?>";
         var idUser = "<?php echo Auth::user()->id; ?>";
         var idActiviteCourante;
+        var dureeActiviteCourante;
         var typeActiviteCourante;
         var DateDebutActiviteCourante;
         var DateFinActiviteCourante;

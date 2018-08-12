@@ -1,37 +1,41 @@
-maxDateAnnee = "2018-08-05";
+maxDateAnnee = "2018-09-01";
 //alert(dateCourante+" "+heureCourante);
 
 $(document).ready(function (){
 
-    /**
-     * gestion du modal d'activite
-     */
-    getOptionAnnee("anneeAcdivite");
-    getOptionSemestre("idSemestreActivite");
-    $("#idSemestreActivite").change(function(){
-        idSemestreActivite = $("#idSemestreActivite").val();
-        getOptionNiveau("id_niveau",idSemestreActivite);
+    $("#addActivity").click(function(){
+        /**
+         * gestion du modal d'activite
+         */
+        getOptionAnnee("anneeAcdivite");
+        getOptionSemestre("idSemestreActivite");
+        getOptionNiveau("id_niveau");
+        getOptionDuree("duree");
+        getDatePaticularDate("dateDebutActivites","dateDebutActivite","Date de debut :",dateCourante,maxDateAnnee);
+
+        $('#dateDebutActivite').change(function(){
+            dateDebutActivite = $('#dateDebutActivite').val();
+            getDatePaticularDate("dateFinActivites","dateFinActivite","Date de fin :",dateDebutActivite,maxDateAnnee);
+        });
+
+        getOptionType("type_activite");
+        $("#type_activite").change(function(){
+            type_activite=$("#type_activite").val();
+            if(type_activite=="examen"){
+                $("#typeExamens").html('' +
+                '<label class="control-label" for="typeExamen">Type d\'examens:</label>' +
+                '<select id="typeExamen"  name="typeExamen" class="form-control"  data-error="Choisir le typpe de cet examen" required >' +
+                '<option value="">-----</option>'+
+                '<option value="normale">Normale</option>'+
+                '<option value="rattrapage">Rattrapage</option>'+
+                '<div class="help-block with-errors"></div>');
+            }else{
+                $("#typeExamens").html('');
+            }
+        });
     });
-    getDatePaticularDate("dateDebutActivites","dateDebutActivite","Date de debut :",dateCourante,maxDateAnnee);
-    $('#dateDebutActivite').change(function(){
-        dateDebutActivite = $('#dateDebutActivite').val();
-        getDatePaticularDate("dateFinActivites","dateFinActivite","Date de fin :",dateDebutActivite,maxDateAnnee);
-    });
-    getOptionType("type_activite");
-    $("#type_activite").change(function(){
-        type_activite=$("#type_activite").val();
-        if(type_activite=="examen"){
-            $("#typeExamens").html('' +
-            '<label class="control-label" for="typeExamen">Type d\'examens:</label>' +
-            '<select id="typeExamen"  name="typeExamen" class="form-control"  data-error="Choisir le typpe de cet examen" required >' +
-            '<option value="">-----</option>'+
-            '<option value="normale">Normale</option>'+
-            '<option value="rattrapage">Rattrapage</option>'+
-            '<div class="help-block with-errors"></div>');
-        }else{
-            $("#typeExamens").html('');
-        }
-    });
+
+    
 
 
 

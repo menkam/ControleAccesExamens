@@ -24,21 +24,5 @@ class NiveauSeeder extends Seeder
         $objet->libelle_niveau = 'III';
         $objet->save();
 
-        $objet = new Niveau();
-        $objet->libelle_niveau = 'I&II';
-        $objet->save();
-
-        $objet = new Niveau();
-        $objet->libelle_niveau = 'I&III';
-        $objet->save();
-
-        $objet = new Niveau();
-        $objet->libelle_niveau = 'II&III';
-        $objet->save();
-
-        $objet = new Niveau();
-        $objet->libelle_niveau = 'I&II&III';
-        $objet->save();
-
     }
 }

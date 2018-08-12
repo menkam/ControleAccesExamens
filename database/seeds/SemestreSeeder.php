@@ -12,35 +12,11 @@ class SemestreSeeder extends Seeder
     public function run()
     {
         $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD1';
+        $objet->libelle_semestre = 'Semestre 1';
         $objet->save();
 
         $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD1&2';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD2';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD3';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD3&4';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD5';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD5&6';
-        $objet->save();
-
-        $objet = new Semestre();
-        $objet->libelle_semestre = 'LMD6';
+        $objet->libelle_semestre = 'Semestre 2';
         $objet->save();
     }
 }

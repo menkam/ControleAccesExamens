@@ -24,6 +24,11 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label" for="duree">Durée:</label>
+                        <select id="duree" name="duree" class="form-control" data-error="Choisir le Niveau d'étude." required ></select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label" for="type_activite">Type d'activite:</label>
                         <select id="type_activite" name="type_activite" class="form-control" data-error="Choisir le type de l'activité." required ></select>
                         <div class="help-block with-errors"></div>

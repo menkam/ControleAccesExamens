@@ -31,7 +31,7 @@ function getOptionAnnee(position) {
  * @param position
  * @param idsemestre
  */
-function getOptionNiveau(position,idsemestre) {
+function getOptionNiveau(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
     $.ajax({
@@ -209,6 +209,28 @@ function getOptionCreneau(position,duree) {
 }
 
 /**
+ * Get option creno
+ * @param position
+ * @param duree
+ */
+function getOptionDuree(position) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#"+position+"");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getDureeCreneaux',
+        success: function(data){
+            for(var i= 0; i < data.length; i++) {
+                rows = rows + '<option value="'+data[i].duree+'">'+data[i].duree+'</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
+/**
  * Get option surveillant
  * @param position
  * @param duree
@@ -261,7 +283,7 @@ function getOptionEnseignant(position,duree) {
 /**
  * Get option duree
  * @param position
- */
+ *
 function getOptionDuree(position) {
     var rows = '<option value="">-----</option>';
     var position = $("#"+position+"");
@@ -271,6 +293,8 @@ function getOptionDuree(position) {
     position.empty();
     position.append(rows).slideDown();
 }
+*/
+
 
 /**
  * Get option salle lbre

@@ -12,7 +12,11 @@ class SurveillantSeeder extends Seeder
     public function run()
     {
         $objet = new Surveillant();
-        $objet->id_user = '24';
+        $objet->id_user = '9';
+        $objet->save();
+
+        $objet = new Surveillant();
+        $objet->id_user = '10';
         $objet->save();
     }
 }

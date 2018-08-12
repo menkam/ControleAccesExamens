@@ -152,6 +152,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     //Route for creneaux_horaire
     Route::post('getCreneaux', ['as'=>'getCreneaux', 'uses'=>'Creneaux_horairesController@show']);
+    Route::post('getDureeCreneaux', ['as'=>'getDureeCreneaux', 'uses'=>'Creneaux_horairesController@showDuree']);
     //end.
 
     //Route for cursus_acc

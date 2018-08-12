@@ -36,6 +36,13 @@ class Creneaux_horairesController extends Controller{
         ");
     }
 
+    public function showDuree(Request $request)
+    {
+        return DB::select("
+            select distinct duree from creneaux_horaires;
+        ");
+    }
+
 
     public function edit(Request $request)
     {

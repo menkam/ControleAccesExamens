@@ -9,11 +9,15 @@ class Classe extends Model
     protected $guarded = array();
 
    protected $fillable = [
-   	'code_classe', 
-   	'id_cursus',
-    'id_departement',
+   	'id',
+   	'id_option',
     'id_niveau',
+   	'code_classe', 
    	'libelle_classe',
    	'effectif_classe'
    ];
 }
+
+/*
+App\Models\Classe::create(['id_option'=>'1', 'id_niveau' => '3', 'code_classe' => 'LMD5', 'libelle_classe' => 'LMD5', 'effectif_classe' => '60']);
+*/

@@ -8,44 +8,32 @@
             <div class="modal-body">
                 <form data-toggle="validator" action="{{ route('activite.store') }}" method="POST">
                         
-                    <!--div class="form-group">
-                        <label class="control-label" for="id_enseignant">enseignant:</label>
-                        <select name="id_enseignant" id="id_enseignant" class="form-control" data-error="Choisr d'un ensseignant." required >
-                            <option value="">....</option>
-                            <option value="1">FM01</option>
+                    <div class="form-group">
+                        <label class="control-label" for="code_classe">Code de la classe:</label>
+                        <input type="text" name="code_classe" id="code_classe" class="form-control" data-error="définir le code de la classe." required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="niveau">Niveau:</label>
+                        <select type="text" name="niveau" id="niveauClasse" class="form-control" data-error="niveau." required ></select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="option">Option:</label>
+                        <select name="option" class="form-control" data-error="Choisir l'option." id="optionClasse" required >
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_activite">activite:</label>
-                        <select name="id_activite" class="form-control" data-error="Choisir une activite." required >
-                            <option value="">....</option>
-                            <option value="1">TP2</option>
-                            <option value="2">EX3</option>
-                            <option value="3">CC1</option>
-                        </select>
+                        <label class="control-label" for="libelle">Libelle:</label>
+                        <input type="text" name="libelle" class="form-control" data-error="libelle." required >
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="id_matiere">matiere:</label>
-                        <select name="id_id_matiere" class="form-control" data-error="Choisir le id_matiere d'étude." required >
-                            <option value="">....</option>
-                            <option value="id_1">ECO</option>
-                            <option value="id_2">DW</option>
-                            <option value="id_3">MAT</option>
-                        </select>
+                        <label class="control-label" for="effectif_classe">Effectif:</label>
+                        <input type="number" name="effectif_classe" class="form-control" data-error="effectif_classe." required >
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="id_creneau">creneau:</label>
-                        <select name="id_id_creneau" class="form-control" data-error="Choisir  l'id_creneau horaire." required >
-                            <option value="">....</option>
-                            <option value="id_1">H1</option>
-                            <option value="id_2">H9</option>
-                            <option value="id_3">H2</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div-->
                     <div class="form-group">
                         <button type="submit" class="btn save_activite btn-success">Submit</button>
                         <button type="reset" class="btn btn-warning crud-reset-edit">Effacer</button>

@@ -12,8 +12,13 @@ class Annee_academiqueSeeder extends Seeder
      */
     public function run()
     {
-        $objet = new Annee_academique();
+        $objet = new Annee_academique(); 
         $objet->libelle_annee = '2017-2018';
         $objet->save();
+
+        $objet = new Annee_academique(); 
+        $objet->libelle_annee = '2018-2019';
+        $objet->save();
+
     }
 }

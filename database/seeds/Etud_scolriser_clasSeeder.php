@@ -14,37 +14,80 @@ class Etud_scolriser_clasSeeder extends Seeder
         $objet = new Etud_scolariser_clas();
         $objet->id_annee = '1';
         $objet->id_etudiant = '1';
-        $objet->id_classe = '1';
+        $objet->id_classe = '4';
         $objet->save();
 
-        $objet1 = new Etud_scolariser_clas();
-        $objet1->id_annee = '1';
-        $objet1->id_etudiant = '2';
-        $objet1->id_classe = '1';
-        $objet1->save();
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '2';
+        $objet->id_classe = '4';
+        $objet->save();
 
-        $objet2 = new Etud_scolariser_clas();
-        $objet2->id_annee = '1';
-        $objet2->id_etudiant = '3';
-        $objet2->id_classe = '1';
-        $objet2->save();
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '3';
+        $objet->id_classe = '4';
+        $objet->save();
 
-        $objet3 = new Etud_scolariser_clas();
-        $objet3->id_annee = '1';
-        $objet3->id_etudiant = '1';
-        $objet3->id_classe = '1';
-        $objet3->save();
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '4';
+        $objet->id_classe = '4';
+        $objet->save();
 
-        $objet4 = new Etud_scolariser_clas();
-        $objet4->id_annee = '1';
-        $objet4->id_etudiant = '2';
-        $objet4->id_classe = '1';
-        $objet4->save();
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '5';
+        $objet->id_classe = '4';
+        $objet->save();
 
-        $objet5 = new Etud_scolariser_clas();
-        $objet5->id_annee = '1';
-        $objet5->id_etudiant = '3';
-        $objet5->id_classe = '1';
-        $objet5->save();
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '6';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '7';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '8';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '9';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '10';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '11';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '12';
+        $objet->id_classe = '4';
+        $objet->save();
+
+        $objet = new Etud_scolariser_clas();
+        $objet->id_annee = '1';
+        $objet->id_etudiant = '13';
+        $objet->id_classe = '4';
+        $objet->save();
+
     }
 }

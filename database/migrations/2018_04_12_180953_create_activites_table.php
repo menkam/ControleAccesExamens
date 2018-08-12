@@ -18,6 +18,7 @@ class CreateActivitesTable extends Migration
             $table->integer('id_annee');
             $table->integer('id_semestre');
             $table->integer('id_niveau');
+            $table->integer('duree');
             $table->date('date_debut_activite');
             $table->date('date_fin_activite');
             $table->string('type_activite');

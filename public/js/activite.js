@@ -115,6 +115,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
             rows = rows + '<input type="hidden" na>';
             rows = rows + '<td>'+value.id_annee+'</td>';
             rows = rows + '<td>'+value.id_semestre+'</td>';
+            rows = rows + '<td>'+value.duree+'</td>';
             rows = rows + '<td>'+value.id_niveau+'</td>';
             rows = rows + '<td id="typeActiviteCourante">'+value.type_activite+'</td>';
             rows = rows + '<td>'+value.date_debut_activite+'</td>';
@@ -137,6 +138,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
             nbr++;
             compteurA += 2;
             idActiviteCourante=value.id;
+            dureeActiviteCourante=value.duree;
             typeActiviteCourante=value.type_activite;
             getPageDataMatiereActivity(value.id,value.type_activite);
             getPageDataClasseActivity(value.id);

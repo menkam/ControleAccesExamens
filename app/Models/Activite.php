@@ -12,9 +12,9 @@ class Activite extends Model
 	   	'id_annee', 
 	   	'id_semestre',
         'id_niveau',
+        'duree',
 	   	'type_activite',
 	   	'date_debut_activite', 
 	   	'date_fin_activite'
    ];
 }
-
