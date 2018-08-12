@@ -280,21 +280,6 @@ function getOptionEnseignant(position,duree) {
     });
 }
 
-/**
- * Get option duree
- * @param position
- *
-function getOptionDuree(position) {
-    var rows = '<option value="">-----</option>';
-    var position = $("#"+position+"");
-    rows = rows + '<option value="30">30Min</option>';
-    rows = rows + '<option value="1">01H</option>';
-    rows = rows + '<option value="2">02H</option>';
-    position.empty();
-    position.append(rows).slideDown();
-}
-*/
-
 
 /**
  * Get option salle lbre
