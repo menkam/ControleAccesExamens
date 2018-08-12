@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'MENKAM';
         $admin->prenom = 'Francis';
-        $admin->date_nais = '20-02-1995';
+        $admin->date_nais = '1995-02-20';
         $admin->sexe = 'M';
         $admin->telephone = '670256150';
         $admin->info_codebar = '1_CM-UDS-160002';
@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
 	    $admin = new User();
 	    $admin->name = 'admin';
         $admin->prenom = 'admin';
-        $admin->date_nais = '20-02-1995';
+        $admin->date_nais = '1995-02-20';
         $admin->sexe = 'M';
         $admin->telephone = '67xxxxxxx';
         $admin->info_codebar = '2_CM-UDS-160002';
@@ -49,7 +49,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'NKENLIFACK';
         $enseignant->prenom = 'Marcelin';
         $enseignant->email = 'marcelin@gmail.com';
-        $enseignant->date_nais = '20-02-1975';
+        $enseignant->date_nais = '1975-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '3_CM-UDS-160003';
@@ -62,7 +62,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'KUATE';
         $enseignant->prenom = 'Victor';
         $enseignant->email = 'victor@gmail.com';
-        $enseignant->date_nais = '20-02-1985';
+        $enseignant->date_nais = '1985-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '4_CM-UDS-160004';
@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'LANDRI';
         $enseignant->prenom = 'Adrian';
         $enseignant->email = 'ensgant3@gmail.com';
-        $enseignant->date_nais = '20-02-1975';
+        $enseignant->date_nais = '1975-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '5_CM-UDS-160005';
@@ -88,7 +88,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'DJIONGO';
         $enseignant->prenom = 'Cedrigue Boris';
         $enseignant->email = 'djiongo@gmail.com';
-        $enseignant->date_nais = '20-02-1975';
+        $enseignant->date_nais = '1985-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '6_CM-UDS-160006';
@@ -101,7 +101,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'enseignant2';
         $enseignant->prenom = 'pre_enseignant';
         $enseignant->email = 'test@gmail.com';
-        $enseignant->date_nais = '20-02-1975';
+        $enseignant->date_nais = '1975-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '7_CM-UDS-160007';
@@ -114,7 +114,7 @@ class UserTableSeeder extends Seeder
         $enseignant->name = 'enseignant3';
         $enseignant->prenom = 'prenom_enseignant';
         $enseignant->email = 'ensigant4@gmail.com';
-        $enseignant->date_nais = '20-02-1975';
+        $enseignant->date_nais = '1975-02-20';
         $enseignant->sexe = 'M';
         $enseignant->telephone = '67xxxxxxx';
         $enseignant->info_codebar = '8_CM-UDS-160008';
@@ -129,7 +129,7 @@ class UserTableSeeder extends Seeder
         $surveillant->name = 'ZOLO';
         $surveillant->prenom = 'Rostand';
         $surveillant->email = 'Zrostand@gmail.com';
-        $surveillant->date_nais = '20-02-1975';
+        $surveillant->date_nais = '1975-02-20';
         $surveillant->sexe = 'M';
         $surveillant->telephone = '67xxxxxxx';
         $surveillant->info_codebar = '9_CM-UDS-160009';
@@ -143,7 +143,7 @@ class UserTableSeeder extends Seeder
         $surveillant->prenom = 'Valentin';
         $surveillant->photo = 'user.png';
         $surveillant->email = 'Tvalentin@gmail.com';
-        $surveillant->date_nais = '20-02-1975';
+        $surveillant->date_nais = '1975-02-20';
         $surveillant->sexe = 'M';
         $surveillant->telephone = '67xxxxxxx';
         $surveillant->info_codebar = '10_CM-UDS-1600010';
@@ -158,7 +158,7 @@ class UserTableSeeder extends Seeder
 	    $etudiant = new User();
 	    $etudiant->name = 'MANFO'; 
         $etudiant->prenom = 'Alex';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '11_CM-UDS-16IUT0002';
@@ -171,7 +171,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'F';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '12_CM-UDS-16IUT0002';
@@ -184,7 +184,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '13_CM-UDS-16IUT0002';
@@ -197,7 +197,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '14_CM-UDS-16IUT0002';
@@ -210,7 +210,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '15_CM-UDS-16IUT0002';
@@ -223,7 +223,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '16_CM-UDS-16IUT0002';
@@ -236,7 +236,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '17_CM-UDS-16IUT0002';
@@ -249,7 +249,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '18_CM-UDS-16IUT0002';
@@ -262,7 +262,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '19_CM-UDS-16IUT0002';
@@ -275,7 +275,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '20_CM-UDS-16IUT0002';
@@ -288,7 +288,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '21_CM-UDS-16IUT0002';
@@ -301,7 +301,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '22_CM-UDS-16IUT0002';
@@ -314,7 +314,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '23_CM-UDS-16IUT0002';
@@ -327,7 +327,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '24_CM-UDS-16IUT0002';
@@ -340,7 +340,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '25_CM-UDS-16IUT0002';
@@ -353,7 +353,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '26_CM-UDS-16IUT0002';
@@ -366,7 +366,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '27_CM-UDS-16IUT0002';
@@ -379,7 +379,7 @@ class UserTableSeeder extends Seeder
         $etudiant = new User();
         $etudiant->name = 'user1';
         $etudiant->prenom = 'prenom';
-        $etudiant->date_nais = '20-02-1995';
+        $etudiant->date_nais = '1995-02-20';
         $etudiant->sexe = 'M';
         $etudiant->telephone = '67xxxxxxx';
         $etudiant->info_codebar = '28_CM-UDS-16IUT0002';
