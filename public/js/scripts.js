@@ -209,9 +209,8 @@ function getOptionCreneau(position,duree) {
 }
 
 /**
- * Get option creno
+ * Get option dureecreno
  * @param position
- * @param duree
  */
 function getOptionDuree(position) {
     var rows = '<option value="">-----</option>';
