@@ -139,6 +139,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
             compteurA += 2;
             idActiviteCourante=value.id;
             dureeActiviteCourante=value.duree;
+            idNiveauActiviteCourante=value.id_niveau;
             typeActiviteCourante=value.type_activite;
             getPageDataMatiereActivity(value.id,value.type_activite);
             getPageDataClasseActivity(value.id);
@@ -298,6 +299,7 @@ function getPageDataMatiereActivity(id,typeActivite) {
         var id_annee = $("#create-item").find("select[name='anneeAcdivite']").val();
         var id_semestre = $("#create-item").find("select[name='idSemestreActivite']").val();
         var id_niveau = $("#create-item").find("select[name='id_niveau']").val();
+        var duree = $("#create-item").find("select[name='duree']").val();
         var type_activite = $("#create-item").find("select[name='type_activite']").val();
         var date_debut_activite = $("#create-item").find("input[name='dateDebutActivite']").val();
         var date_fin_activite = $("#create-item").find("input[name='dateFinActivite']").val();
@@ -308,13 +310,13 @@ function getPageDataMatiereActivity(id,typeActivite) {
             type_activite = $("#create-item").find("select[name='type_activite']").val();
         }
         //alert(type_activite);
-        //alert(id_annee+id_semestre+id_niveau+type_activite+date_debut_activite+date_fin_activite);
+        //alert(id_annee+id_semestre+id_niveau+duree+type_activite+date_debut_activite+date_fin_activite);
 
         $.ajax({
             dataType: 'json',
             type:'POST',
             url:'activiteStore',
-            data:{id_annee:id_annee, id_semestre:id_semestre, id_niveau:id_niveau, type_activite:type_activite, date_debut_activite:date_debut_activite, date_fin_activite:date_fin_activite}
+            data:{id_annee:id_annee, id_semestre:id_semestre, id_niveau:id_niveau, duree:duree, type_activite:type_activite, date_debut_activite:date_debut_activite, date_fin_activite:date_fin_activite}
         }).done(function(data){
             getPageDataActivity();
             $(".modal").modal('hide');

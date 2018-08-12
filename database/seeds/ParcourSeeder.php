@@ -13,13 +13,13 @@ class ParcourSeeder extends Seeder
     public function run()
     {
         $objet = new Parcour();
-        $objet->id_spetialite = '1';
+        $objet->id_mention = '1';
         $objet->code = 'GI';
         $objet->libelle = 'Génie Informatique';
         $objet->save();     
 
         $objet = new Parcour();
-        $objet->id_spetialite = '1';
+        $objet->id_mention = '1';
         $objet->code = 'IR';
         $objet->libelle = 'Informatique et réseaux';
         $objet->save();

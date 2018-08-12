@@ -40,7 +40,7 @@
                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                     <div class="">
                         <div class="pull-left"><b>Liste des classes concernées pour cette activité</b></div>
-                        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addClasse">Ajouter une classe</button></div>
+                        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addClasse" id="addClasse2">Ajouter une classe</button></div>
                     </div>
                     <table class="table table-bordered jambo_table table-striped tablecondensed">
                         <thead>
@@ -59,7 +59,7 @@
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                     <div class="">
                         <div class="pull-left"><b>Liste des salles concernées pour cette activité</b></div>
-                        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSalle">Ajouter une salle</button></div>
+                        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSalle" id="addSalle2">Ajouter une salle</button></div>
                     </div>
                     <table class="table table-bordered jambo_table table-striped tablecondensed">
                         <thead>

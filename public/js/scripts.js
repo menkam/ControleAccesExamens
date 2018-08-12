@@ -94,6 +94,28 @@ function getOptionClasse(position) {
     });
 }
 
+function getOptionClasse2(position,idNiveau) {
+    var rows = '<option value="">-----</option>';
+    var position = $("#"+position+"");
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'getClasse2',
+        data:{
+            idNiveau:idNiveau
+        },
+        success: function(data){
+
+            for(var i= 0; i < data.length; i++) {
+                //alert(data[i].libelle_annee);
+                rows = rows + '<option value="'+data[i].id+'">'+data[i].code_classe+' ('+data[i].libelle_classe+')</option>';
+                position.empty();
+                position.append(rows).slideDown();
+            }
+        }
+    });
+}
+
 /**
  * Get option Semestre
  * @param position

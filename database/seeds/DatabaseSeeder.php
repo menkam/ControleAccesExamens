@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(CoursSeeder::class);
         $this->call(Creneaux_horaireSeeder::class);
         $this->call(Cursus_accSeeder::class);
+        $this->call(Cursus_dptSeeder::class);
         $this->call(DepartementSeeder::class);
         $this->call(DomaineSeeder::class);
         $this->call(Ens_chef_dptSeeder::class);

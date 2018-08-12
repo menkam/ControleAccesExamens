@@ -22,8 +22,13 @@ class Cursus_accSeeder extends Seeder
         $objet1->save();
 
         $objet2 = new Cursus_acc();
+        $objet2->code = 'LT';
+        $objet2->libelle = 'Licence de Technologie';
+        $objet2->save();
+
+        $objet2 = new Cursus_acc();
         $objet2->code = 'LP';
-        $objet2->libelle = 'Licence';
+        $objet2->libelle = 'Licence Professionnelle';
         $objet2->save();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClasseRequest;
 use App\Models\Classe;
@@ -36,6 +37,20 @@ class ClassesController extends Controller{
     {
         $objects = Classe::all();
         return response()->json($objects);
+    }
+
+    public function show2(Request $request)
+    {
+        $id_niveau = $request->idNiveau;
+        return DB::select("
+            SELECT 
+              * 
+            FROM 
+              public.classes
+            WHERE 
+              classes.id_niveau = '$id_niveau';
+        ");
+        
     }
 
     /**

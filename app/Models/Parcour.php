@@ -10,7 +10,7 @@ class Parcour extends Model
 
     protected $fillable = [
 	   	'id', 
-	   	'id_spetialite',
+	   	'id_mention',
         'code',
 	   	'libelle'
    ];

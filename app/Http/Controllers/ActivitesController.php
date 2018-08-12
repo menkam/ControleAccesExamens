@@ -266,38 +266,48 @@ class ActivitesController extends Controller
                 SELECT 
                   activites.id,
                   examens.id as id2,
-                  cursus_accs.code,
-                  departements.code_departement,
-                  classes.code_classe,
-                  semestres.libelle_semestre,
-                  creneaux_horaires.libelle_creneaux,
-                  matieres.libelle_matiere,
-                  sessions.libelle_session
+                  creneaux_horaires.libelle_creneaux, 
+                  matieres.libelle_matiere, 
+                  classes.code_classe, 
+                  sessions.libelle_session, 
+                  cursus_accs.code, 
+                  departements.code_departement, 
+                  semestres.libelle_semestre
                 FROM 
-                  public.departements, 
-                  public.cursus_accs, 
                   public.classes, 
                   public.activite_conc_classes, 
+                  public.options, 
+                  public.parcours, 
                   public.activites, 
-                  public.examens, 
                   public.matieres, 
+                  public.mentions, 
+                  public.domaines, 
+                  public.cursus_accs, 
+                  public.cursus_dpts, 
                   public.sessions, 
-                  public.semestres, 
-                  public.creneaux_horaires
+                  public.creneaux_horaires, 
+                  public.departements, 
+                  public.examens, 
+                  public.semestres
                 WHERE 
-                  classes.id_cursus = cursus_accs.id AND
-                  classes.id_departement = departements.id AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  activite_conc_classes.id_classe = classes.id AND
-                  activites.id_semestre = semestres.id AND
-                  activites.id = examens.id_activite AND
-                  examens.id_session = sessions.id AND
+                  classes.id = activite_conc_classes.id_classe AND
+                  options.id = classes.id_option AND
+                  parcours.id = options.id_parcour AND
+                  parcours.id_mention = mentions.id AND
+                  activites.id = activite_conc_classes.id_activite AND
+                  matieres.id = examens.id_matiere AND
+                  mentions.id_domaine = domaines.id AND
+                  domaines.id_cursus = cursus_accs.id AND
+                  cursus_accs.id = cursus_dpts.id_cursus AND
+                  cursus_dpts.id_dpt = departements.id AND
+                  sessions.id = examens.id_session AND
+                  examens.id_activite = activites.id AND
                   examens.id_creneau = creneaux_horaires.id AND
-                  examens.id_matiere = matieres.id AND
+                  semestres.id = activites.id_semestre AND
                   examens.date_examen = '$date' AND
                   creneaux_horaires.libelle_creneaux LIKE '%$heure%'
                 ORDER BY
-                  creneaux_horaires.libelle_creneaux ASC
+                  creneaux_horaires.libelle_creneaux ASC;
             ");
         }
     }
@@ -308,42 +318,55 @@ class ActivitesController extends Controller
         $date = $request->date;
         if($request->ajax()) {
             return DB::select("
-                SELECT
+                SELECT 
                   activites.id,
                   tps.id as id2,
-                  cursus_accs.code,
-                  departements.code_departement,
-                  classes.code_classe,
-                  creneaux_horaires.libelle_creneaux,
-                  matieres.libelle_matiere,
-                  users.name,
-                  users.prenom,
+                  creneaux_horaires.libelle_creneaux, 
+                  matieres.libelle_matiere, 
+                  semestres.libelle_semestre, 
+                  users.name, 
+                  users.prenom, 
+                  classes.code_classe, 
+                  departements.code_departement, 
+                  cursus_accs.code, 
                   enseignants.grade
-                FROM
-                  departements,
-                  cursus_accs,
-                  classes,
-                  activite_conc_classes,
-                  activites,
-                  matieres,
-                  creneaux_horaires,
-                  tps,
-                  enseignants,
-                  users
-                WHERE
-                  classes.id_cursus = cursus_accs.id AND
-                  classes.id_departement = departements.id AND
-                  activite_conc_classes.id_classe = classes.id AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  creneaux_horaires.id = tps.id_creneau AND
+                FROM 
+                  public.classes, 
+                  public.activite_conc_classes, 
+                  public.options, 
+                  public.parcours, 
+                  public.activites, 
+                  public.matieres, 
+                  public.mentions, 
+                  public.domaines, 
+                  public.cursus_accs, 
+                  public.cursus_dpts, 
+                  public.creneaux_horaires, 
+                  public.departements, 
+                  public.semestres, 
+                  public.users, 
+                  public.enseignants, 
+                  public.tps
+                WHERE 
+                  classes.id = activite_conc_classes.id_classe AND
+                  options.id = classes.id_option AND
+                  parcours.id = options.id_parcour AND
+                  parcours.id_mention = mentions.id AND
+                  activites.id = activite_conc_classes.id_activite AND
+                  mentions.id_domaine = domaines.id AND
+                  domaines.id_cursus = cursus_accs.id AND
+                  cursus_accs.id = cursus_dpts.id_cursus AND
+                  cursus_dpts.id_dpt = departements.id AND
+                  semestres.id = activites.id_semestre AND
+                  enseignants.id_user = users.id AND
                   tps.id_activite = activites.id AND
+                  tps.id_enseigant = enseignants.id AND
                   tps.id_matiere = matieres.id AND
-                  enseignants.id = tps.id_enseigant AND
-                  users.id = enseignants.id_user AND
+                  tps.id_creneau = creneaux_horaires.id AND 
                   tps.date_tp = '$date' AND
-                creneaux_horaires.libelle_creneaux LIKE '%$heure%'
+                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
                 ORDER BY
-                  creneaux_horaires.libelle_creneaux ASC
+                  creneaux_horaires.libelle_creneaux ASC;
             ");
         }
     }
@@ -354,42 +377,55 @@ class ActivitesController extends Controller
       $date = $request->date;
       if($request->ajax()) {
           return DB::select("
-              SELECT
-                  activites.id,
-                  cours.id as id2,
-                  cursus_accs.code,
-                  departements.code_departement,
-                  classes.code_classe,
-                  creneaux_horaires.libelle_creneaux,
-                  matieres.libelle_matiere,
-                  users.name,
-                  users.prenom,
-                  enseignants.grade
-              FROM
-                  public.departements,
-                  public.cursus_accs,
-                  public.classes,
-                  public.activite_conc_classes,
-                  public.activites,
-                  public.matieres,
-                  public.creneaux_horaires,
-                  public.enseignants,
-                  public.users,
-                  public.cours
-              WHERE
-                  classes.id_cursus = cursus_accs.id AND
-                  classes.id_departement = departements.id AND
-                  activite_conc_classes.id_classe = classes.id AND
-                  activite_conc_classes.id_activite = activites.id AND
-                  users.id = enseignants.id_user AND
-                  cours.id_activite = activites.id AND
-                  cours.id_enseigant = enseignants.id AND
-                  cours.id_matiere = matieres.id AND
-                  cours.id_creneau = creneaux_horaires.id AND
-                  cours.date_cours = '$date' AND
-                  creneaux_horaires.libelle_creneaux LIKE '%$heure%'
+              SELECT 
+                activites.id,
+                cours.id as id2,
+                creneaux_horaires.libelle_creneaux, 
+                matieres.libelle_matiere, 
+                semestres.libelle_semestre, 
+                users.name, 
+                users.prenom, 
+                enseignants.grade,
+                classes.code_classe, 
+                departements.code_departement, 
+                cursus_accs.code
+              FROM 
+                public.classes, 
+                public.activite_conc_classes, 
+                public.options, 
+                public.parcours, 
+                public.activites, 
+                public.matieres, 
+                public.mentions, 
+                public.domaines, 
+                public.cursus_accs, 
+                public.cursus_dpts, 
+                public.creneaux_horaires, 
+                public.departements, 
+                public.semestres, 
+                public.cours, 
+                public.users, 
+                public.enseignants
+              WHERE 
+                classes.id = activite_conc_classes.id_classe AND
+                options.id = classes.id_option AND
+                parcours.id = options.id_parcour AND
+                parcours.id_mention = mentions.id AND
+                activites.id = activite_conc_classes.id_activite AND
+                matieres.id = cours.id_matiere AND
+                mentions.id_domaine = domaines.id AND
+                domaines.id_cursus = cursus_accs.id AND
+                cursus_accs.id = cursus_dpts.id_cursus AND
+                cursus_dpts.id_dpt = departements.id AND
+                creneaux_horaires.id = cours.id_creneau AND
+                semestres.id = activites.id_semestre AND
+                cours.id_activite = activites.id AND
+                enseignants.id = cours.id_enseigant AND
+                enseignants.id_user = users.id AND 
+                cours.date_cours = '$date' AND
+                creneaux_horaires.libelle_creneaux LIKE '%$heure%'
               ORDER BY
-                  creneaux_horaires.libelle_creneaux ASC
+                creneaux_horaires.libelle_creneaux ASC;
           ");
         }
     }

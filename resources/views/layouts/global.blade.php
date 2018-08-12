@@ -141,9 +141,9 @@
             }
             //echo $heure["hours"]."h".$heure["minutes"].":".$heure["seconds"];
         ?>';
-        //var heureCourante = '08H';
+        var heureCourante = '08H';
         
-        var heureCourante = '<?php
+        var heureCourante2 = '<?php
             $heure = getDate();
             if(($heure["hours"]+1) < 10){
                 echo "0".($heure["hours"]+1)."H";

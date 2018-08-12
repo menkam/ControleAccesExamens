@@ -59,11 +59,11 @@
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group" id="dateMatiereActivites"></div>
-                    <div class="form-group">
+                    <!--div class="form-group">
                         <label class="control-label" for="dureeMatiere">Durée:</label>
                         <select name="dureeMatiere" id="dureeMatiere" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
-                    </div>
+                    </div-->
                     <div class="form-group">
                         <label class="control-label" for="id_creneauMatiere">Creneau horaire:</label>
                         <select name="id_creneauMatiere" id="id_creneauMatiere" class="form-control" data-error="Choisir un créneau horaire." required ></select>
@@ -102,11 +102,11 @@
                 <form data-toggle="validator" action="" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group" id="dateMatiereActivites2"></div>
-                    <div class="form-group">
+                    <!--iv class="form-group">
                         <label class="control-label" for="dureeMatiere2">Durée:</label>
                         <select name="dureeMatiere2" id="dureeMatiere2" class="form-control" data-error="Choisir une durée." required ></select>
                         <div class="help-block with-errors"></div>
-                    </div>
+                    </div-->
                     <div class="form-group">
                         <label class="control-label" for="id_creneauMatiere2">Creneau horaire:</label>
                         <select name="id_creneauMatiere2" id="id_creneauMatiere2" class="form-control" data-error="Choisir un créneau horaire." required ></select>

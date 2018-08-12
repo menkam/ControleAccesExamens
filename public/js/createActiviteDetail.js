@@ -7,6 +7,7 @@ $(document).ready(function (){
         /**
          * gestion du modal d'activite
          */
+
         getOptionAnnee("anneeAcdivite");
         getOptionSemestre("idSemestreActivite");
         getOptionNiveau("id_niveau");
@@ -35,38 +36,29 @@ $(document).ready(function (){
         });
     });
 
-    
-
-
 
     /**
     * controle du modale de matiere
     */
+    $("#btnAddMatiere").click(function(){   
     //getDatePaticularDate("dateMatiereActivites","dateMatiereActivite","Date :",dateCourante,maxDateAnnee);
-    getOptionDuree("dureeMatiere");
-    $("#dureeMatiere").change(function(){
-        dureeMatiere = $("#dureeMatiere").val();
-        getOptionCreneau("id_creneauMatiere",dureeMatiere);
-        getOptionSurveillant("id_surveillant",dureeMatiere);
-    });
-    getOptionMatiere("id_matiere");
-    getOptionSession("id_session");
+    
+        getOptionCreneau("id_creneauMatiere",dureeActiviteCourante);
+        getOptionSurveillant("id_surveillant",dureeActiviteCourante);
+        getOptionMatiere("id_matiere");
+        getOptionSession("id_session");
 
-    getOptionDuree("dureeMatiere2");
-    $("#dureeMatiere2").change(function(){
-        dureeMatiere = $("#dureeMatiere2").val();
-        getOptionCreneau("id_creneauMatiere2",dureeMatiere);
-        getOptionEnseignant("id_enseignant",dureeMatiere);
+        getOptionCreneau("id_creneauMatiere2",dureeActiviteCourante);
+        getOptionEnseignant("id_enseignant",dureeActiviteCourante);
+        getOptionMatiere("id_matiere2");
     });
-    getOptionMatiere("id_matiere2");
+
 
     /**
      * controle du modale de salle
     */
-    getOptionDuree("dureesaledispo");
-    $("#dureesaledispo").change(function(){
-        dureesaledispo = $("#dureesaledispo").val();
-        getOptionCreneau("id_creneauSalleDispo",dureesaledispo);
+    $("#addSalle2").click(function(){    
+        getOptionCreneau("id_creneauSalleDispo",dureeActiviteCourante);
         $("#id_creneauSalleDispo").change(function(){
             id_creneauSalleDispo = $("#id_creneauSalleDispo").val();
             dateSaleDispo = $("#dateSaleDispo").val();
@@ -82,6 +74,8 @@ $(document).ready(function (){
     /**
      * controle modale d'ajout d'une classe
      */
-    getOptionClasse("idClasseActivite");
+    $("#addClasse2").click(function(){
+        getOptionClasse2("idClasseActivite",idNiveauActiviteCourante);
+    });
 
  });

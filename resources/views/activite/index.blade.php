@@ -184,6 +184,7 @@
         var url = "<?php echo route('activite.index');?>";
         var idUser = "<?php echo Auth::user()->id; ?>";
         var idActiviteCourante;
+        var idNiveauActiviteCourante;
         var dureeActiviteCourante;
         var typeActiviteCourante;
         var DateDebutActiviteCourante;

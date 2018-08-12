@@ -1,7 +1,5 @@
-/*
-alert(dateCourante);
-alert(heureCourante);
-*/
+
+//alert(dateCourante+" "+heureCourante);
 
 
 /*

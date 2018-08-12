@@ -162,6 +162,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     //Route for classes
     Route::post('getClasse', ['as'=>'getClasse', 'uses'=>'ClassesController@show']);
+    Route::post('getClasse2', ['as'=>'getClasse2', 'uses'=>'ClassesController@show2']);
     //end.
 
     //Route for departements
