@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Fonction
 {
@@ -50,5 +51,34 @@ class Fonction
         }
         return $currentDate;
         //return "18-07-2018";
+    }
+
+    public static function getIdClasse($idUser){
+        $heure = Fonction::getTime("H");
+        $date = Fonction::getDate();
+
+        $sol = DB::select("
+            SELECT 
+              activites.id as id_activite, 
+              classes.id as id_classe
+            FROM 
+              public.activites, 
+              public.surveillants, 
+              public.examens, 
+              public.activite_conc_classes, 
+              public.classes, 
+              public.creneaux_horaires
+            WHERE 
+              examens.id_surveillant = surveillants.id AND
+              examens.id_activite = activites.id AND
+              activite_conc_classes.id_activite = activites.id AND
+              classes.id = activite_conc_classes.id_classe AND
+              creneaux_horaires.id = examens.id_creneau AND
+              surveillants.id_user = '$idUser' AND 
+              examens.date_examen = '$date' AND 
+              creneaux_horaires.libelle_creneaux LIKE '%$heure%';
+        ");
+        return $sol;
+        dd($sol);
     }
 }

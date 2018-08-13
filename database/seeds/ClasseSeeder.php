@@ -23,7 +23,7 @@ class ClasseSeeder extends Seeder
        $objet->id_option = '2';
        $objet->id_niveau = '2';
        $objet->code_classe = 'ISR';
-       $objet->libelle_classe = 'Licence Informatique, Réseaux et Télécommunication';
+       $objet->libelle_classe = 'Informatique Service et Réseaux';
        $objet->effectif_classe = '45';
        $objet->save();
 
@@ -31,7 +31,7 @@ class ClasseSeeder extends Seeder
        $objet->id_option = '3';
        $objet->id_niveau = '2';
        $objet->code_classe = 'GEL';
-       $objet->libelle_classe = 'Génie Electrique';
+       $objet->libelle_classe = 'Génie Et Logiciel';
        $objet->effectif_classe = '45';
        $objet->save();
 

@@ -29,6 +29,7 @@ Route::get('androidAddStudent', ['as'=>'androidAddStudent', 'uses'=>'AndroidApi\
 Route::get('androidStudentFinish', ['as'=>'androidStudentFinish', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantAyantTerminer']);
 Route::get('androidStudentExclus', ['as'=>'androidStudentExclus', 'uses'=>'AndroidApi\GestionActiviteController@ajouterEtudiantsExclus']);
 //Route::get('testApi', ['as'=>'testApi', 'uses'=>'AndroidApi\Main@test']);
+Route::get('testApi2', ['as'=>'testApi2', 'uses'=>'AndroidApi\Main@test2']);
 
 
 Route::group(['middleware' => ['guest']], function() {

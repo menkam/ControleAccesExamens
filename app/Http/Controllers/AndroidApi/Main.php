@@ -174,4 +174,19 @@ class Main extends Controller
 			return Response()->json($etudiant);
 		}
 	}
+	public function test2(Request $request){
+		if(!empty($request->idUser)){
+			$sol = Fonction::getIdClasse($request->idUser);
+			if(!empty($sol)){
+				$idActivite = $sol[0]->id_activite;
+		      	$idClasse = $sol[0]->id_classe;
+				echo "idactivite = $idActivite - idclasse = $idClasse";
+			}else{
+				echo "ras";
+			}
+		}else{
+			echo "pas de valeurs reçus";
+		}
+      	
+	}
 }
