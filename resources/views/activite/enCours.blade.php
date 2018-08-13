@@ -181,7 +181,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@section('script-form')
     <script type="text/javascript"></script>
     <script type="text/javascript" src="js/activite_en_cour.js"></script>
 @endsection
