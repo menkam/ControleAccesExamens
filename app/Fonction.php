@@ -30,8 +30,8 @@ class Fonction
                 $currentTime = (($heure["hours"]+1)."H");
             }
         }
-        return $currentTime;
-        //return "08H";
+        //return $currentTime;
+        return "08H";
     }
 
     public static  function getDate(){
