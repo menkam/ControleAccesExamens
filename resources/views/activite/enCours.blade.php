@@ -28,7 +28,7 @@
         }
 </script>
 @endsection
-@section('page_content')
+@section('contenu')
 <div class="">
     <div class="page-title">
         <div class="title_left">
