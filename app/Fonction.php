@@ -30,8 +30,8 @@ class Fonction
                 $currentTime = (($heure["hours"]+1)."H");
             }
         }
-        //return $currentTime;
-        return "08H";
+        return $currentTime;
+        //return "08H";
     }
 
     public static  function getDate(){
@@ -79,6 +79,6 @@ class Fonction
               creneaux_horaires.libelle_creneaux LIKE '%$heure%';
         ");
         return $sol;
-        dd($sol);
+        //dd($sol);
     }
 }

@@ -124,17 +124,29 @@ class EtudiantsController extends Controller
                   public.role_user, 
                   public.etudiants, 
                   public.etud_scolariser_clas, 
-                  public.classes, 
                   public.annee_academiques, 
-                  public.departements
+                  public.departements, 
+                  public.domaines, 
+                  public.cursus_dpts, 
+                  public.cursus_accs, 
+                  public.mentions, 
+                  public.options, 
+                  public.parcours, 
+                  public.classes
                 WHERE 
+                  users.id = role_user.user_id AND
                   roles.id = role_user.role_id AND
-                  role_user.id = users.id AND
                   etudiants.id_user = users.id AND
                   etud_scolariser_clas.id_etudiant = etudiants.id AND
                   etud_scolariser_clas.id_classe = classes.id AND
                   annee_academiques.id = etud_scolariser_clas.id_annee AND
-                  departements.id = classes.id_departement AND
+                  domaines.id_cursus = cursus_accs.id AND
+                  cursus_dpts.id_dpt = departements.id AND
+                  cursus_accs.id = cursus_dpts.id_cursus AND
+                  mentions.id_domaine = domaines.id AND
+                  options.id_parcour = parcours.id AND
+                  parcours.id_mention = mentions.id AND
+                  classes.id_option = options.id AND
                   roles.id = '3' AND 
                   users.id = '$idUser' AND 
                   annee_academiques.id = '$idAnnee';

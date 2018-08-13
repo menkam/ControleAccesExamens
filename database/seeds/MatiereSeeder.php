@@ -12,6 +12,12 @@ class MatiereSeeder extends Seeder
     public function run()
     {
         $objet = new Matiere();
+        $objet->code_matiere = '/';
+        $objet->libelle_matiere = '/';
+        $objet->nbr_credit = '0';
+        $objet->save();
+
+        $objet = new Matiere();
         $objet->code_matiere = 'MOU50';
         $objet->libelle_matiere = 'Génie Logiciel, Conception Objet UML et IHM';
         $objet->nbr_credit = '3';
