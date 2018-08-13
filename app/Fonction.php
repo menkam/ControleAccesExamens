@@ -48,7 +48,7 @@ class Fonction
         if((int)$date["mon"] >= 10 && (int)$date["mday"] >= 10){
             $currentDate = $date["year"]."-".$date["mon"]."-".$date["mday"];
         }
-        //return $currentDate;
-        return "18-07-2018";
+        return $currentDate;
+        //return "18-07-2018";
     }
 }

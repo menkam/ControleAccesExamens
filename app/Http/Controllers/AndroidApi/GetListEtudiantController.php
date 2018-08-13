@@ -66,6 +66,7 @@ class GetListEtudiantController extends Controller
               }
               $etudiants[] = $sol;
           }
+          //dd($etudiants);
           return json_encode(compact("etudiants"));
         }
     }
@@ -73,7 +74,7 @@ class GetListEtudiantController extends Controller
     public function getListAllEtudiants(Request $request){
      $date = Fonction::getDate();
      $heure = Fonction::getTime("H");
-     $idClasse = 1;
+     $idClasse = 4;
      if (!empty($request->idActivite)) {
        $idActivite = $request->idActivite;
        $listEtudiant = DB::select("
@@ -101,7 +102,7 @@ class GetListEtudiantController extends Controller
             etud_scolariser_clas.id_etudiant = etudiants.id AND
             examens.id_matiere = etud_ins_mats.id_matiere AND
             creneaux_horaires.id = examens.id_creneau AND
-            etud_scolariser_clas.id_annee = '3' AND 
+            etud_scolariser_clas.id_annee = '1' AND 
             examens.date_examen = '$date' AND  
             etud_scolariser_clas.id_classe = '$idClasse' AND 
             creneaux_horaires.libelle_creneaux LIKE '%$heure%';
