@@ -127,6 +127,7 @@ function calcule(position,data,eff)
                 if(data[0].count>0){
                     position.empty();
                     pourcentage = eff*100 / data[0].count;
+                    pourcentage = Math.round(pourcentage*100)/100
                     position.append(pourcentage);
                 }else{
                     position.empty();
